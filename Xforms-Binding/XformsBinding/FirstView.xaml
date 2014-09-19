@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XformsBinding;assembly=XformsBinding"
+    x:Class="XformsBinding.FirstView">
+    <ContentPage.BindingContext>
+    	<local:FirstViewModel MainText="Main in XAML" SayItText="Say in XAML"/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical">
+    	<Label Text="{Binding MainText}"/>
+    	<Entry Text="{Binding SayItText}"/>
+    </StackLayout>
+<!--    <ContentPage.Content>
+        
+    </ContentPage.Content>-->
+</ContentPage>
+

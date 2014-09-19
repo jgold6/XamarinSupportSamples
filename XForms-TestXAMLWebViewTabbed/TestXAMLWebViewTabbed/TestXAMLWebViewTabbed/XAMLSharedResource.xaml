@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestXAMLWebViewTabbed.XAMLSharedResource"
+             Title="Shared Resources Page">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <LayoutOptions x:Key="horzOptions"
+                     Alignment="Center" />
+
+      <LayoutOptions x:Key="vertOptions"
+                     Alignment="Center"
+                     Expands="True" />
+      <x:Int32 x:Key="borderWidth">1</x:Int32>
+      <x:Double x:Key="min15RotationAngle">15</x:Double>
+      <OnPlatform x:Key="textColor"
+                  x:TypeArguments="Color"
+                  iOS="Red"
+                  Android="Aqua"
+                  WinPhone="#80FF80" />
+      <x:String x:Key="font">Large</x:String>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <StackLayout>
+    <Button Text="Do this!"
+            HorizontalOptions="{StaticResource horzOptions}"
+            VerticalOptions="{StaticResource vertOptions}"
+            BorderWidth="{StaticResource borderWidth}"
+            Rotation="{StaticResource min15RotationAngle}"
+            TextColor="{StaticResource textColor}"
+            Font="{StaticResource font}"
+            />
+
+    <Button Text="Do that!"
+            HorizontalOptions="{StaticResource horzOptions}"
+            VerticalOptions="{StaticResource vertOptions}"
+            BorderWidth="{StaticResource borderWidth}"
+            Rotation="{StaticResource min15RotationAngle}"
+            TextColor="{StaticResource textColor}"
+            Font="{StaticResource font}"
+            />
+
+    <Button Text="Do the other thing!"
+            HorizontalOptions="{StaticResource horzOptions}"
+            VerticalOptions="{StaticResource vertOptions}"
+            BorderWidth="{StaticResource borderWidth}"
+            Rotation="{StaticResource min15RotationAngle}"
+            TextColor="{StaticResource textColor}"
+            Font="{StaticResource font}"
+            />
+
+  </StackLayout>
+</ContentPage>

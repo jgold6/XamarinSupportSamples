@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacCustomTableViewCell", "MacCustomTableViewCell\MacCustomTableViewCell.csproj", "{2C8C7675-F044-43E0-A265-743A2CD6C639}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		AppStore|Any CPU = AppStore|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C8C7675-F044-43E0-A265-743A2CD6C639}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{2C8C7675-F044-43E0-A265-743A2CD6C639}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{2C8C7675-F044-43E0-A265-743A2CD6C639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8C7675-F044-43E0-A265-743A2CD6C639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8C7675-F044-43E0-A265-743A2CD6C639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8C7675-F044-43E0-A265-743A2CD6C639}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MacCustomTableViewCell\MacCustomTableViewCell.csproj
+	EndGlobalSection
+EndGlobal

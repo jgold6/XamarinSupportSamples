@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FormsTestTableViewXaml.TableView1">
+	<ContentPage.Resources>
+    <ResourceDictionary>
+		<x:String x:Key="Padding">
+		20,0,0,0
+		</x:String>
+		<x:Int32 x:Key="Col1">100</x:Int32>
+		<TextAlignment x:Key="YAlign">Center</TextAlignment>
+	</ResourceDictionary>
+</ContentPage.Resources>
+<ContentPage.Content>
+<StackLayout>
+	<TableView Intent="Settings">
+	<TableRoot Title="Settings">
+		<TableSection Title="Notifications">
+			<ViewCell>
+		         <ViewCell.View>
+		         <StackLayout
+		         	Padding="{StaticResource Padding}"
+		         	VerticalOptions="Start" Orientation="Horizontal">
+		         		<Label Text="Notifications" WidthRequest="{StaticResource Col1}" YAlign="{StaticResource YAlign}"></Label>
+		         		 <StackLayout
+		         		 	HorizontalOptions="EndAndExpand"
+		         		 	VerticalOptions="FillAndExpand"
+		         		 	Orientation="Vertical">
+		         		 	<Switch IsToggled="true"></Switch>
+		         		 </StackLayout>	
+		         	</StackLayout>
+		         </ViewCell.View>
+		     </ViewCell>  
+			<ViewCell>
+		         <ViewCell.View>
+		         <StackLayout
+		         	VerticalOptions="Start" Orientation="Horizontal">
+		         		<Label Text="Max" WidthRequest="{StaticResource Col1}" YAlign="{StaticResource YAlign}"></Label>
+		         		 <StackLayout
+		         		 	HorizontalOptions="FillAndExpand"
+		         		 	VerticalOptions="FillAndExpand"
+		         		 	Orientation="Vertical">
+		         		 	<Entry />
+		         		 </StackLayout>	
+		         	</StackLayout>
+		         </ViewCell.View>
+		     </ViewCell>
+			</TableSection>
+		<TableSection Title="Network">
+			<TextCell Text="To change a setting below, please change on your device." IsEnabled="false"></TextCell>	
+<!--- Commenting out either of the following two ViewCells allows UI to show on Android (Works with both ViewCells on iOS). -->
+			<ViewCell>
+		         <ViewCell.View>
+		         <StackLayout
+		         	HorizontalOptions="FillAndExpand"
+		         	VerticalOptions="FillAndExpand">
+		         		<Label Text="IsWifi"></Label>
+		         	</StackLayout>
+		         </ViewCell.View>
+		     </ViewCell> 
+		     <ViewCell>
+		         <ViewCell.View>
+		         <StackLayout
+		         	Padding="{StaticResource Padding}"
+		         	VerticalOptions="Start" Orientation="Horizontal">
+		         		<Label Text="IsWifi" WidthRequest="{StaticResource Col1}" YAlign="{StaticResource YAlign}"></Label>
+		         		 <StackLayout
+		         		 	HorizontalOptions="EndAndExpand"
+		         		 	VerticalOptions="FillAndExpand"
+		         		 	Orientation="Vertical">
+		         		 	<Switch IsToggled="{Binding IsWifi}" IsEnabled="false"></Switch>
+		         		 </StackLayout>	
+		         	</StackLayout>
+		         </ViewCell.View>
+		     </ViewCell> 					, work in iOS)
+		</TableSection>
+	</TableRoot>
+	</TableView>
+</StackLayout>
+</ContentPage.Content>
+</ContentPage>
+	 

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/mainMenu">
+	<item android:id="@+id/add"
+		android:title="New">
+		<menu android:id="@+id/submenu2">
+			<item android:id="@+id/call2"
+				android:title="Call2"/>
+			<item android:id="@+id/call3"
+				android:title="Call3"/>
+		</menu>
+	</item>
+	<item android:id="@+id/phone"
+		android:title="Phone">
+		<menu android:id="@+id/submenu">
+			<item android:id="@+id/call"
+				android:title="Call"/>
+		</menu>
+	</item>
+	<item android:id="@+id/refresh"
+		android:title="Refresh"/>
+</menu>

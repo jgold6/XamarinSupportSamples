@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGATest", "MyGATest\MyGATest.csproj", "{F700EDFD-675F-4133-A9A0-02F977E4D462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAnalytics", "GoogleAnalytics\GoogleAnalytics.csproj", "{C4C6D740-592C-47F9-9369-7176C7948A18}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Release|iPhone.Build.0 = Release|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C4C6D740-592C-47F9-9369-7176C7948A18}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Release|iPhone.Build.0 = Release|iPhone
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F700EDFD-675F-4133-A9A0-02F977E4D462}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MyGATest\MyGATest.csproj
+	EndGlobalSection
+EndGlobal

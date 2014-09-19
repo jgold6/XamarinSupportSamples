@@ -1,0 +1,8 @@
+﻿<metadata>
+<!--  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />-->
+
+  <attr path="/api/package[@name='com.geomoby.async']/class[@name='ClickThroughAsyncTask']/method[@name='doInBackground']" name="managedName">_DoInBackground</attr>
+  <attr path="/api/package[@name='com.geomoby.async']/class[@name='GeoNamesAsyncTask']/method[@name='doInBackground']" name="managedName">_DoInBackground</attr>
+  <attr path="/api/package[@name='com.geomoby.async']/class[@name='RedeemAsyncTask']/method[@name='doInBackground']" name="managedName">_DoInBackground</attr>
+</metadata>

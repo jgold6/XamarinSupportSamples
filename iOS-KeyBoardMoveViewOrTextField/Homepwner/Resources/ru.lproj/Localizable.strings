@@ -1,0 +1,43 @@
+/* Application Name */
+"Homepwner" = " домовладелец";
+/* Asset Types */
+"Asset Types" = "Типы активов";
+/* Asset Type for */
+"Asset type for " = "Тип актив for ";
+/* All */
+"All " = "Все ";
+/* Items */
+" items" = " Пункты";
+/* Asset Type */
+"Furniture" = "мебель";
+/* Asset Type */
+"Computer" = "компьютер";
+/* Asset Type */
+"Electronics" = "электроника";
+/* Asset Type */
+"Musical Instrument" = "музыкальный инструмент";
+/* Asset Type */
+"Tool" = "инструмент";
+/* Asset Type */
+"Clothes" = "одежда";
+/* Asset Type */
+"None" = "Никто";
+/* Unassigned */
+"Unassigned" = "не назначен";
+/* Cancel */
+"Cancel" = "Отмена";
+/* Done */
+"Done" = "Выполнено";
+/* Create Asset Type */
+"Create an Asset Type" = "Создать Тип Актива";
+/* Please Enter */
+"Please enter a new asset type" = "Введите, пожалуйста, новый тип актива";
+/* Enter New */
+"Enter a new asset type" = "Введите новый тип актива";
+
+/* Confirm Date Change */
+"Do you really want to change the date?" = "Вы действительно хотите изменить дату?";
+/* Change Warning */ 
+"Modifying the date of an acquired item can result in charges of insurance fraud." = "Изменение даты приобретенного пункт может привести к обвинению страхового мошенничества.";
+/* Correct Error */
+ "This is correcting an error." = "Это исправления ошибки.";

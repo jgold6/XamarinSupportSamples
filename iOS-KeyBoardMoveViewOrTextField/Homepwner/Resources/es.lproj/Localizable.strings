@@ -1,0 +1,43 @@
+/* Application Name */
+"Homepwner" = " Dueño de casa";
+/* Asset Types */
+"Asset Types" = "Tipos de activos";
+/* Asset Type for */
+"Asset type for " = "Tipo de activo por ";
+/* All */
+"All " = "Todos ";
+/* Items */
+" items" = " artículos";
+/* Asset Type */
+"Furniture" = "Muebles";
+/* Asset Type */
+"Computer" = "Computadora";
+/* Asset Type */
+"Electronics" = "Electrónica";
+/* Asset Type */
+"Musical Instrument" = "Instrumento Musical";
+/* Asset Type */
+"Tool" = "Herramienta";
+/* Asset Type */
+"Clothes" = "Ropa";
+/* Asset Type */
+"None" = "Ninguno";
+/* Unassigned */
+"Unassigned" = "Sin asignar";
+/* Cancel */
+"Cancel" = "Cancelar";
+/* Done */
+"Done" = "OK";
+/* Create Asset Type */
+"Create an Asset Type" = "Cree un tipo del activo";
+/* Please Enter */
+"Please enter a new asset type" = "Por favor entre en un nuevo tipo del activo";
+/* Enter New */
+"Enter a new asset type" = "Entre en un nuevo tipo del activo";
+
+/* Confirm Date Change */
+"Do you really want to change the date?" = "¿Realmente quiere cambiar la fecha?";
+/* Change Warning */ 
+"Modifying the date of an acquired item can result in charges of insurance fraud." = "La modificación de la fecha de un artículo adquirido puede causar gastos del fraude de seguros.";
+/* Correct Error */
+ "This is correcting an error." = "Esto corrige un error.";

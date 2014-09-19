@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CAE4431E-A5BF-4F9C-9620-9B82D594B275}</ProjectGuid>
+    <ProjectTypeGuids>{42C0BBD9-55CE-4FC1-8D90-A7348ABAFB23};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Hello_Mac</RootNamespace>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <AssemblyName>Hello_Mac</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeMonoRuntime>False</IncludeMonoRuntime>
+    <UseSGen>False</UseSGen>
+    <PlatformTarget>x86</PlatformTarget>
+    <EnableCodeSigning>False</EnableCodeSigning>
+    <ConsolePause>False</ConsolePause>
+    <EnablePackageSigning>False</EnablePackageSigning>
+    <CreatePackage>False</CreatePackage>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <PackageSigningKey>Developer ID Installer</PackageSigningKey>
+    <I18n>
+    </I18n>
+    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseSGen>False</UseSGen>
+    <IncludeMonoRuntime>True</IncludeMonoRuntime>
+    <PlatformTarget>x86</PlatformTarget>
+    <LinkMode>Full</LinkMode>
+    <EnableCodeSigning>True</EnableCodeSigning>
+    <ConsolePause>False</ConsolePause>
+    <EnablePackageSigning>true</EnablePackageSigning>
+    <CreatePackage>true</CreatePackage>
+    <CodeSigningKey>Mac Developer: Jon Goldberger (W7L4NT7KNB)</CodeSigningKey>
+    <PackageSigningKey>Developer ID Installer: Jonathan Goldberger (4FBCAEUDP6)</PackageSigningKey>
+    <I18n>
+    </I18n>
+    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\x86\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseSGen>False</UseSGen>
+    <IncludeMonoRuntime>True</IncludeMonoRuntime>
+    <PlatformTarget>x86</PlatformTarget>
+    <LinkMode>Full</LinkMode>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+    <EnableCodeSigning>True</EnableCodeSigning>
+    <ConsolePause>False</ConsolePause>
+    <EnablePackageSigning>True</EnablePackageSigning>
+    <CreatePackage>True</CreatePackage>
+    <CodeSigningKey>3rd Party Mac Developer Application</CodeSigningKey>
+    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="XamMac" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainWindow.cs" />
+    <Compile Include="MainWindowController.cs" />
+    <Compile Include="MainWindow.designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainWindow.xib" />
+    <InterfaceDefinition Include="MainMenu.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\v0.0\Xamarin.Mac.targets" />
+</Project>

@@ -1,0 +1,32 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAAnimation", "CAAnimation\CAAnimation.csproj", "{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Release|iPhone.Build.0 = Release|iPhone
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E13F13E9-9B4F-47B8-A04A-CCCA5B73E7E4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CAAnimation\CAAnimation.csproj
+	EndGlobalSection
+EndGlobal

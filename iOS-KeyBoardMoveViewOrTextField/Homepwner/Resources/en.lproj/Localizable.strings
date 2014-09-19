@@ -1,0 +1,43 @@
+/* Application Name */
+"Homepwner" = " Homepwner";
+/* Asset Types */
+"Asset Types" = "Asset Types";
+/* Asset Type for */
+"Asset type for " = "Asset type for ";
+/* All */
+"All " = "All ";
+/* Items */
+" items" = " items";
+/* Asset Type */
+"Furniture" = "Furniture";
+/* Asset Type */
+"Computer" = "Computer";
+/* Asset Type */
+"Electronics" = "Electronics";
+/* Asset Type */
+"Musical Instrument" = "Musical Instrument";
+/* Asset Type */
+"Tool" = "Tool";
+/* Asset Type */
+"Clothes" = "Clothes";
+/* Asset Type */
+"None" = "None";
+/* Asset Type */
+"Unassigned" = "Unassigned";
+/* Cancel */
+"Cancel" = "Cancel";
+/* Done */
+"Done" = "Done";
+/* Create Asset Type */
+"Create an Asset Type" = "Create an Asset Type";
+/* Please Enter */
+"Please enter a new asset type" = "Please enter a new asset type";
+/* Enter New */
+"Enter a new asset type" = "Enter a new asset type";
+
+/* Confirm Date Change */
+"Do you really want to change the date?" = "Do you really want to change the date?";
+/* Change Warning */ 
+"Modifying the date of an acquired item can result in charges of insurance fraud." = "Modifying the date of an acquired item can result in charges of insurance fraud.";
+/* Correct Error */
+ "This is correcting an error." = "This is correcting an error.";

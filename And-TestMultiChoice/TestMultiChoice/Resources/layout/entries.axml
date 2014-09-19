@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relEntries">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="avoid string res"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:id="@+id/txtReg"
+            android:textSize="22sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:paddingRight="4dp"
+            android:paddingLeft="5dp" />
+        <Spinner
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:id="@+id/spnRegata"
+            android:spinnerMode="dropdown"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginLeft="6dp" />
+        <Button
+            android:text="avoid string res"
+            android:layout_width="108.2dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btnPost"
+            android:textSize="22sp"
+            android:paddingTop="4dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="2dp" />
+    </LinearLayout>
+</RelativeLayout>

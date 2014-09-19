@@ -1,0 +1,5 @@
+Try: package name convention
+new task
+package name in all the right places
+methods implemented
+permissions asked for

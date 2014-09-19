@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9785D147-C90E-47FD-A1A0-CBD233E708BB}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>WebView</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+    <AssemblyName>NavBarTrans</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <AssemblyName>NavBarTrans</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <IpaPackageName>
+    </IpaPackageName>
+    <BuildIpa>true</BuildIpa>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+    <AssemblyName>NavBarTrans</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <AssemblyName>NavBarTrans</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>IdentiQuikColder</AssemblyName>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <BuildIpa>true</BuildIpa>
+    <IpaPackageName>
+    </IpaPackageName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="WebViewController.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\app.html" />
+    <Content Include="Content\app_1.html" />
+    <Content Include="Content\app_2.html" />
+    <Content Include="Content\app_3.html" />
+    <Content Include="Content\app_4.html" />
+    <Content Include="Content\app_5.html" />
+    <Content Include="Content\app_6.html" />
+    <Content Include="Content\apple-touch-icon-114x114-precomposed.png" />
+    <Content Include="Content\apple-touch-icon-144x144-precomposed.png" />
+    <Content Include="Content\apple-touch-icon-57x57-precomposed.png" />
+    <Content Include="Content\apple-touch-icon-72x72-precomposed.png" />
+    <Content Include="Content\apple-touch-icon-precomposed.png" />
+    <Content Include="Content\apple-touch-icon.png" />
+    <Content Include="Content\ben.html" />
+    <Content Include="Content\ben_1.html" />
+    <Content Include="Content\ben_2.html" />
+    <Content Include="Content\ben_3.html" />
+    <Content Include="Content\ben_4.html" />
+    <Content Include="Content\comp.html" />
+    <Content Include="Content\comp_1.html" />
+    <Content Include="Content\comp_10.html" />
+    <Content Include="Content\comp_11.html" />
+    <Content Include="Content\comp_2.html" />
+    <Content Include="Content\comp_3.html" />
+    <Content Include="Content\comp_4.html" />
+    <Content Include="Content\comp_5.html" />
+    <Content Include="Content\comp_6.html" />
+    <Content Include="Content\comp_7.html" />
+    <Content Include="Content\comp_8.html" />
+    <Content Include="Content\comp_9.html" />
+    <Content Include="Content\contact.html" />
+    <Content Include="Content\cou.html" />
+    <Content Include="Content\cou_1.html" />
+    <Content Include="Content\cou_2.html" />
+    <Content Include="Content\cou_3.html" />
+    <Content Include="Content\cou_4.html" />
+    <Content Include="Content\cou_5.html" />
+    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\frame_ns4_specs.html" />
+    <Content Include="Content\frame_plc_specs.html" />
+    <Content Include="Content\frame_subminiature_specs.html" />
+    <Content Include="Content\frame_udc_specs.html" />
+    <Content Include="Content\hiw.html" />
+    <Content Include="Content\hiw_1 copy.html" />
+    <Content Include="Content\hiw_1.html" />
+    <Content Include="Content\index.html" />
+    <Content Include="Content\int.html" />
+    <Content Include="Content\int_1.html" />
+    <Content Include="Content\int_2.html" />
+    <Content Include="Content\int_3.html" />
+    <Content Include="Content\int_4.html" />
+    <Content Include="Content\int_5.html" />
+    <Content Include="Content\assets\css\main.css" />
+    <Content Include="Content\assets\css\normalize.css" />
+    <Content Include="Content\assets\css\normalize.min.css" />
+    <Content Include="Content\assets\fancybox\blank.gif" />
+    <Content Include="Content\assets\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\assets\fancybox\fancybox_loading_2x.gif" />
+    <Content Include="Content\assets\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\assets\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\assets\fancybox\fancybox_sprite_2x.png" />
+    <Content Include="Content\assets\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\assets\fancybox\jquery.fancybox.js" />
+    <Content Include="Content\assets\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="Content\assets\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Content\assets\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Content\assets\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Content\assets\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Content\assets\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\assets\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\assets\images\applications\connection_bg.png" />
+    <Content Include="Content\assets\images\applications\connection_slide1.png" />
+    <Content Include="Content\assets\images\applications\connection_slide2.png" />
+    <Content Include="Content\assets\images\applications\media_bg.png" />
+    <Content Include="Content\assets\images\applications\media_slide1.png" />
+    <Content Include="Content\assets\images\applications\media_slide2.png" />
+    <Content Include="Content\assets\images\applications\operational_bg.png" />
+    <Content Include="Content\assets\images\applications\trace_general.png" />
+    <Content Include="Content\assets\images\applications\trace_patient.png" />
+    <Content Include="Content\assets\images\applications\usage_bg.png" />
+    <Content Include="Content\assets\images\benefits\bene_1.png" />
+    <Content Include="Content\assets\images\benefits\bene_2.png" />
+    <Content Include="Content\assets\images\benefits\icon_circular.png" />
+    <Content Include="Content\assets\images\benefits\icon_continuous.png" />
+    <Content Include="Content\assets\images\benefits\icon_lock.png" />
+    <Content Include="Content\assets\images\benefits\icon_x.png" />
+    <Content Include="Content\assets\images\benefits\main_product.png" />
+    <Content Include="Content\assets\images\couplings\custom.png" />
+    <Content Include="Content\assets\images\couplings\non-spill.png" />
+    <Content Include="Content\assets\images\couplings\plc-coupling.png" />
+    <Content Include="Content\assets\images\couplings\submini.png" />
+    <Content Include="Content\assets\images\couplings\udc-coupling.png" />
+    <Content Include="Content\assets\images\hiw\ring1.png" />
+    <Content Include="Content\assets\images\hiw\ring2.png" />
+    <Content Include="Content\assets\images\hiw\ring3.png" />
+    <Content Include="Content\assets\images\hiw\ring4.png" />
+    <Content Include="Content\assets\images\hiw\slide_1_hiw.png" />
+    <Content Include="Content\assets\images\hiw\slide_2_hiw.png" />
+    <Content Include="Content\assets\images\hiw\slide_3_hiw.png" />
+    <Content Include="Content\assets\images\hiw\slide_4_hiw.png" />
+    <Content Include="Content\assets\images\_product_image_home.png" />
+    <Content Include="Content\assets\images\applanding.png" />
+    <Content Include="Content\assets\images\background_waves.png" />
+    <Content Include="Content\assets\images\body_background.jpg" />
+    <Content Include="Content\assets\images\body_background_popup.jpg" />
+    <Content Include="Content\assets\images\compare_footer.png" />
+    <Content Include="Content\assets\images\coupling_chart.png" />
+    <Content Include="Content\assets\images\footer_hiw.png" />
+    <Content Include="Content\assets\images\footer_short.png" />
+    <Content Include="Content\assets\images\footer_tall.png" />
+    <Content Include="Content\assets\images\fpo_gui.png" />
+    <Content Include="Content\assets\images\header_background.png" />
+    <Content Include="Content\assets\images\header_background_no_sub.png" />
+    <Content Include="Content\assets\images\home_body_background.jpg" />
+    <Content Include="Content\assets\images\icon_four.gif" />
+    <Content Include="Content\assets\images\icon_one.gif" />
+    <Content Include="Content\assets\images\icon_three.gif" />
+    <Content Include="Content\assets\images\icon_two.gif" />
+    <Content Include="Content\assets\images\integration_footer.png" />
+    <Content Include="Content\assets\images\logo.png" />
+    <Content Include="Content\assets\images\product_image_home.png" />
+    <Content Include="Content\assets\images\stripe.gif" />
+    <Content Include="Content\assets\images\video_thumbnail.jpg" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\plugins.js" />
+    <Content Include="Content\assets\js\vendor\jQueryRotate.js" />
+    <Content Include="Content\assets\js\vendor\jquery-1.9.1.min.js" />
+    <Content Include="Content\assets\js\vendor\modernizr-2.6.2.min.js" />
+    <Content Include="Content\assets\coupling.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Default-Portrait.png" />
+    <BundleResource Include="Resources\Default-Landscape.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+    <BundleResource Include="Resources\Default-Landscape%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+</Project>

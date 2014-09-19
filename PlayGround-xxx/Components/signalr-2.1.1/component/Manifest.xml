@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="signalr">
+  <name>SignalR</name>
+  <publisher>Xamarin</publisher>
+  <publisher-url>http://asp.net/signalr</publisher-url>
+  <version>2.1.1</version>
+  <summary>Incredibly simple real-time web for .NET.</summary>
+  <samples>
+    <sample id="Microsoft.AspNet.SignalR.Client.WP8.Samples">
+      <name>WP8 Sample.  Demonstrates how to use SignalR Client in a Windows Phone 8 app</name>
+      <summary>WP8 Sample.  Demonstrates how to use SignalR Client in a Windows Phone 8 app</summary>
+    </sample>
+    <sample id="Microsoft.AspNet.SignalR.Client.iOS.Samples">
+      <name>iOS Sample.  Demonstrates how to use SignalR Client in an iOS app</name>
+      <summary>iOS Sample.  Demonstrates how to use SignalR Client in an iOS app</summary>
+    </sample>
+    <sample id="Microsoft.AspNet.SignalR.Client.Android.Samples">
+      <name>Android Sample.  Demonstrates how to use SignalR Client in an Android app</name>
+      <summary>Android Sample.  Demonstrates how to use SignalR Client in an Android app</summary>
+    </sample>
+  </samples>
+</component>

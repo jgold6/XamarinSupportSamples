@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="hockeyappios">
+  <name>HockeyApp for iOS</name>
+  <publisher>Xamarin Inc.</publisher>
+  <publisher-url>http://xamarin.com</publisher-url>
+  <version>3.5.4.2</version>
+  <summary>HockeyApp is a platform to collect live crash reports, get feedback from your users, distribute your betas, recruit new testers, and analyze your test coverage.</summary>
+  <samples>
+    <sample id="HockeyAppSampleiOS">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

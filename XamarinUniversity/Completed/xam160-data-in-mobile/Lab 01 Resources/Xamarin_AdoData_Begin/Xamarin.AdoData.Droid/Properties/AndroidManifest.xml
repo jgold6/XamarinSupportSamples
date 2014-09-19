@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="18" />
-	<application android:label="Xamarin ADO Data" android:theme="@android:style/Theme.Holo.Light.DarkActionBar" android:icon="@drawable/ic_launcher"></application>
-</manifest>

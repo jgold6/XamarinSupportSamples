@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+<body>
+    <header>Introduction to Android with Xamarin Studio</header>
+
+	<section id="main">
+
+		<h1>Exercise 4: Code two screens and navigate between them</h1>
+
+		<h2>Duration</h2>
+		<p>20 minutes</p>
+
+		<!-- - - - - - - - - Goals - - - - - - - - -->
+
+		<h2 id="goals">Lab goals</h2>
+		<p>
+			In this lab, you will explore how to create multi-screen Android applications using Activities and Intents.
+			You will extend the Phoneword application to include a call history screen and implement navigation between
+			the main screen and the history screen. The call history will be displayed in a <code>ListView</code> using
+			an <code>ArrayAdapter</code> so you will also implement the basics of displaying a data collection.
+			The two screens are illustrated below.
+		</p>
+
+		<table>
+			<tr>
+				<td><img src="./res/images/Part4a.Phoneword-Emulator.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" /></td>
+				<td><img src="./res/images/Part4b.Phoneword-Emulator.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" /></td>
+			</tr>
+		</table>
+
+		<p>
+			Here is a high-level description of the required tasks for this lab:
+			<ol class="indent-medium">
+				<li>Create a <strong>CallHistoryActivity</strong>.</li>
+				<li>Use a <code>ListView</code> and an <code>ArrayAdapter</code> to display the list of phone numbers.</li>
+				<li>Add a button to the <strong>MainActivity</strong> that navigates to the <strong>CallHistoryActivity</strong>.</li>
+				<li>Pass the list of past phone numbers from the <strong>MainActivity</strong> to the <strong>CallHistoryActivity</strong>.</li>
+			</ol>
+		</p>
+
+		<h2>Required assets</h2>
+		<p>
+			The provided <strong>Part 04 Resources</strong> folder contains a starter solution with the completed code
+			from the previous exercise. You can begin with this starter code if you did not do the previous exercise or if
+			you would like to start with a fresh project. The starter solution is in the <strong>Part4.Start</strong> folder.
+			There is also a completed version of the lab in the <strong>Part4.Completed</strong> folder if you would like to
+			check your work.
+		</p>
+
+		<h2>Exercise challenge</h2>
+		<p>
+			Use the information in the <a href="./worksheet.html#part4">worksheet</a> to accomplish the <a href="#goals">tasks outlined above</a>.
+			Alternatively, you can use the <a href="#steps">step-by-step instructions</a> provided below to work through the exercise.
+		</p>
+
+		<h1 id="steps">Steps</h1>
+
+		<p>
+			Below are the step-by-step instructions to add call history to the Phoneword application.
+		</p>
+
+		<div class="hintblock">
+			<strong>Note:</strong> you can either continue your work from the prior exercise or use the provided starter solution.
+		</div>
+
+		<h3>Maintaining a call history</h3>
+
+		<p>
+			Modify the Phoneword application so it keeps a list of all the numbers that have been dialed from the app.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Open <strong>MainActivity.cs</strong>.
+			</li>
+
+			<li>
+				Add a field to the <code>MainActivity</code> class to store the dialed phone numbers.
+				Use a <code>System.Collections.Generics.List&lt;string&gt;</code> and name it <code>_phoneNumbers</code>.
+				Create an instance of <code>List&lt;string&gt;</code> and assign it to your field.
+<p>
+<a href="#" onclick="toggleCode(this, 'callHistoryField'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="callHistoryField" style="display:none;">
+<pre class="prettyprint">
+public class MainActivity : Activity
+{
+  <span class="highlight">List&lt;string&gt; _phoneNumbers = new List&lt;string&gt;();</span>
+  // ...
+}
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				Modify your <code>CallButton.Click</code> handler to add called numbers to the <code>_phoneNumbers</code> list.
+<p>
+<a href="#" onclick="toggleCode(this, 'callHistoryAdd'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="callHistoryAdd" style="display:none;">
+<pre class="prettyprint">
+callDialog.SetNeutralButton("Call", 
+  delegate
+  {
+    // Record the number in the call history list
+    <span class="highlight">_phoneNumbers.Add(translatedNumber);</span>
+    // ...
+  });
+</pre>
+					</div>
+				</p>
+			</li>
+		</ol>
+
+		<h3>Defining a resource string</h3>
+
+		<p>
+			You will need to use the string "Call History" in two places: as the text on a navigation button
+			and as the label on an activity. Rather than hardcode the string in both places, you will define
+			it as a resource and reference it as needed.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Open <strong>Resources &gt; values &gt; Strings.xml</strong>.
+			</li>
+
+			<li>
+				Add a resource string with a <code>name</code> of <code>callHistory</code> and a value of <code>Call History</code>.
+<p>
+<a href="#" onclick="toggleCode(this, 'callHistoryConstant'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="callHistoryConstant" style="display:none;">
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;resources&gt;
+  <span class="highlight">&lt;string name="callHistory"&gt;Call History&lt;/string&gt;</span>
+&lt;/resources&gt;
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				You will use the syntax <code>@string/callHistory</code> to lookup this string in later parts of this lab.
+			</li>
+		</ol>
+
+		<h3>Adding navigation</h3>
+
+		<p>
+			The application currently has only <strong>MainActivity</strong> but it will eventually have both
+			<strong>MainActivity</strong> and <strong>CallHistoryActivity</strong>. Here, we will add a button
+			to <strong>MainActivity</strong> to let the user navigate to <strong>CallHistoryActivity</strong>
+			(the <strong>CallHistoryActivity</strong> will be defined in the next section).
+			As part of the navigation, <strong>MainActivity</strong> will pass the list of dialed numbers for
+			<strong>CallHistoryActivity</strong> to display.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Open <strong>Resources &gt; layout &gt; Main.axml</strong>.
+			</li>
+
+			<li>
+				Drag a <code>Button</code> from the <strong>Toolbox</strong> and drop it below the <strong>CallButton</strong>.
+			</li>
+
+			<li>
+				Use the <strong>Properties</strong> pad to set the button's
+				<strong>id</strong> to <code>@id+/CallHistoryButton</code> and its <strong>text</strong> to
+				<code>@string/callHistory</code> as shown below.
+				<img class="indent-none" src="./res/images/XamarinStudio-PropertyGridWidget-CallHistoryButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			</li>
+      <li>
+        While still using the <strong>Properties</strong> pad, switch to the <strong>Behavior</strong> tab and change the button's
+        <strong>enabled</strong> property to false.
+        <img class="indent-none" src="./res/images/XamarinStudio-PropertyGridBehavior-CallHistoryButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+      </li>
+
+			<li>
+				Open <strong>MainActivity.cs</strong>.
+			</li>
+
+			<li>
+				Locate the <code>OnCreate</code> method.
+				Use <code>FindViewById</code> to obtain a reference to the <strong>CallHistoryButton</strong>.
+<p>
+<a href="#" onclick="toggleCode(this, 'callHistoryFindViewById'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="callHistoryFindViewById" style="display:none;">
+<pre class="prettyprint">
+Button callHistoryButton = FindViewById&lt;button&gt;(Resource.Id.CallHistoryButton);
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				Enable the <strong>CallHistoryButton</strong> when an entry is added to the list of called
+				numbers.
+<p>
+<a href="#" onclick="toggleCode(this, 'enableCallHistoryButton'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="enableCallHistoryButton" style="display:none;">
+<pre class="prettyprint">
+callDialog.SetNeutralButton("Call", 
+  delegate
+  {
+    // Record the number in the call history list
+    _phoneNumbers.Add(translatedNumber);
+
+    // enable the Call History button
+    <span class="highlight">callHistoryButton.Enabled = true;</span>
+    
+    // ...
+  });
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				Subscribe a handler to the <code>Click</code> event of the <strong>CallHistoryButton</strong>.
+				Inside your handler, you will need to create an <code>Intent</code>, set the identity of the
+				activity to which you would like to navigate, load the list of phone numbers, and then perform
+				the navigation. The code to do this is shown below (note that <strong>CallHistoryActivity</strong>
+				does not yet exist so the code will not compile until we define it in the next step).
+<pre class="prettyprint">
+var intent = new Intent(this, typeof(CallHistoryActivity));
+intent.PutStringArrayListExtra("phone_numbers", _phoneNumbers);
+StartActivity(intent);
+</pre>
+			</li>
+
+		</ol>
+
+		<h3>Creating the call-history activity</h3>
+
+		<p>
+			Here we will add the <strong>CallHistoryActivity</strong> and verify the navigation is working.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Open the <strong>New File</strong> dialog by right-clicking on the project
+				in the <strong>Solution</strong> pad and choosing <strong>Add &gt; New File...</strong>.
+				Under <strong>Android</strong>, select the <strong>Activity</strong> template, enter a <strong>Name</strong> of
+				<strong>CallHistoryActivity</strong>, and click <strong>New</strong>. See below.
+				<img class="indent-none" src="./res/images/XamarinStudio-AddNewActivity.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			</li>
+
+			<li>
+				An activity typically consists of UI and code-behind; however, the <strong>Activity</strong>
+				template generates only the code-behind file. Add a corresponding UI layout file using the
+				<strong>New File</strong> dialog. Right-click on the <strong>Resources &gt; layout</strong>
+				folder in the <strong>Solution</strong> pad,
+				then choose <strong>Add &gt; New File...</strong>. In the <strong>New File</strong> dialog, under <strong>Android</strong>,
+				select the <strong>Layout</strong> template, give it a <strong>Name</strong> of
+				<strong>CallHistory</strong>, then click <strong>New</strong>. See below.
+				<img class="indent-none" src="./res/images/XamarinStudio-AddNewLayout.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			</li>
+
+			<li>
+				For each layout file, Android automatically generates a resource identifier based on the file name.
+				You	will use this in the code-behind file to load the UI.
+				The one for <strong>CallHistory.axml</strong> will be named <code>Resource.Layout.CallHistory</code>.
+				If you want to see where this is defined, first <strong>Build</strong> the project, then open the file
+				<strong>Resources &gt; Resource.Designer.cs</strong> and locate the field named <code>CallHistory</code>.
+			</li>
+
+			<li>
+				Open <strong>CallHistoryActivity.cs</strong>.
+			</li>
+
+			<li>
+				Locate the <code>OnCreate</code> method. Add a call to <code>SetContentView</code> and pass the
+				layout identifier for your UI file.
+<p>
+<a href="#" onclick="toggleCode(this, 'loadCallHistoryUI'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="loadCallHistoryUI" style="display:none;">
+<pre class="prettyprint">
+public class CallHistoryActivity : Activity
+{
+  protected override void OnCreate(Bundle bundle)
+  {
+    base.OnCreate(bundle);
+    <span class="highlight">SetContentView(Resource.Layout.CallHistory);</span>
+  }
+}
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				Run the app to test your work.
+				<ul>
+					<li>
+						Make sure the buttons are enabled correctly: the <strong>CallButton</strong> should become enabled
+						after you translate a number and the <strong>CallHistory</strong> button should be enabled
+						after you make a call.
+					</li>
+
+					<li>
+						Click on the <strong>CallHistory</strong> button to navigate to the <strong>CallHistoryActivity</strong>.
+					</li>
+
+					<li>
+						Click on the Android <strong>Back</strong> button to return to the <strong>MainActivity</strong>.
+					</li>
+
+					<li>
+						Click on the <strong>CallHistory</strong> again to return to the <strong>CallHistoryActivity</strong>.
+						Notice the text displayed at the top of the <strong>CallHistoryActivity</strong>. This is
+						taken from the <code>Label</code> property on the <code>ActivityAttribute</code> applied
+						to the <code>CallHistoryActivity</code> class. Open <strong>CallHistoryActivity.cs</strong>
+						and locate where this value is set.
+					</li>
+
+					<li>
+						Stop the app. Modify the <code>Label</code> so it uses the <code>callHistory</code> resource
+						string. Run the app again and verify the correct label is displayed for the
+						<strong>CallHistoryActivity</strong>.
+						<p>
+<a href="#" onclick="toggleCode(this, 'callHistoryLabel'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="callHistoryLabel" style="display:none;">
+<pre class="prettyprint">
+[Activity(<span class="highlight">Label = "@string/callHistory"</span>)]
+public class CallHistoryActivity : Activity
+{
+  // ...
+}
+</pre>
+</div>
+</p>
+					</li>
+				</ul>
+			</li>
+
+		</ol>
+
+		<h3>Implementing the call-history screen</h3>
+
+		<p>
+			Here we will code the behavior of the <strong>CallHistoryActivity</strong> so it displays the list of
+			previously-dialed phone numbers.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Open <strong>Resources &gt; layout &gt; CallHistory.axml</strong>.
+			</li>
+
+			<li>
+				Drag a <code>ListView</code> from the <strong>Toolbox</strong> onto the <strong>CallHistory</strong>
+				layout.
+			</li>
+
+			<li>
+				Use the <strong>Document Outline</strong> window to select the <code>ListView</code>.
+				<img class="indent-none" src="./res/images/XamarinStudio-DocumentOutline.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			</li>
+
+			<li>
+				Use the <strong>Properties Grid</strong> to give the <code>ListView</code> an <strong>id</strong>
+				of <code>@+id/PhoneNumberList</code>.
+				<img class="indent-none" src="./res/images/XamarinStudio-PropertyGrid-PhoneNumberList.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			</li>
+
+			<li>
+				Open <strong>CallHistoryActivity.cs</strong>.
+			</li>
+
+			<li>
+				The <strong>MainActivity</strong> added the list of dialed numbers to the
+				<strong>Intent Extras</strong> to pass them to the <strong>CallHistoryActivity</strong>.
+				That <strong>Intent</strong> object is available to the <strong>CallHistoryActivity</strong>
+				via an inherited property named <code>Intent</code>. Retrieve the list of numbers as shown below,
+				notice how the retrieval uses the same key (<code>phone_numbers</code>) to retrieve the data as the
+				<strong>MainActivity</strong> used to add it.
+<pre class="prettyprint">
+public class CallHistoryActivity : Activity
+{
+  protected override void OnCreate(Bundle bundle)
+  {
+    base.OnCreate(bundle);
+    SetContentView(Resource.Layout.CallHistory);
+
+    <span class="highlight">var phoneNumbers = Intent.GetStringArrayListExtra("phone_numbers") ?? new string[0];</span>
+  }
+}
+</pre>
+			</li>
+
+			<li>
+				The <code>ListView</code> class uses an <strong>Adapter</strong> to prepare the elements of the
+				collection for display. The adapter is responsible for creating the UI for each row. Our goal
+				is to display a collection of strings - this case is so common that Android has built-in support
+				to do it with very little code. We will use the standard layout file 
+				<code>Android.Resource.Layout.SimpleListItem1</code> for the row template (it displays a single
+				piece of text) and the standard adapter <code>ArrayAdapter</code> to inflate the rows.
+				Create the adapter as shown below.
+
+<pre class="prettyprint">
+public class CallHistoryActivity : Activity
+{
+  protected override void OnCreate(Bundle bundle)
+  {
+    base.OnCreate(bundle);
+    SetContentView(Resource.Layout.CallHistory);
+    var phoneNumbers = Intent.GetStringArrayListExtra("phone_numbers") ?? new string[0];
+    <span class="highlight">var adapter = new ArrayAdapter&lt;string&gt;(this, Android.Resource.Layout.SimpleListItem1, phoneNumbers);</span>
+  }
+}
+</pre>
+			</li>
+
+			<li>
+				Use <code>FindViewById</code> to obtain a reference to the <code>ListView</code>, then set its
+				<code>Adapter</code> property as shown below.
+<pre class="prettyprint">
+public class CallHistoryActivity : Activity
+{
+  protected override void OnCreate(Bundle bundle)
+  {
+    base.OnCreate(bundle);
+    SetContentView(Resource.Layout.CallHistory);
+    var phoneNumbers = Intent.GetStringArrayListExtra("phone_numbers") ?? new string[0];
+    var adapter = new ArrayAdapter&lt;string&gt;(this, Android.Resource.Layout.SimpleListItem1, phoneNumbers);
+
+    <span class="highlight">var list = FindViewById&lt;ListView&gt;(Resource.Id.PhoneNumberList);
+    list.Adapter = adapter;</span>
+  }
+}
+</pre>
+			</li>
+
+			<li>
+				Run the app to test your work. The <strong>CallHistoryActivity</strong> should now display the
+				list of dialed numbers.
+			</li>
+
+		</ol>
+
+		<!-- - - - - - - - - Summary - - - - - - - - -->
+
+		<h1>Summary</h1>
+		<p>
+			This lab built a multi-screen Xamarin.Android application. The lab introduced the concepts of
+			<strong>Activity</strong> and <strong>Intent</strong>. It also showed a simple case of displaying
+			a collection using a <code>ListView</code>.
+		</p>
+
+		<!-- - - - - - - - - Footer - - - - - - - - -->
+
+		<div class="align-right">
+			<a href="../Start%20Here.html">Go Back</a>
+		</div>
+
+	</section>
+
+    <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

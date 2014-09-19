@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+
+<body>
+    <header>Introduction to iOS with Xamarin Studio</header>
+
+    <section id="main">
+
+        <!-- Objective 1 -->
+        <h1 id="part1">Exercise 1: Creating our first iOS application with Xamarin Studio
+</h1>
+
+        <h2>Knowledge Needed for the Exercise</h2>
+        <div class="wsitem">
+            <b>Development Machine Setup</b><br />
+            You will need to configure your development machine before you begin coding.<br />
+            See <a href="http://docs.xamarin.com/guides/ios/getting_started/installation/">Setup Instructions for Xamarin</a>.
+        </div>
+
+        <div class="wsitem">
+            <b>Executing your code</b><br />
+            You can test on a real device (iPod, iPhone, iPad), or on the Apple simulator.<br />
+            To setup a device, see <a href="http://docs.xamarin.com/guides/ios/getting_started/device_provisioning/">Device Provisioning</a>.<br />
+            To learn how to use the simulator, see <a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/InteractingwiththeiOSSimulator/InteractingwiththeiOSSimulator.html">Interacting with the Simulator</a>.
+        </div>
+
+        <h2>Exploring On Your Own</h2>
+        <div class="wslist">
+	        <a href="http://docs.xamarin.com/guides/ios/getting_started/hello,_world/">Introduction to Xamarin.iOS</a>
+            <a href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheiOSEnvironment/TheiOSEnvironment.html#//apple_ref/doc/uid/TP40007072-CH9-SW1">The iOS Environment (Apple)</a>
+	        <a href="http://docs.xamarin.com/guides/ios/application_fundamentals/delegates,_protocols,_and_events/">Events, Protocols and Delegates</a>
+	        <a href="http://api.xamarin.com/">API Documentation for Xamarin.iOS</a>
+        </div>
+
+        <!-- Objective 2 -->
+        <h1 class="spacing-top" id="part2">Objective 2: Designing the Phoneword Application</h1>
+
+        <h2>Knowledge Needed for the Exercise</h2>
+        <div class="wsitem">
+            <b>Using Storyboards</b><br/>
+            Screens in iOS can be created and designed with Storyboards.<br />
+            Xamarin supports Storyboard editing in both Visual Studio (Windows) and Xamarin Studio (Mac).<br />
+            Learn more about <a href="http://docs.xamarin.com/guides/ios/user_interface/designer/introduction/">using the Xamarin iOS Designer</a>.<br />
+    	</div>
+
+        <div class="wsitem">
+            <b>Using the Name property to access Controls</b><br />
+            <ol>
+                <li>Setting the <strong>Name</strong> property of a visual control in a Storyboard creates an Outlet (see Additional References below) - this is a special property in the C# code which is mapped to the visual element once it has been created.</li>
+                <li>You set this property in the Storyboard designer in the Identity section of the Property Pad, for example:</li>
+                <img src="res/images/propertypad_name.jpg" />
+                <li>This will create a property in the designer file associated with the View Controller that is tied to the screen (View) being created. You can see this property if you open the source file.</li>
+                <li>The property is decorated with an <a href="http://iosapi.xamarin.com/?link=T:MonoTouch.Foundation.OutletAttribute">[Outlet] attribute</a> to allow the underlying iOS system to bind the field properly to the control when it is created.</li>
+            </ol>
+        </div>
+
+
+		<h2>Exploring On Your Own</h2>
+        <div class="wslist">
+			<a href="https://developer.apple.com/library/ios/documentation/userexperience/conceptual/MobileHIG/index.html">Human Interface Guidelines for iOS7</a>
+			<a href="https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/DesigningaUserInterface.html#//apple_ref/doc/uid/TP40011343-CH6-SW1">Designing a User Interface</a>
+	        <a href="http://docs.xamarin.com/guides/ios/user_interface/introduction_to_storyboards/">Introduction to Storyboards in Xamarin Studio</a>
+        </div>
+        
+        <!-- Objective 3 -->
+
+        <h1 class="spacing-top" id="part3">Objective 3: Adding Behavior to Phoneword</h1>
+
+        <h2>Knowledge Needed for the Exercise</h2>
+        <div class="wsitem">
+            <b>Working with iOS Controls</b><br />
+            You will need to work with several basic controls and hook events to get input from the user.
+            <ul>
+                <li><a href="http://docs.xamarin.com/recipes/ios/standard_controls/buttons/">Working with Buttons in Xamarin.iOS</a>.</li>
+                <li><a href="http://docs.xamarin.com/guides/ios/user_interface/controls/part_3_-_basic_text_input/">Text Input in Xamarin.iOS</a>.</li>
+                <li><a href="http://docs.xamarin.com/recipes/ios/input/keyboards/dismiss_the_keyboard/">How to dismiss the On Screen Keyboard</a>.</li>
+                <li><a href="http://docs.xamarin.com/guides/ios/user_interface/controls/part_6_-_other_controls/">Displaying an Alert</a> (scroll down to UIAlertView).</li>
+            </ul>
+        </div>
+
+        <div class="wsitem">
+            <b id="addnewfiles">Adding files to Xamarin Studio</b>
+            <ol>
+                <li>Right-click on the Project node and select Add > Add Files...</li>
+                <img src="res/images/XamStudio.AddFiles.png" class="indent-none" />
+                <li>Navigate to the file; Select it, and Click
+                    <strong>OK</strong> to add it to the project. A new dialog will be displayed with three choices:</li>
+                <img src="res/images/XS_addFiles2.png" class="indent-none" />
+                <li>Select Copy (the default) and Click OK to add the file to your project.</li>
+            </ol>
+        </div>
+
+        <div class="wsitem">
+            <b>Adding Code Behind Logic in Xamarin.iOS</b><br />
+            Each screen (<strong>View</strong>) you create has a corresponding <strong>View Controller</strong>, which is where the code behind logic needs to be placed. To add behavior, you will add code into this code behind file.
+            <ul type="square">
+                <li>Recall from Part 2, that <em>Named</em> elements in the Storyboard are accessible in the code behind file through a property created by the designer.</li>
+
+                <li>A great place to put initializer logic, such as event handlers, is in the
+                    <code>ViewDidLoad</code> method - this is called just after the Storyboard is inflated and the UI has been created and tied to your properties.</li>
+
+                <li>There should already be a <code>PhonewordViewController.cs</code> source file in your project, which is the <strong>RootViewController</strong> - defined by your App Delegate. It should have access to the controls you will need which were created in Part 2, please refer to that exercise if you need a reminder of what has been created:</li>
+                <ul>
+                    <li>
+                        <strong>PhoneNumberText</strong>
+                    </li>
+                    <li>
+                        <strong>TranslateButton</strong>
+                    </li>
+                    <li>
+                        <strong>CallButton</strong>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+
+        <div class="wsitem">
+        <b>Dialing a Phone Number in iOS</b></br />
+<pre class="prettyprint">
+// Ignored in the simulator - will return false.
+bool success = UIApplication.SharedApplication.OpenUrl("tel:555-1212");
+</pre>
+        </div>
+
+        <h2>Base .NET concepts you should know</h2>
+        <div class="wslist">
+            <p>When you are wiring up event handlers, you can choose any style of delegate. You should already be familiar with delegate types, but here are some references if you need a refresher on the topic.</p>
+	        <a href="http://msdn.microsoft.com/en-us/library/900fyy8e.aspx">Delegates</a>
+	        <a href="http://msdn.microsoft.com/en-us/library/0yw3tz5k.aspx">Anonymous Methods</a>
+	        <a href="http://msdn.microsoft.com/en-us/library/bb397687.aspx">Lambda Expressions</a> 
+        </div>
+
+         <!-- Objective 4 -->
+        <h1 class="spacing-top" id="part4">Objective 4: Adding a second screen to Phoneword</h1>
+        <h2>Knowledge Needed for the Exercise</h2>
+        <div class="wsitem">
+            <b>Creating Multiple Screen</b><br />
+            Storyboards allow you to define multiple screens and connect them together with defined navigation behavior. To learn how to use the iOS Designer to work with multiple screens, check out the <a href="http://developer.xamarin.com/guides/ios/getting_started/hello,_iOS_multiscreen/hello,_iOS_multiscreen_quickstart/">Walk-Through of adding a second screen to an application.</a>
+        </div>
+
+        <h2>Exploring On Your Own</h2>
+        <div class="wslist">
+            <a href="http://developer.xamarin.com/guides/ios/getting_started/hello,_iOS_multiscreen/hello,_iOS_multiscreen_deepdive/">Deep-Dive into Navigation in iOS</a>
+        	<a href="http://docs.xamarin.com/guides/ios/user_interface/introduction_to_storyboards/">Introduction to Storyboards and Segues</a>
+	    	<a href="http://docs.xamarin.com/guides/ios/user_interface/tables/">Working with Tables and Cells</a>
+			<a href="http://visualstudiomagazine.com/articles/2014/01/01/xamarin-how-to.aspx">Navigating Between Screens in iOS</a>
+        </div>
+
+        <!-- Objective 5 -->
+        <h1 class="spacing-top" id="part5">Objective 5: Adding Final Touches</h1>
+        <h2>Knowledge for the Exercise</h2>
+		<div class="wsitem">
+            <b>Icons and Splash Screens</b><br />
+            Creating a professional application means paying attention to the details, and that includes what your icons and initial splash screen look like. You will always want to add <a href="https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/IconMatrix.html">several icon sizes</a> to your app to ensure it looks good in every resolution.<br />
+        </div>
+
+        <h2>Exploring On Your Own</h2>
+        <div class="wslist">
+	        <a href="https://developer.apple.com/library/ios/documentation/general/conceptual/DevPedia-CocoaCore/InfoPlist.html">Information Property Lists</a>
+	        <a href="https://developer.apple.com/library/ios/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/SupportingHiResScreensInViews/SupportingHiResScreensInViews.html#//apple_ref/doc/uid/TP40010156-CH15-SW8">Supporting High Resolution (Retina) Displays</a>
+        	<a href="http://stackoverflow.com/questions/19705145/output-current-apps-build-version-as-a-string-xamarin-ios">Reading keys out of info.plist in C#</a>
+			<a href="http://morewally.com/cs/blogs/wallym/archive/2011/01/15/bundle-identifier-on-ios-with-monotouch.aspx">Tips on Bundle Identifiers in Xamarin.iOS</a>
+		</div>
+        
+        <!-- Certification Prep -->
+
+        <h1 class="spacing-top">Preparing for Certification</h1>
+
+        <h2>High Level Concepts (Review)</h2>
+        <div class="wslist">
+	        <a href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/AppArchitecture/AppArchitecture.html#//apple_ref/doc/uid/TP40007072-CH3-SW1">Core Application Objects (Apple)</a>
+	        <a href="https://developer.apple.com/library/ios/documentation/general/conceptual/devpedia-cocoacore/MVC.html">Model-View-Controller Pattern</a>
+	        <a href="https://developer.apple.com/library/ios/documentation/general/conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html">More on MVC</a>
+	        <a href="https://developer.apple.com/library/ios/documentation/general/conceptual/DevPedia-CocoaCore/Delegation.html">Delegation in iOS (Apple)</a>
+        </div>
+
+        <h2>Tutorials and Walkthroughs (For More Experience)</h2>
+        <div class="wslist">
+	        <a href="http://docs.xamarin.com/guides/ios/user_interface/designer/designer_walkthrough/">Walkthrough: Using the iOS Designer in Xamarin Studio</a>
+	        <a href="https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/FirstTutorial.html#//apple_ref/doc/uid/TP40011343-CH3-SW1">XCode Storyboard Tutorial (Apple)</a>
+	        <a href="http://docs.xamarin.com/guides/ios/user_interface/tables/part_5_-_using_xcode,_interface_builder,_and_storyboards/">Working with XCode and Interface Builder in Xamarin Studio</a>
+	        <a href="http://docs.xamarin.com/guides/ios/user_interface/designer/designer_auto_layout/">Working with Auto Layout in Xamarin Studio</a>
+        </div>
+
+        <h2>Diving Deeper into Documentation</h2>
+        <div class="wslist">
+	        <a href="https://developer.apple.com/library/ios/documentation/general/conceptual/CocoaEncyclopedia/Outlets/Outlets.html">Outlets: referencing visual elements</a>
+	        <a href="https://developer.apple.com/library/ios/recipes/xcode_help-interface_builder/articles-connections_bindings/CreatingOutlet.html">Creating an Outlet Connection in XCode</a>
+
+	        <a href="https://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Responder.html">Responder Objects (Apple)</a>
+	        <a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/RespondingtoDisplay-Notifications/RespondingtoDisplay-Notifications.html#//apple_ref/doc/uid/TP40007457-CH12">Display-Related Notifications sent to the ViewController</a>
+
+	        <a href="https://developer.apple.com/library/iOs/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html">Event Delivery: The Responder Chain (Apple)</a>
+
+	        <a href="https://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Storyboard.html">Storyboards and Segues (Apple)</a>
+		</div>
+
+
+    </section>
+    <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+<body>
+    <header>Introduction to iOS with Xamarin Studio</header>
+
+    <section id="main">
+
+        <h1>Exercise 4: Adding a second screen to Phoneword</h1>
+        <h2>Duration</h2>
+        <p>20 minutes</p>
+
+        <h2>Required Assets</h2>
+        <p>
+            Included with this exercise is a folder with resources that you will need in order to complete the lab. The folder name is
+            <strong>Part 04 Resources</strong>. Make sure you have this folder before you begin. This folder also contains a starting solution with the Phoneword application + Logic if you were unable to finish the prior exercise, or want to start with a fresh project.
+        </p>
+
+        <h2>Lab Goals</h2>
+        <p>In this lab, we will explore the Model, View, Controller (MVC) pattern and see how it is used in iOS to create multi-screened applications.</p>
+        <p>Additionally, we will introduce the <code>UINavigationController</code> and <code>UITableViewController</code> classes. We'll learn how to use these view controllers together to provide a familiar navigation experience in iOS.</p>
+        <p>Finally, we will include support for navigation between multiple screens by extending the Phoneword application we've been working on to include a second screen that contains the call history, as illustrated below:</p>
+
+        <table>
+            <tr>
+                <td><img src="./res/images/Phoneword_CallHistoryButton.png" /></td>
+                <td><img src="./res/images/Phoneword_CallHistory.png" /></td>
+            </tr>
+        </table>
+
+        <h1>Steps</h1>
+        <p>Our goal is to extend the Phoneword application by adding a <code>UINavigationController</code> along with a new <b>Call History</b> screen. The <code>UINavigationController</code> provides a navigation bar at the top of our application with a back button for each screen except for the one at the root of the <code>UINavigationController</code>.</p>
+
+        <div class="hintblock">
+        <strong>Note:</strong> There is a starting solution you can use which is in the resources for this exercise. You can either continue with your local project you've been working with up to this point, or use the starting solution which has all the steps up to this point completed.
+        </div>
+
+        <h3>Adding a Navigation Controller</h3>
+        <ol class="indent-medium">
+            <li>Double-click on the <code>MainStoryboard.storyboard</code> file to open the Storyboard in the Xamarin Studio Designer.</li>
+            <li>Use the <strong>Zoom</strong> tool in the toolbar to zoom out and make room to drag in a new screen.</li>
+            <li>Drag a <strong>Navigation Controller</strong> from the <strong>Toolbox</strong> to the designer surface and drop it into an open area.</li>
+            <li>You can reposition the view controllers in the designer either to make room, or to keep them from overlapping, by dragging them using the solid black bar located at the bottom of each view controller on the design surface.</li>
+            <img src="./res/images/XamStudio-Add-NavController.png" class="indent-small"/>
+            <li>Delete the <strong>Root View Controller</strong> attached to the Navigation Controller. You can do this by single-clicking on the solid black bar along the bottom of the view controller and pressing <strong>Delete</strong>. The design surface should now look like this:</li>
+            <img src="./res/images/Designer-Removed-RVC.png" class="indent-small"/>
+
+            <li>Drag the <em>sourceless segue</em> (it looks like an arrow pointing at your Phoneword view controller) over to the Navigation Controller. This will make the navigation controller the starting view controller. You can also change this in the property pad by clicking on the navigation controller (black bar on the bottom) and checking the <strong>Is Initial ViewController</strong> property.</li>
+            <img src="./res/images/Designer-SourcelessSegue.png" class="indent-small"/>
+
+            <li>Next, let's connect the two view controllers together. Hold the <strong>Control</strong> key and click/drag from the Navigation controller to your Phoneword View controller. A light blue line will appear during the drag and once you release the mouse button, a popup menu will appear.</li>
+            <img src="./res/images/Designer-CtrlDrag-ConnectVC.png" class="indent-small"/>
+
+            <li>Select <strong>Relationship > Root</strong> from the menu, this will make the Phoneword view controller the root view controller for the application.</li>
+            <img src="./res/images/Designer-NavPopup.png" class="indent-small">
+
+            The Phoneword view controller is now setup as the Root View Controller associated with the Navigation Controller. This means it is the first view controller on the Navigation Controller's stack and the Navigation Controller will automatically add a Navigation Bar to the UI. The Navigation Controller will display the screen for the Phoneword view controller as the initial screen for our app. Let's add a <code>Title</code> to the Navigation Bar of our Phoneword view.
+            <br />
+            <br />
+
+            <li>Double-click the Navigation Bar at the top of our Phoneword view controller and enter &quot;Phoneword&quot; as the title:</li>
+            <img src="./res/images/Designer-PhonewordTitle.png" class="indent-small"/>
+            <br />
+            <br />
+
+            <li>You might notice that the view doesn't quite look right now that we have a navigation bar. The problem is that it is obscuring part of our view:</li>
+            <img src="./res/images/Designer-ViewIssue.png" class="indent-small"/>
+            <li>This is an iOS7 feature, where our content is intended to slide under the navigation bar - however it's not really great for our app here. We can fix this in a couple of ways:</li>
+            <ol type="a">
+                <li>Slide the content down in the designer - just click/drag the items down to make room for the bar. This will keep the same look, but just have the content lower in the view.</li>
+                <li>Change the new iOS7 <strong>Extend Edges</strong> property on the Phoneword View controller to <em>not</em> slide under the top bar. This will cause the top navigation bar to darken in color as it will no longer have the white background of the view content underneath it. This is typically what older iOS6 applications did when they moved up to iOS7 so the design didn't change.</li>
+            </ol>
+            <li>Either approach will work - the completed lab will use #1, but you can experiement and try them both if you like.</li>
+
+            <li>Once you have finished, select <strong>File > Save All</strong>.</li>
+            <li>Run the application and make sure it displays the app properly - it should now include a title.</li>
+        </ol>
+
+        <h2>Adding the Call History Screen</h2>
+        <p>Now, let's extend the application by including a Call History button on the main screen that navigates to a new screen which displays the phone numbers the application has dialed. To display the calls, we will use a <code>UITableViewController</code> which is similar to a <code>ListBox</code> in Windows or <code>ListView</code> in Android. We won't be going into much detail about Table Views here, that will happen in another class, but we'll use one here and you will see how easy they are to use.</p>
+
+        <ol class="indent-medium">
+            <li>Open the <strong>Mainstoryboard.storyboard</strong> design file again.</li>
+            <li>Add a new <strong>Button</strong> into the UI just under the Call button.</li>
+            <ol type="a" class="indent-none">
+                <li>Set the <code>Name</code> of the button to &quot;CallHistoryButton&quot;.</li>
+                <li>Set the <code>Title</code> of the button to &quot;Call History&quot;.</li>
+            </ol>
+            <li>Drag a <strong>Table View Controller</strong> into the design surface and position to the right of the Phoneword view controller.
+            <div class="hintblock">
+            <strong>Note:</strong> Make sure it's a <em>Controller</em> and not just a Table View - the controllers are all at the top of the Toolbox!
+            </div>
+            </li>
+            <li>Control-Drag from the <strong>Call History</strong> button to the new <strong>Table View Controller</strong>. A blue line will appear as you drag, and when you release the mouse on the second view, the navigation popup will appear. This time, select <strong>Push</strong> from the menu.
+            <br />
+            <br />
+            A Push Segue is used to navigate from one screen to another - in this case we will navigate to the newly created view when you tap the <strong>Call History</strong> button. Notice as well, that the navigation title now appears as well as a segue arrow connecting the two views.
+            </li>
+            <img src="./res/images/Designer-AddingTableView.png" />
+            <li>Select the <strong>Table View Controller</strong> by single-clicking the black bar on the bottom of the view controller.</li>
+            <li>In the properties, change the <code>Title</code> of the View Controller to &quot;Call History&quot;. This will add a title to the navigation bar. You cannot double-click to change the title in this case since this is not the main view.</li>
+            <li>Once you have finished, select <strong>File > Save All</strong>.</li>
+            <li>Run the application and tap the <strong>Call History</strong> button to navigate to the second screen. Use the <strong>Back</strong> button in the Navigation Bar to get back. All of this behavior was done through the segues in the designer.</li>
+            <img src="./res/images/Simulator-CallHistory_1.png" />
+        </ol>
+        <p>
+        We don't have any call data yet because we haven't wired it up - let's do that next.</p>
+
+        <h2>Implementing the Call History Screen</h2>
+        <p>
+        We will implement the table view controller for our call history by specifying the name of the backing class in the Properties tab for the table view controller in the storyboard. Xamarin Studio will automatically generate the backing class when we change the name of the <code>UITableViewController</code> class the name of our custom view controller.</p>    
+        <ol class="indent-medium">
+            <li>Select the Table View Controller by clicking on the Black Bar of the Table View Controller and change the <strong>Class</strong> property under the <strong>Identity</strong> section - set it to <code>CallHistoryController</code>.
+            <img src="./res/images/XamStudio-ChangeClassIdentity.png" class="indent-small"/>
+            Xamarin Studio will automatically create a <code>CallHistoryController.cs</code> file when you change the class name. This new class will be a subclass of the <code>UITableViewController</code> class.
+            </li>
+            <li>Open up the generated <code>CallHistoryController.cs</code> class.</li>
+            <li>We are going to replace the boiler-plate code that the designer created with the contents of another file. Go ahead and open the <strong>Completed_CallHistoryController.cs</strong> file from the <strong>Part 04 Resources</strong> folder and copy all of the code in it and replace the existing implementation.</li>
+            <li>The code is fully commented to give you an overall idea of how the Table View Controller works. The important thing to know for now is that the <code>CallHistoryController</code> defines a <code>List&lt;string&gt;</code> which we will need to populate with the dialed phone numbers.</li>
+            <li>Go ahead and save your changes and close the <strong>Completed_CallHistoryController.cs</strong> to avoid confusion.</li>
+        </ol>
+
+        <h2>Populating the Call History</h2>
+        <p>
+        We are now ready to add our implementation to this class to display the call history. The code to do this involves populating the table's data source from a backing data store, which for simplicity, is an in-memory list. We need to add a number to this list each time the Call button is pressed in the Phoneword ViewController.
+        </p>
+        <ol class="indent-medium">
+            <li>Open the <strong>PhonewordViewController.cs</strong> file. All our changes will be done in this file. Here's the things we need to do:</li>
+            <ol type="a" class="indent-none">
+                <li>Add a new <code>List&lt;string&gt;</code> to hold the dialed phone numbers.</li>
+                <li>Add the new dialed number each time the call button is pressed, before we actually dial the number.</li>
+                <li>Override the <code>PrepareForSegue</code> method and pass the list of dialed numbers into the <code>CallHistoryViewController</code> by setting the <code>PhoneNumbers</code> property. You can access the target view controller of the segue through the passed <code>UIStoryboardSegue.DestinationViewController</code> parameter - you will need to cast it to your custom view controller type.</li>
+            </ol>
+        </ol>
+
+        <p><a href="#" onclick="toggleCode(this,'translateButtonCode');return false;" class="uiitem">Show Code</a>
+        <div class="indent-large" id="translateButtonCode" style="display:none;">
+<pre class="prettyprint">
+<span class="highlight">List&lt;string&gt; phoneNumbers = new List&lt;string&gt;();</span>
+
+public override void ViewDidLoad()
+{
+    base.ViewDidLoad();
+    ...
+    CallButton.TouchUpInside += delegate 
+    {
+        var alertPrompt = new UIAlertView("Dial Number?", 
+            "Do you want to call " + translatedNumber + "?",
+            null, "No", "Yes");
+
+        alertPrompt.Dismissed += (sender, e) =>  {
+          <span class="highlight">phoneNumbers.Add(translatedNumber);</span>
+          NSUrl url = new NSUrl("tel:" + translatedNumber);
+          UIApplication.SharedApplication.OpenUrl(url);
+        };
+
+        alertPrompt.Show();
+    };
+}
+
+<span class="highlight">public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+{
+    base.PrepareForSegue(segue, sender);
+
+    var chController = segue.DestinationViewController as CallHistoryController;
+    if (chController != null) {
+        chController.PhoneNumbers = phoneNumbers;
+    }
+}</span>
+</pre>
+        </div>
+        </p>
+
+    <h2>Testing the Application</h2>
+    <ol>
+        <li>Build and run the application.</li>
+        <li>Click the <strong>Call History</strong> button. No numbers should appear in the Call History table.</li>
+        <li>Click the Back button to return to the initial Phoneword screen.</li>
+        <li>Click the Translate button, followed by the Call 855-9262746 button.</li>
+        <li>Click the Yes button to close the Alert Dialog.</li>
+        <li>Click the Call History button. We see that navigating to the call history after dialing shows the list of numbers dialed.</li>
+    </ol>
+
+    <div class="align-right">
+        <a href="../Start%20Here.html">Go Back</a>
+    </div>
+    </section>
+
+    <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

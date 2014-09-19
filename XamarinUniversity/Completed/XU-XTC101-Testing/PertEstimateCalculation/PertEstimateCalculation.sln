@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PertEstimateCalculation", "PertEstimateCalculation\PertEstimateCalculation.csproj", "{05FD3E07-2842-4672-A963-9FFBA392E127}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PertTest", "PertTest\PertTest.csproj", "{DD3E0385-6646-4673-810D-2CFA9C1854A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05FD3E07-2842-4672-A963-9FFBA392E127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05FD3E07-2842-4672-A963-9FFBA392E127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05FD3E07-2842-4672-A963-9FFBA392E127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05FD3E07-2842-4672-A963-9FFBA392E127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD3E0385-6646-4673-810D-2CFA9C1854A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3E0385-6646-4673-810D-2CFA9C1854A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3E0385-6646-4673-810D-2CFA9C1854A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3E0385-6646-4673-810D-2CFA9C1854A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PertTest\PertTest.csproj
+	EndGlobalSection
+EndGlobal

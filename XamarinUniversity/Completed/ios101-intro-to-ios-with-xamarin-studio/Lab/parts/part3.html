@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+<body>
+    <header>Introduction to iOS with Xamarin Studio</header>
+
+    <section id="main">
+
+        <h1>Exercise 3: Adding Behavior to Phoneword</h1>
+        <h2>Duration</h2>
+        <p>15 minutes</p>
+
+        <h2 id="goals">Lab Goals</h2>
+        <p>The goal of this lab will be to provide behavior for the Phoneword application created earlier in this session. The current application displays a GUI that consists of a
+            <strong>Label</strong>,
+            <strong>Text Field</strong> and two
+            <strong>Buttons</strong> as shown on the left:
+        </p>
+
+        <table class="indent-large">
+            <tr>
+                <td>
+                    <img src="./res/images/Part2.Phoneword-Sim1.png" />
+                </td>
+                <td>
+                    <img src="./res/images/Simulator-Call.png" />
+                </td>
+            </tr>
+        </table>
+
+        <p>Our steps for this exercise will be to add some behavior that will:
+            <ol class="indent-medium">
+                <li>Respond to a touch event on the
+                    <strong>Translate Button</strong>.</li>
+                <li>Retrieve the text typed into the
+                    <strong>Text Field</strong>.</li>
+                <li>Dismiss the On Screen Keyboard once we are done editing the text.</li>
+                <li>Translate the alphanumeric text into a traditional phone number, where ABC &#10145; 2, DEF &#10145; 3, etc.</li>
+                <li>Update the
+                    <code>Title</code> of the
+                    <strong>Call Button</strong> to include the translated numeric phone number; we will also update the enabled state so the user can tap the button (these are shown in the second screenshot, above on the right).</li>
+                <li>Respond to a touch event on the
+                    <strong>Call Button</strong>, which will ask the user if they'd like to place a call and if so, attempt to place a call to the given number using the iOS phone dialer.</li>
+            </ol>
+
+        </p>
+        
+        <h2>Required Assets</h2>
+        <p>
+            Included with this exercise is a folder with resources that you will need in order to complete the lab. The folder name is
+            <strong>Part 03 Resources</strong>. Make sure you have this folder before you begin. This folder also contains a starting solution with the completed user interface if you were unable to finish the prior exercise, or want to start with a fresh project.
+        </p>
+
+        <h2>Exercise Challenge</h2>
+        <p>
+            Using the <a href="./worksheet.html#part3">Worksheet</a> to give you the information you need, try to accomplish the <a href="#goals">(5) steps outlined above</a> for this exercise. If you need some additional help, there are <a href="#steps">step-by-step instructions below</a>. Here are some notes to help you get started:
+        </p>
+        <ul class="indent-medium">
+            <li>The translation of the phone number will be done by an existing static method called
+                <code>PhonewordTranslator.ToNumber</code> which looks like.</li>
+            <div class="codeblock">
+                <code>public static string ToNumber(string alphanumericNumber);</code>
+            </div>
+            It is defined in a source file contained in the
+            <strong>Part 03 Resources</strong> folder which should have been included as part of the lab exercise. The source file is named
+            <code>PhoneTranslator.cs</code>, make sure you can find it and add it to your project. You will use this method as part of Step 3 above.
+            <li>All of the work can be done in the
+                <code>ViewDidLoad</code> override of the root View Controller.</li>
+            <li>Feel free to experiment and ask questions during the lab - there is a completed version of the lab in the resources folder if you don't have enough time to complete it as written here.</li>
+        </ul>
+
+        <h1 id="steps">Steps</h1>
+        <div class="hintblock">
+            <strong>Note:</strong> you can either continue from the prior exercise where you generated the UI for the application, or if you changed that design, or did not completed the prior exercise, you can use the
+            <strong>Phoneword_Starter</strong> project located in the
+            <strong>Part 03 Resources</strong> folder included with this exercise. If you decide to use this, just open the project and you can start with the first step.
+        </div>
+
+        <h2>Add <code>PhoneTranslator</code> to our project</h2>
+        <p>We need to add the code to translate the alphanumeric phone number into a numeric phone number. The code has already been written for you and is in the <strong>Part 03 Resources/PhoneTranslator.cs</strong> source file. If you need some help with this step, <a href="./worksheet.html#addnewfiles">check the worksheet</a>.</p>
+        <p>Open the file and examine the contents - it has a single public static method, which you will be using to translate the number from alphanumeric text into a straight numeric number.</p>
+
+        <div class="hintblock">
+            <strong>Note:</strong> this is a sharable C# file - the same file is used in the corresponding Android version of this session. You will learn a variety of code-sharing techniques in future sessions!
+        </div>
+
+        <h2>Implement the Logic for the Translate Button</h2>
+        <p>
+            Open the <strong>PhonewordViewController.cs</strong> file and locate the
+            <code>ViewDidLoad</code> method - remember this is called once the view has been loaded from the Storyboard and is typically where you will place initialization logic for the screen.</p>
+        <p>We need to handle the <code>TouchUpInside</code> event for our
+            <code>TranslateButton</code> - this will be raised when the user taps on the translate button in the UI. The handler should:</p>
+
+        <ol class="indent-medium">
+            <li>Get the phone number from the <strong>PhoneNumberText</strong> control.
+                <ul class="indent-none">
+                    <li>Hint: use the <code>Text</code> property.</li>
+                </ul>
+            </li>
+            <li>Translate it using the <code>PhonewordTranslator.ToNumber</code> method.
+                <ul class="indent-none">
+                    <li>You will need to add a namespace to access it.</li>
+                    <li>This method returns <code>null</code> if the number could not be translated.</li>
+                </ul>
+            </li>
+            <li>Change the text of the <strong>CallButton</strong> to include the phone number when it is successfully translated.
+                <ul class="indent-none">
+                    <li>Hint: use the <code>SetTitle</code> method.</li>
+                </ul>
+            </li>
+            <li>Enable the CallButton so it can be tapped to dial the phone.
+                <ul class="indent-none">
+                    <li>Hint: use the <code>Enabled</code> property.</li>
+                </ul>
+            </li>
+            <li>Since the button is enabled by default, go ahead and disable the button initially - this should be done outside the event handler, as well as if the number translation fails.
+                <ul class="indent-none">
+                    <li>Make sure to reset the title of the <strong>CallButton</strong> if the number translation fails.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <p><a href="#" onclick="toggleCode(this,'translateButtonCode');return false;" class="uiitem">Show Code</a>
+            <div class="indent-large" id="translateButtonCode" style="display:none;">
+<pre class="prettyprint">
+public override void ViewDidLoad()
+{
+    base.ViewDidLoad();
+
+    // Perform any additional setup after loading the view, 
+    // typically from a nib.
+<span class="highlight">    CallButton.Enabled = false;
+    string translatedNumber = "";
+    TranslateButton.TouchUpInside += (sender, e) => 
+    {
+        translatedNumber = PhonewordTranslator
+                            .ToNumber(PhoneNumberText.Text);
+        if (translatedNumber != null) {
+            CallButton.SetTitle("Call " + translatedNumber, 
+                                UIControlState.Normal);
+            CallButton.Enabled = true;
+        }
+        else {
+            CallButton.SetTitle("Call", UIControlState.Normal);
+            CallButton.Enabled = false;
+        }
+    };
+</span>    
+}
+</pre>               
+            </div>
+        </p>
+
+        <h2>Test the Application</h2>
+
+        <ol>
+            <li>The <strong>TranslateButton</strong> is now wired with behavior, so lets test it. Run the application in either the simulator or on a physical device from Xamarin Studio.</li>
+            <li>The application should build and if everything has gone well our app will display and show a disabled Call Button.</li>
+            <li>Touch the Translate button in our app and verify the Call button title changes to &quot;Call 1-855-9262746&quot;, and the button becomes enabled.</li>
+            <li>Try changing the phone number in the Text Field. Notice that iOS pops up an on-screen keyboard automatically. However, it stays on screen once it has been activated!</li>
+        </ol>
+
+        <h2>Adding support to dismiss the on-screen keyboard</h2>
+        <ol>
+            <li>To dismiss the on-screen keyboard, we need to wire into the <code>ShouldReturn</code> event. This then allows us to resign focus from the Text Field by calling the <code>UITextField.ResignFirstResponder</code> method. You can add this handler in the <code>ViewDidLoad</code> method.</li>
+          <li>Run the application again and tap in the Text Field to show the on screen keyboard, then press the <strong>Return</strong> button on the keyboard to see the keyboard get dismissed.</li>
+        </ol>
+
+        <p>
+        <a href="#" onclick="toggleCode(this,'dismissKeyboard');return false;" class="uiitem">Show Code</a>
+            <div class="indent-large" id="dismissKeyboard" style="display:none;">
+<pre class="prettyprint">
+PhoneNumberText.ShouldReturn += delegate { 
+   PhoneNumberText.ResignFirstResponder();
+   return true;
+};
+</pre>            
+            </div>
+        </p>
+
+
+        <h2>Implement the Logic for the CallButton</h2>
+        <p>
+        Next, let's add some behavior to the CallButton. In this case, we will need to perform the following tasks:</p>
+        <ol class="indent-medium">
+            <li>Wire up an event handler to <code>TouchUpInside</code> on the <code>UIButton</code> - just like we did earlier for the <strong>TranslateButton</strong>. Just as before, you can place this into the <code>ViewDidLoad</code> method.</li>
+            <li>Prompt the user using a <code>UIAlertView</code> to ask if they'd like to dial the number. If you've not used this API before, read about <a href="./worksheet.html#part3apis" target="_blank">Showing Alerts</a>.
+            <ul>
+                <li>Supply a <code>Title</code> and <code>Message</code> and use &quot;Yes&quot; and &quot;No&quot; as your button title parameters to the constructor (<code>CancelButtonTitle</code> and single <code>OtherButtonTitle</code>).</li>
+                <li>The <code>UIAlertViewDelegate</code> parameter can be <code>null</code>.</li>
+                <li>Wire up to the <code>Dismissed</code> event in order to detect which button was pressed. You will need to check the <code>ButtonIndex</code> property passed in the <code>EventArgs</code> to determine which button was pressed. The <code>UIAlertView</code> has public properties on it which give you the indexes assigned to each of your buttons.</li>
+                <li>Your logic to dial the phone should be placed in this handler if the <code>ButtonIndex</code> indicates it was the second button (Yes).</li>
+                <li>Use the <code>UIAlertView.Show</code> method to display the dialog to the user - this returns when the dialog is dismissed.</li>
+            </ul>
+            <li>If the user responds affirmatively, then use the <code>UIApplication</code> singleton to invoke the <code>OpenUrl</code> method to dial a telephone URL. (See the <a href="./worksheet.html#part3apis" target="_blank">Worksheet section on Dialing a Phone Number</a>.)</li>
+            <ul>
+                <li>You can retrieve the singleton using the static property <code>UIApplication.SharedApplication</code>.</li>
+                <li>You will need to create a new <code>NSUrl</code> object to pass to <code>OpenUrl</code> - there is a constructor that takes a string for this.</li>
+                <li>Use the &quot;tel:&quot; prefix to dial a phone number with <code>OpenUrl</code>.</li>
+                <li>Be aware this feature only works on real devices - the simulator will ignore this call and return <code>false</code>.</li>
+            </ul>
+            </li>
+            <li>Run the application a final time and try out your logic. If you have a physical device and it has been setup for development, you can try running the on on the device to really see it place a call.</li>
+        </ol>
+
+            <p><a href="#" onclick="toggleCode(this,'callButtonLogic');return false;" class="uiitem">Show Code</a>
+            <div class="indent-large" id="callButtonLogic" style="display:none;">
+<pre class="prettyprint">
+CallButton.TouchUpInside += delegate 
+{
+    var alertPrompt = new UIAlertView("Dial Number?", 
+        "Do you want to call " + translatedNumber + "?",
+        null, "No", "Yes");
+    alertPrompt.Dismissed += (sender, e) =>  {
+       if (e.ButtonIndex >= alertPrompt.FirstOtherButtonIndex) {
+          NSUrl url = new NSUrl("tel:" + translatedNumber);
+          UIApplication.SharedApplication.OpenUrl(url);
+       }
+    };
+
+    alertPrompt.Show();
+};
+</pre>
+            </div>
+            </p>
+
+        <h1>Summary</h1>
+        <p>
+        In this lab, we have built our first full-blown Xamarin.iOS application and learned how to use Xamarin Studio. In the next lab, we are going to extend this application by adding another screen and introducing the Model View Controller (MVC) pattern in iOS. </p>
+
+        <div class="align-right">
+            <a href="../Start%20Here.html">Go Back</a>
+        </div>
+    </section>
+
+    <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+<body>
+    <header>Introduction to Mobile Development / Kickstarter</header>
+
+    <section id="main">
+
+        <h1>Objective 1: Hands-On with Xamarin</h1>
+        <h2>Estimated Time: 15 minutes</h2>
+
+        <h2>Goals</h2>
+        <p>In this exercise we will build and run the <a href="http://xamarin.com/sharp-shirt">Xamarin Store</a> application. This will ensure you have your development environment setup properly and prepare you for your Xamarin University education.</p>
+
+        <img src="./res/images/SharpShirtApp.png" />
+
+        <p>This is intended to be a guided exercise with a Xamarin University instructor, however if you are doing this on your own, you can follow the steps below.</p>
+
+        <div class="hintblock">
+        <strong>Note:</strong> the following instructions are using Xamarin Studio 5, running on Mac OS X to build and run the application. You can also use Windows with Visual Studio if you have a business-level license. Remember you will still need a Mac OS X build host to use the iOS Simulator. In addition, you can run the application on either Android or iOS, even though the instructions only walk you through iOS.</div>
+
+        <h1>Steps</h1>
+        <ol>
+            <li>Download the Xamarin Store application from <a href="http://xamarin.com/sharp-shirt">xamarin.com/sharp-shirt</a>.</li>
+            <li>Unzip the contents of the <strong>xamarin-store-app-master.zip</strong> (if you downloaded the zip file) and place the entire solution into a known location such as your desktop. In this example, I have placed it on the desktop of my Mac.</li>
+            <img src="./res/images/xam-store-folder.png" class="indent-small" />
+
+            <li>Open the <strong>XamarinStore.sln</strong> solution in Visual Studio or Xamarin Studio.</li>
+
+            <li>Once the project loads, you can select which version (iOS or Android) you want to run by right-clicking on the project, or clicking the gear icon to the right of the project, and selecting <strong>Set as Startup Project</strong> from the context menu.</li>
+            <img src="./res/images/XamStudio-SetStartupProject.png" class="indent-small" />
+
+            <li>Set the Build Configuration to be <strong>Debug</strong> and select the iPhone Simulator from the drop down.</li>
+
+            <table><tr>
+                <td><img src="./res/images/vstudio-Simulator.png" class="indent-none"/></td>
+                <td><img src="./res/images/xamstudio-Simulator.png" class="indent-small"/></td>
+            </tr></table>
+
+            <li>Build and run the application by clicking the <strong>Play</strong> button in the Toolbar. In this example, I am running it using the iOS Simulator, however you can run it on the Android Emulator, or even on a physical iOS or Android device.</li>
+            <div class="hintblock">
+            For instructions on running the application on a physical device, refer to the documentation on <a href="http://docs.xamarin.com/guides/android/getting_started/installation/set_up_device_for_development/">Setting up devices for development</a>.
+            </div>
+
+            <li>The application should launch and display different T-shirts. It needs an Internet connection to function properly.</li>
+
+            <img src="./res/images/Sim-StartScreen.png" class="indent-small" />
+
+            <li>Select the style of T-shirt you'd like to get (Male or Female) by tapping on one of the pictures.</li>
+            <li>Select the size and color of the shirt and then tap <strong>Add to Basket</strong> to add it to your shopping cart - notice the nice animation that draws your eye to the shopping cart icon in the toolbar at the top of the application.</li>
+            <li>Finally, tap the shooping cart icon to place your order and tap the <strong>Checkout</strong> button on the basket screen.
+            <br />
+            You should get a screen indicating that the application isn't quite complete - you need to make a change to the code in order to get it to place the order.</li>
+
+            <table><tr>
+            <td><img src="./res/images/Sim-RequiredChange.png" class="indent-small" /></td>
+            <td><img src="./res/images/Android-RequiredChange.png" class="indent-small" /></td>
+            </tr></table>
+
+            <li>The message tells you the exact source file you need to edit (<code>ViewControllers/LoginViewController.cs</code> in iOS and <code>Fragments/LoginFragment.cs</code>).</li>
+
+            <li>Open up the proper source file and look for a <code>TODO:</code> comment indicating you need to set your email address.</li>
+            <div class="hintblock">
+            <strong>Note:</strong> You will need a registered Xamarin email address - if you don't have one yet, you can register for free at <a href="https://store.xamarin.com/account/register">https://store.xamarin.com/account/register</a>.
+            </div>
+            <li>Go ahead and add your email address - for example:</li>
+<pre class="prettyprint">
+// TODO: Enter your Xamarin account email address here
+// If you do not have a Xamarin Account please sign up here: https://store.xamarin.com/account/register
+readonly string XamarinAccountEmail = "joe.cool@xamarin.com";
+</pre>
+            <li>Build and run the application again, this time when you place your order, you should get a password prompt.</li>
+            <img src="./res/images/Sim-EnterPwd.png" class="indent-small" />
+            <li>Enter the password you used when registering your Xamarin account and enter / verify the information the application shows you.</li>
+            <li><strong>Congratulations!</strong> In just a few weeks, you will be the proud owner of a new C# T-shirt! Enjoy your new wardrobe!</li>
+        </ol>
+        
+        <h2>Summary</h2>
+        <p>In this exercise, we built and ran a cross-platform Xamarin application and verified that the Xamarin tools are properly installed on your machine. You saw an example project that uses a variety of .NET classes as well as unique iOS and Android features to display and animate the presented information.</p>
+
+        <div class="align-right">
+            <a href="../Start%20Here.html">Go Back</a>
+        </div>
+    </section>
+
+    <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

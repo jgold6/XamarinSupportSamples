@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+	<title>Xamarin University</title>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+	<script src="./res/js/script.js"></script>
+</head>
+
+<body>
+
+	<header>ListViews and Adapters in Android</header>
+
+	<section id="main">
+
+		<h1>Exercise 2: Handle list-item click events</h1>
+
+		<h2>Duration</h2>
+		<p>10 minutes</p>
+
+		<!-- - - - - - - - - Goals - - - - - - - - -->
+
+		<h2 id="goals">Lab goals</h2>
+		<p>
+			The goal here is to handle a list-item click event. Your response to the event will be to display
+			an alert dialog that indicates which item was clicked. You will need to use the information in
+			the event-args to determine the identity of the clicked item.
+		</p>
+
+		<p>
+			The images below show the how the app will look at the end of this exercise. On the left is the list of
+			instructors. On the right is the same list after an item-click event; notice how the alert dialog shows
+			the name of the instructor that was clicked.
+		</p>
+		<table class="indent-none">
+			<tr>
+				<td><img src="./res/images/Part2.CompletedList.png" /></td>
+				<td><img src="./res/images/Part2.CompletedAlert.png" /></td>
+			</tr>
+		</table>
+
+		<p>
+			Here is a high-level description of the required tasks for this lab:
+
+			<ol class="indent-medium">
+				
+				<li>
+					Subscribe to the <code>ItemClick</code> event on the instructor <code>ListView</code>.
+				</li>
+
+				<li>
+					Use the <code>Position</code> property in the event-args to determine which instructor was clicked.
+				</li>
+
+				<li>
+					Use <code>AlertDialog.Builder</code> to display an alert containing the name of the clicked instructor.
+				</li>
+			</ol>
+		</p>
+
+		<h2>Required assets</h2>
+		<p>
+			The provided <strong>Part 02 Resources</strong> folder contains resources that you will need in order to complete the lab:
+
+			<ul class="indent-medium">
+				<li>
+					The <strong>Part2.Start</strong> folder contains a starter solution you can use if you did not do the previous
+					exercise or if you would like to begin with a fresh project.
+				</li>
+
+				<li>
+					The <strong>Part2.Completed</strong> folder contains a completed version of the lab you can use to check your work.
+				</li>
+			</ul>
+		</p>
+		<p>
+			Please make sure you have this folder before you begin.
+		</p>
+
+		<h2>Exercise challenge</h2>
+		<p>
+			Use the information in the <a href="./worksheet.html#part2">worksheet</a> to accomplish the <a href="#goals">tasks outlined above</a>.
+			Alternatively, you can use the <a href="#steps">step-by-step instructions</a> provided below to work through the exercise.
+		</p>
+
+		<!-- - - - - - - - - Steps - - - - - - - - -->
+
+		<h1 id="steps">Steps</h1>
+
+		<p>
+			Below are the step-by-step instructions to implement the exercise.
+		</p>
+
+		<div class="hintblock">
+			<strong>Note:</strong> you can either continue your work from the prior exercise or use the provided starter solution.
+		</div>
+
+		<h2>Handle the list-item click event</h2>
+
+		<ol>
+			<li>
+				Open <code>MainActivity.cs</code>.
+			</li>
+
+			<li>
+				Subscribe a handler to the <code>ItemClick</code> event of the instructor <code>ListView</code>.
+				<div class="hintblock">
+					<strong>Note:</strong> Make sure you subscribe to the <code>ItemClick</code> event so you will
+					respond when the user clicks on a specific item within the list.
+					The <code>ListView</code> class also has a <code>Click</code> event that is raised for clicks on the
+					list itself and not an item within the list. The <code>Click</code> event is inherited from a base
+					class and is not useful for a <code>ListView</code>; Android will throw a runtime exception if you
+					subscribe to it.
+				</div>
+			</li>
+
+			<li>
+				In your handler, retrieve the <code>Position</code> from the event args. Use the <code>Position</code>
+				to get the instructor object that corresponds to the item the user clicked.
+			</li>
+			
+			<li>
+				Create an alert dialog. Use the instructor's name as the alert message. Show the dialog to the user.
+				The <a href="./worksheet.html#part2">worksheet</a> shows how to display an alert.
+			</li>
+
+			<li>
+				Run the app to test your work. Click on an instructor in the <code>ListView</code> and verify that the
+				alert dialog displays correctly.
+			</li>
+
+		</ol>
+
+		<!-- - - - - - - - - Summary - - - - - - - - -->
+
+		<h1>Summary</h1>
+		<p>
+			Achieving the primary goal here required only a few lines of code: subscribe to the <code>ListView</code>'s
+			<code>ItemClick</code> event and retrieve the identity of the clicked item from the event args. You could
+			use this code as a base to construct a more realistic scenario. For example, you could build a master-details
+			UI where your item-click handler navigated the app to a details Activity or Fragment.
+		</p>
+
+		<!-- - - - - - - - - Footer - - - - - - - - -->
+
+		<div class="align-right">
+			<a href="../Start%20Here.html">Go Back</a>
+		</div>
+
+	</section>
+
+	<footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

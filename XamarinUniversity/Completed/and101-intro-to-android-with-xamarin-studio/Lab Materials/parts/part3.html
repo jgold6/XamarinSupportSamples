@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+	<title>Xamarin University</title>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+	<script src="./res/js/script.js"></script>
+</head>
+
+<body>
+	<header>Introduction to Android with Xamarin Studio</header>
+
+	<section id="main">
+
+		<h1>Exercise 3: Implement app behavior in C# code-behind</h1>
+
+		<h2>Duration</h2>
+		<p>15 minutes</p>
+
+		<!-- - - - - - - - - Goals - - - - - - - - -->
+
+		<h2 id="goals">Lab goals</h2>
+		<p>
+			The goal of this lab is to implement the behavior of the Phoneword application. The UI was created earlier
+			in this session and currently consists of a <code>TextView</code>, an <code>EditText</code> and two
+			<code>Button</code>s as shown on the left:
+		</p>
+
+		<table class="indent-none">
+			<tr>
+				<td>
+					<img src="./res/images/Part2.Phoneword-Emulator.png" />
+				</td>
+				<td>
+					<img src="./res/images/Part3.Phoneword-Emulator.png" />
+				</td>
+			</tr>
+		</table>
+
+		<p>
+			Here is a high-level description of the required tasks for this lab:
+			<ol class="indent-medium">
+				<li>Subscribe to the <code>Click</code> event on the <strong>TranslateButton</strong>.</li>
+				<li>Retrieve the text from the <strong>PhoneNumberText</strong> field.</li>
+				<li>Translate the alphanumeric text into a traditional phone number, where ABC &#10145; 2, DEF &#10145; 3, etc. Code
+				to perform this translation has been provided.</li>
+				<li>Update the <code>Text</code> property of the <strong>CallButton</strong> to include the translated numeric phone number.
+					Update the enabled state of the <strong>CallButton</strong> so the user can tap the button. This is shown in the
+					second screenshot, above on the right.</li>
+				<li>Subscribe to the <code>Click</code> event on the <strong>CallButton</strong>.</li>
+				<li>Ask the user to confirm that they would like to place a call and if so, use an Android Intent to call the given number.</li>
+			</ol>
+		</p>
+
+		<h2>Required assets</h2>
+		<p>
+			The provided <strong>Part 03 Resources</strong> folder contains resources that you will need in order to complete the lab:
+			
+			<ul class="indent-medium">
+				<li>
+					A starter solution with the completed user interface you can use if you did not do the previous exercise or if
+					you would like to begin with a fresh project. The starter solution is in the <strong>Part3.Start</strong> folder.
+				</li>
+				
+				<li>
+					The source file <code>PhonewordTranslator.cs</code> containing the <code>PhonewordTranslator.ToNumber</code> method
+					shown below. It does the translation of the alphanumeric input string to a numeric phone number.
+<pre class="prettyprint">
+public static string ToNumber(string alphanumericNumber);
+</pre>
+
+
+				</li>
+				
+				<li>
+					A completed version of the lab in the <strong>Part3.Completed</strong> folder if you would like to check your work.
+				</li>
+			</ul>
+		</p>
+		<p>
+			Please make sure you have this folder before you begin.
+		</p>
+
+		<h2>Exercise challenge</h2>
+		<p>
+			Use the information in the <a href="./worksheet.html#part3">worksheet</a> to accomplish the <a href="#goals">tasks outlined above</a>.
+			Alternatively, you can use the <a href="#steps">step-by-step instructions</a> provided below to work through the exercise.
+		</p>
+
+		<!-- - - - - - - - - Steps - - - - - - - - -->
+
+		<h1 id="steps">Steps</h1>
+
+		<p>
+			Below are the step-by-step instructions to implement the behavior of the Phoneword application.
+		</p>
+
+		<div class="hintblock">
+			<strong>Note:</strong> you can either continue your work from the prior exercise or use the provided starter solution.
+		</div>
+
+		<h2>Add <code>PhoneTranslator</code> to your project</h2>
+
+		<p>
+			Add <code>PhonewordTranslator.cs</code> from the <strong>Part 3 Resources</strong> folder to your project.
+			See the <a href="./worksheet.html#addnewfiles">worksheet</a> if you would like instructions on how to add an existing file to a project.
+		</p>
+
+		<p>
+			Open the file and examine the contents. The <code>PhonewordTranslator</code> class has a single method which you will use to translate
+			the input string from alphanumeric text into a numeric phone number.
+		</p>
+
+		<div class="hintblock">
+			<strong>Note:</strong> this is a sharable C# file - the same file is used in the corresponding iOS version of this session.
+			You will learn a variety of code-sharing techniques in future sessions!
+		</div>
+
+		<h2>Initialization</h2>
+		<p>
+			Open the <strong>MainActivity.cs</strong> file and locate the <code>OnCreate</code> method.
+			Android calls <code>OnCreate</code> after the Activity has been created to give you an opportunity
+			to inflate your UI and run your initialization code. If you use lambda expressions for your event
+			handlers, then all your code for this lab can go in <code>OnCreate</code>.
+		</p>
+			
+		<p>
+			Inside <code>OnCreate</code>, locate the call to <code>SetContentView</code>. The <code>SetContentView</code>
+			method creates all the controls in your UI so any code you write that accesses those controls should appear
+			after this call.
+		</p>
+
+		<p>
+			Use <code>FindViewById</code> to obtain references to three of the controls in your UI (see the
+			<a href="./worksheet.html#findViewById">worksheet</a> for instructions on how to use <code>FindViewById</code>):		
+
+			<ul class="indent-medium">
+				<li>The translate <code>Button</code> (you assigned it an <strong>id</strong> of <code>TranslateButton</code>).</li>
+				<li>The call <code>Button</code> (you assigned it an <strong>id</strong> of <code>CallButton</code>).</li>
+				<li>The input <code>EditText</code> (you assigned it an <strong>id</strong> of <code>PhoneNumberText</code>).</li>
+			</ul>
+		</p>
+
+		<p>
+			Set the <code>Enabled</code> property of the <strong>CallButton</strong> to false. You will set it to true in a later step,
+			after the user successfully translates a valid phone number.
+		</p>
+		
+		<h2>Translate the phone number</h2>
+		<p>
+			The user will enter an alphanumeric value in <strong>PhoneNumberText</strong> and then click the
+			<strong>TranslateButton</strong>. Your code should perform the translation and update the UI with the results.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Subscribe a handler to the <code>Click</code> event of the <strong>TranslateButton</strong>.
+			</li>
+
+			<li>
+				In your <code>Click</code> handler, retrieve the input phone number from the <code>Text</code> property
+				of the <strong>PhoneNumberText</strong> <code>EditText</code>.
+			</li>
+
+			<li>
+				Translate it using the <code>PhonewordTranslator.ToNumber</code> method.
+				<ul class="indent-none">
+					<li>You will need to add a namespace to access it.</li>
+					<li>This method returns <code>null</code> if the number could not be translated.</li>
+				</ul>
+			</li>
+
+			<li>
+				If the translation is successful, enable the <code>CallButton</code> and change its <code>Text</code>
+				property to include the phone number. If the translation fails, reset the <strong>CallButton</strong>
+				so it is disabled and its <code>Text</code> is "<code>Call</code>".
+				<p>
+					<a href="#" onclick="toggleCode(this,'translateButtonCode');return false;" class="uiitem">Show Code</a>
+					<div class="indent-medium" id="translateButtonCode" style="display:none;">
+<pre class="prettyprint">
+protected override void OnCreate(Bundle bundle)
+{
+  base.OnCreate(bundle);
+  SetContentView(Resource.Layout.Main);
+
+  // Get our UI controls from the loaded layout
+  Button   translateButton = FindViewById&lt;Button  &gt;(Resource.Id.TranslateButton);
+  EditText phoneNumberText = FindViewById&lt;EditText&gt;(Resource.Id.PhoneNumberText);
+  Button   callButton      = FindViewById&lt;Button  &gt;(Resource.Id.CallButton);
+
+  // Disable the "Call" button
+  callButton.Enabled = false;
+
+  // Add code to translate number
+  string translatedNumber = string.Empty;
+  translateButton.Click += delegate
+  {
+    translatedNumber = Core.PhonewordTranslator.ToNumber(phoneNumberText.Text);
+    if (string.IsNullOrWhiteSpace(translatedNumber))
+    {
+      callButton.Text    = "Call";
+      callButton.Enabled = false;
+    }
+    else
+    {
+      callButton.Text    = "Call " + translatedNumber;
+      callButton.Enabled = true;
+    }
+  };
+}
+</pre>
+					</div>
+				</p>
+			</li>
+		</ol>
+
+		<h2>Test the application</h2>
+
+		<ol>
+			<li>
+				Run the application in either the emulator or on a physical device.
+			</li>
+			
+			<li>
+				The application should build and if everything has gone well your app will display and show a disabled <strong>CallButton</strong>.
+			</li>
+			
+			<li>
+				Touch the <strong>TranslateButton</strong> and verify the <strong>CallButton</strong> text changes to &quot;Call 1-855-9262746&quot;, and the
+				button becomes enabled.
+			</li>
+			
+			<li>
+				Try changing the phone number in the <strong>PhoneNumberText</strong>Text Field. If you are running on a device or emulator
+				without a hardware keyboard, then Android will display a soft keyboard for you. If you then click the <strong>TranslateButton</strong>
+				the soft keyboard will stay on the screen - it is not hidden automatically.
+			</li>
+		</ol>
+
+		<h2>Hide the soft keyboard</h2>
+		<div class="hintblock">
+			<strong>Note:</strong> this will only change the app's behavior if you are running on a device or an emulator without a hardware keyboard.
+		</div>
+
+		<p>
+			Add code to hide the soft keyboard when appropriate. For example, it makes sense to dismiss it when the user clicks on the
+			<strong>TranslateButton</strong>. See the <a href="./worksheet.html#hideSoftKeyboard">worksheet</a> for instructions on
+			how to hide the soft keyboard.
+		</p>
+		
+		<p>
+			<a href="#" onclick="toggleCode(this, 'hideKeyboardCode'); return false;" class="uiitem">Show Code</a>
+			<div class="indent-medium" id="hideKeyboardCode" style="display:none;">
+<pre class="prettyprint">
+protected override void OnCreate(Bundle bundle)
+{
+  base.OnCreate(bundle);
+  SetContentView(Resource.Layout.Main);
+
+  // Get our UI controls from the loaded layout
+  Button   translateButton = FindViewById&lt;Button  &gt;(Resource.Id.TranslateButton);
+  EditText phoneNumberText = FindViewById&lt;EditText&gt;(Resource.Id.PhoneNumberText);
+  Button   callButton      = FindViewById&lt;Button  &gt;(Resource.Id.CallButton);
+
+  // Disable the "Call" button
+  callButton.Enabled = false;
+
+  // Add code to translate number
+  string translatedNumber = string.Empty;
+
+  translateButton.Click += delegate
+  {<span class="highlight">
+    var imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+    imm.HideSoftInputFromWindow(phoneNumberText.WindowToken, 0);</span>
+
+    translatedNumber = Core.PhonewordTranslator.ToNumber(phoneNumberText.Text);
+    if (string.IsNullOrWhiteSpace(translatedNumber))
+    {
+      callButton.Text    = "Call";
+      callButton.Enabled = false;
+    }
+    else
+    {
+      callButton.Text    = "Call " + translatedNumber;
+      callButton.Enabled = true;
+    }
+  };
+}
+</pre>
+</div>
+</p>
+
+		<h2>Initiate the phone call</h2>
+		<p>
+			After the user has successfully translated a number, the <strong>CallButton</strong> will be enabled.
+			Here, we will add code to request the user's consent and then dial the translated number.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Subscribe a handler to the <code>Click</code> event of the <strong>CallButton</strong>. This code can be placed
+				inside the <code>OnCreate</code> method.
+			</li>
+
+			<li>
+				In your <code>Click</code> handler, display an Alert that asks the user if they would like to initiate
+				a phone call. See the <a href="./worksheet.html#displayAlert">worksheet</a> for instructions. You should
+				use two of the dialog buttons: <strong>Neutral</strong> and <strong>Negative</strong>. The text on the
+				<strong>Neutral</strong> button should be "Call" and the text on the <strong>Negative</strong> button should be
+				"Cancel".
+					<ul>
+						<li>
+							If the user responds to the Alert by clicking the <strong>Neutral</strong> button, you should initiate the phone call.
+							See the <a href="./worksheet.html#makePhoneCall">worksheet</a> for instructions.
+						</li>
+
+						<li>
+							If the user responds to the Alert by clicking the <strong>Negative</strong> button, there is nothing for you to do.
+							You can supply an empty delegate for this callback.
+						</li>
+					</ul>
+
+				<p>
+					<a href="#" onclick="toggleCode(this,'callButtonLogic');return false;" class="uiitem">Show Code</a>
+					<div class="indent-medium" id="callButtonLogic" style="display:none;">
+<pre class="prettyprint">
+// Add code to make the phone call
+callButton.Click += (sender, e) =>
+{
+  // On "Call" button click, try to dial phone number.
+  var callDialog = new AlertDialog.Builder(this);
+
+  callDialog.SetMessage("Call " + translatedNumber + "?");
+
+  callDialog.SetNeutralButton("Call", 
+    delegate
+    {
+      // Create intent to dial phone
+      var callIntent = new Intent(Intent.ActionCall);
+      callIntent.SetData(Android.Net.Uri.Parse("tel:" + translatedNumber));
+      StartActivity(callIntent);
+    });
+
+  callDialog.SetNegativeButton("Cancel", 
+    delegate
+    {
+      // nothing to do
+    });
+
+  // Show the alert dialog to the user and wait for response.
+  callDialog.Show();
+};</pre>
+					</div>
+				</p>
+
+
+				</li>
+
+				<li>
+					Run the application and attempt to make a phone call. The app should fail with a <strong>SecurityException</strong>.
+					Android apps that make phone calls must declare the <strong>CALL_PHONE</strong> permission in their manifest.
+				</li>
+
+				<li>
+					Add the <strong>CALL_PHONE</strong> permission to the app.
+					See the <a href="./worksheet.html#addManifestPermission">worksheet</a> for instructions.
+				</li>
+
+				<li>
+					Run the application a final time and try out your logic. The emulator cannot make calls; however, if you are running on a
+					physical device that has been setup for development, you should see the app place the call.
+				</li>
+			</ol>
+
+			<!-- - - - - - - - - Summary - - - - - - - - -->
+
+			<h1>Summary</h1>
+			<p>
+				This lab built a complete Xamarin.Android application and demonstrated how to use Xamarin Studio
+				to develop Android apps. The lab emphasized core Xamarin.Android programming skills: getting references
+				to UI controls from code-behind, retrieving data from input controls, and handling control events.
+				You also saw a few advanced features such as displaying Alerts and using an Intent to initiate a phone call.
+			</p>
+
+			<div class="align-right">
+				<a href="../Start%20Here.html">Go Back</a>
+			</div>
+</section>
+
+	<footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

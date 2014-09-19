@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+	<title>Xamarin University</title>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+	<script src="./res/js/script.js"></script>
+</head>
+
+<body>
+	<header>ListViews and Adapters in Android</header>
+
+	<section id="main">
+
+		<!-- Exercise 1 -->
+		<h1 id="part1">Exercise 1: Populate a ListView using an ArrayAdapter</h1>
+
+		<h2>Knowledge needed for the exercise</h2>
+
+		<div class="wsitem">
+			<b>Predefined Android layouts</b>
+			<br />
+			Android supplies a few predefined layout files that can be useful for simple apps where custom
+			formatting is not a priority. Two classic examples are coding a prototype or displaying a list of strings.
+			Each layout file has an id that you can use in your program to access it; for example, the layout file
+			<strong>simple_list_item_1.xml</strong> has an id of <code>Android.Resource.Layout.SimpleListItem1</code>
+			in Xamarin.Android. For reference, the contents of the <strong>simple_list_item_1.xml</strong> file are shown below.
+<pre class="prettyprint">
+&lt;TextView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@android:id/text1"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:textappearance="?android:attr/textAppearanceListItemSmall"
+  android:gravity="center_vertical"
+  android:paddingstart="?android:attr/listPreferredItemPaddingStart"
+  android:paddingend="?android:attr/listPreferredItemPaddingEnd"
+  android:minheight="?android:attr/listPreferredItemHeightSmall" /&gt;
+</pre>
+			To explore other predefined layouts, see the <a href="https://github.com/android/platform_frameworks_base/tree/master/core/res/res/layout">Android source repository</a>.
+			<br/>
+			For a visual overview of the available layouts, see <a href="http://arteksoftware.com/androids-built-in-list-items/">Android's Built-in List Item Layouts</a>.
+		</div>
+
+		<div class="wsitem">
+			<b>ArrayAdapter details</b>
+			<br />
+			The library class <code>ArrayAdapter</code> is a pre-built adapter that is easy to use but
+			not very powerful. It calls <code>ToString</code> on your data objects and loads the resulting
+			string into a <code>TextView</code> to be displayed in a list row.
+			<br />
+			<br />
+			You can ask <code>ArrayAdapter</code> to populate a simple layout containing a single <code>TextView</code> or a more
+			complex layout if you give it the id of a <code>TextView</code> inside the layout file.
+			This "one string only" simplicity means you cannot use it to build a custom row containing
+			heterogenous views; for example, your row cannot display custom images set from code nor multiple
+			pieces of text set from code. Despite these limitations, it can be useful in two cases: your data is
+			already a collection of strings or you are building a quick prototype and are not concerned
+			with fancy, formatted output.
+			<br />
+			<br />
+			Below is some pseudocode to create an <code>ArrayAdapter</code> from a layout file containing
+			only one <code>TextView</code>. The first constructor parameter needs to be a <code>Context</code>;
+			typically, this code would be inside an Activity so you would pass the Activity itself
+			(i.e. <code>this</code>) as the context. The second parameter is the id of the layout file you
+			want to use. The third parameter is your collection of data in either an array or an <code>IList</code>.
+<pre class="prettyprint">
+var adapter = new ArrayAdapter&lt;MyDataClassType&gt;(this, LayoutFileId, CollectionOfMyData);
+</pre>
+
+			For more guidance, see <a href="http://developer.xamarin.com/recipes/android/data/adapters/use_an_arrayadapter/">Use an ArrayAdapter</a>.
+			<br />
+			For a discussion of performance issues, see <a href="http://androidapi.xamarin.com/?link=T%3aAndroid.Widget.ArrayAdapter">Android.Widget.ArrayAdapter Class</a> and
+			<a href="http://developer.xamarin.com/guides/android/advanced_topics/api_design/">API Design (Binding Design - Collections section)</a>
+		</div>
+
+
+		<h2>Exploring on your own</h2>
+		<div class="wslist">
+			<a href="http://developer.android.com/reference/android/widget/ArrayAdapter.html">ArrayAdapter (Android)</a>
+		</div>
+
+		<!-- Exercise 2 -->
+		<h1 id="part2">Exercise 2: Handle list-item click events</h1>
+
+		<h2>Knowledge needed for the exercise</h2>
+
+		<div class="wsitem">
+			<b>The ListView ItemClick event</b>
+			<br />
+			The <code>ListView.ItemClick</code> event runs when the user clicks on a list item. Your callback
+			receives several event args, including both the id and position of the list item that was clicked.
+			<br />
+			To learn about the underlying Android event, see <a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html">AdapterView.OnItemClickListener (Android)</a>.
+		</div>
+
+		<div class="wsitem" id="displayAlert">
+			<b>Displaying an alert</b>
+			<br />
+			Use the dialog builder to create an alert.
+<pre class="prettyprint">
+var dialog = new AlertDialog.Builder(this);
+dialog.SetMessage("My Message");
+dialog.SetNeutralButton("My Button Label", 
+  delegate
+  {
+    ...
+  });
+dialog.Show();
+</pre>
+
+			To learn more about dialogs, see <a href="http://developer.android.com/guide/topics/ui/dialogs.html">Dialogs (Android)</a>.
+		</div>
+
+
+		<h2>Exploring on your own</h2>
+		<div class="wslist">
+			<a href="http://developer.android.com/reference/android/widget/AdapterView.html">AdapterView (Android)</a>
+		</div>
+
+		<!-- Exercise 3 -->
+		<h1 id="part3">Exercise 3: Implement a custom adapter</h1>
+
+		<h2>Knowledge needed for the exercise</h2>
+
+		<div class="wsitem">
+			<b>How to inflate a layout file</b>
+			<br />
+			Android uses the term <em>inflate</em> for the act of instantiating a layout file and the views it contains.
+			Inflation is done by the class <code>LayoutInflater</code> and its <code>Inflate</code> method. Layout inflators
+			are tied to a context, so you do not create one directly; instead, you get one from your activity's
+			<code>LayoutInflator</code> property or by calling <code>GetSystemService</code> on a context.
+			There are several overloads of <code>Inflate</code>, the most general one useful for row layouts looks like this:
+
+<pre class="prettyprint">
+public virtual View Inflate(int resource, ViewGroup root, bool attachToRoot);
+</pre>
+
+			The first parameter is the id of the layout file you need to inflate. The second parameter is the <code>ViewGroup</code>
+			that will become the parent of the inflated layout - this is useful to let the newly inflated view inherit any layout
+			parameters on the parent (many times you can pass <code>null</code> for the <code>root</code> parameter and
+			not notice any difference). The third parameter indicates whether we want the inflator to attach the newly inflated
+			view to the parent; for list adapters we need to pass <code>false</code> for this parameter to avoid a runtime exception.
+			<br/>
+			<br/>
+
+			Below is code for a typical use of <code>Inflate</code> for list adapter. This code assumes that <code>myActivity</code>
+			is a reference to the Activity that provides the context for the operation and that the <code>root</code> parameter
+			passed to the adapter is named <code>parent</code>.
+
+<pre class="prettyprint">
+View row = myActivity.LayoutInflater.Inflate(Resource.Layout.MyRowLayout, parent, false);
+</pre>
+
+			To learn more about layout inflaters, see <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater (Android)</a>.
+		</div>
+
+		<div class="wsitem">
+			<b>BaseAdapter&lt;T&gt; methods</b>
+			<br />
+			The <code>BaseAdapter&lt;T&gt;</code> class serves as the base class for many custom adapters.
+			It is an abstract class that has the four methods you must override in your derived class.
+			Some of the methods are declared in base classes so you will need to navigate up the inheritance
+			hierarchy if you are reading the documentation. The code below shows the methods you
+			need to override to create a custom adapter. Each method has comments to describe its purpose.
+
+<pre class="prettyprint">
+public abstract class BaseAdapter&lt;T&gt; : BaseAdapter
+{
+  //
+  // Create a row. Populate the row with your data at 'position' in your list. Return the new row.
+  //
+  public abstract View GetView(int position, View convertView, ViewGroup parent);
+
+  //
+  // Return the code-behind data object at the given position.
+  // The ListView class has a GetItemAtPosition method, when you call
+  // that method on the ListView, it calls this indexer on your adapter
+  // to get the code-behind object.
+  //
+  public abstract T this[int position] { get; }
+
+  //
+  // Number of items in your collection.
+  //
+  public abstract int Count { get; }
+
+  //
+  // Return the 'id' of the item at the given position.
+  // You decide on the ids you want to use, in simple cases you can use the
+  // item's position in the list as its id. The value you return here will be
+  // passed as part of the event args to click events so it needs to be
+  // something your code can use to locate the item.
+  //
+  public abstract long GetItemId(int position);
+
+  ...
+}
+</pre>
+			To learn more about <code>BaseAdapter&lt;T&gt;</code>, see <a href="http://androidapi.xamarin.com/?link=T%3aAndroid.Widget.BaseAdapter%3CT%3E">BaseAdapter</a>.
+		</div>
+
+		<div class="wsitem">
+			<b>How to load an image asset</b>
+			<br />
+			Android <strong>Assets</strong> let you include arbitrary files into your app's <strong>.apk</strong> file
+			and access them conveniently using <code>AssetManager</code> or the convenience property <code>Assets</code>
+			from the <code>Activity</code> class. Android Resources are built on top of the Assets API - Assets are a
+			lower-level API that give you access to your data as streams rather than typed objects.			
+			The code below shows how to load an image <code>Drawable</code> from an asset.
+<pre class="prettyprint">
+string url = "images/myPhoto.jpg"; // path is relative to the project's Assets folder
+var drawable = Drawable.CreateFromStream(myActivity.Assets.Open(url), null);
+</pre>
+			To learn more about Assets, see <a href="http://developer.xamarin.com/guides/android/application_fundamentals/resources_in_android/part_6_-_using_android_assets/">Using Android Assets</a>.
+		</div>
+
+		<h2>Exploring on your own</h2>
+		<div class="wslist">
+			<a href="http://developer.android.com/reference/android/widget/Adapter.html">Adapter (Android)</a>
+			<a href="http://stackoverflow.com/questions/5583608/difference-between-res-and-assets-directories">Difference between /res and /assets directories (StackOverflow)</a>
+			<a href="http://blog.galasoft.ch/posts/2014/05/preview-an-observableadaptert-for-xamarin-android-in-mvvm-light-vnext/">ObservableAdapter sample to simplify UI update after data change</a>
+		</div>
+
+		<!-- Exercise 4 -->
+		<h1 id="part4">Exercise 4: Use layout recycling and the view-holder pattern</h1>
+
+		<h2>Knowledge needed for the exercise</h2>
+
+		<div class="wsitem">
+			<b>Layout recycling and view holder</b>
+			<br />
+			Both layout recycling and the view-holder pattern are standard techniques for working with <code>ListView</code>
+			and adapters in Android.
+			<br />
+			This blog post discusses the motivation and explains how to implement them in Xamarin.Android
+			<a href="http://blog.xamarin.com/creating-highly-performant-smooth-scrolling-android-listviews/">Tips & Tricks for Highly Performing Android ListViews</a>.
+		</div>
+
+		<h2>Exploring on your own</h2>
+		<div class="wslist">
+			<a href="http://developer.android.com/reference/android/widget/Adapter.html#getView(int, android.view.View, android.view.ViewGroup)">getView method (Android)</a>
+			<a href=""></a>
+			<a href=""></a>
+		</div>
+
+		<!-- Exercise 5 -->
+		<h1 id="part5">Exercise 5: Enable fast scrolling and code a section indexer</h1>
+
+		<h2>Knowledge needed for the exercise</h2>
+
+		<div class="wsitem">
+			<b>How to enable fast scrolling</b>
+			<br />
+			<code>ListView</code>'s default scrolling is precise but can take a long time to move through a
+			large data set. You can turn on <em>fast scrolling</em> to give the user two scrolling modes: the normal
+			one and an additional option of dragging the <em>thumb</em> to move through the rows at a faster pace.
+			The thumb appears automatically when the user begins a normal scrolling operation and
+			disappears automatically when they are finished. In Xamarin.Android, you control fast scrolling
+			with the <code>FastScrollEnabled</code> property.
+			<br />
+<pre class="prettyprint">
+myListView.FastScrollEnabled = true;
+</pre>
+			Here is the underlying Android method <a href="http://developer.android.com/reference/android/widget/AbsListView.html#setFastScrollEnabled(boolean)">setFastScrollEnabled (Android)</a>.
+		</div>
+
+		<div class="wsitem">
+			<b>How to code a section indexer</b>
+			<br />
+			Implementing a section indexer requires that you code the three methods from the <code>ISectionIndexer</code>
+			interface. The "Adding a Section Index" discussion on this page describes the implementation in Xamarin.Android
+			<a href="http://developer.xamarin.com/guides/android/user_interface/working_with_listviews_and_adapters/part_2_-_populating_a_listview_with_data/">Populating a ListView With Data</a>.
+		</div>
+
+		<h2>Exploring on your own</h2>
+		<div class="wslist">
+			<a href="http://developer.android.com/reference/android/widget/SectionIndexer.html">SectionIndexer (Android)</a>
+		</div>
+
+		<!-- Certification Prep -->
+
+		<h1 class="spacing-top">Preparing for certification</h1>
+
+		<h2>High-level concepts (review)</h2>
+		<div class="wslist">
+			<a href="http://developer.android.com/guide/topics/ui/declaring-layout.html#AdapterViews">Building Layouts with an Adapter (Android)</a>
+		</div>
+
+		<h2>Tutorials and walkthroughs (for more experience)</h2>
+		<div class="wslist">
+			<a href="http://developer.xamarin.com/guides/android/user_interface/working_with_listviews_and_adapters/part_1_-_listview_parts_and_functionality/">Part 1 - ListView Parts and Functionality</a>
+			<a href="http://developer.xamarin.com/guides/android/user_interface/working_with_listviews_and_adapters/part_2_-_populating_a_listview_with_data/">Part 2 - Populating a ListView With Data</a>
+			<a href="http://developer.xamarin.com/guides/android/user_interface/working_with_listviews_and_adapters/part_3_-_customizing_a_listview's_appearance/">Part 3 - Customizing a ListView's Appearance</a>
+			<a href="http://developer.xamarin.com/recipes/android/data/adapters/create_a_custom_adapter_for_contacts/">Create a Custom Adapter for Contacts</a>
+			<a href="http://www.vogella.com/tutorials/AndroidListView/article.html">Using lists in Android (ListView) - Tutorial</a>
+		</div>
+
+		<h2>Diving deeper into documentation</h2>
+		<div class="wslist">
+			<a href="http://developer.android.com/reference/android/widget/ListView.html">ListView (Android)</a>
+		</div>
+
+	</section>
+
+	<footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

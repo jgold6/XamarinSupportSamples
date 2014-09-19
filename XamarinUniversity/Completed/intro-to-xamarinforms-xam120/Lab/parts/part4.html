@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+<body>
+    <header>Introduction to Xamarin.Forms</header>
+
+    <section id="main">
+
+        <h1>Exercise 4: Adding support for dialing the phone</h1>
+        <h2>Duration</h2>
+        <p>15 minutes</p>
+
+        <h2 id="goals">Goals</h2>
+        <p>The goal will be to add in some platform-specific behavior into our Phoneword application which will allow the user to dial the phone and to display an alert view.
+        </p>
+
+        <table>
+            <tr>
+                <td>
+                    <img src="./res/images/Android-Alert.png" class="indent-none" />
+                </td>
+                <td>
+                    <img src="./res/images/Win-Alert.png" />
+                </td>
+                <td>
+                    <img src="./res/images/iOS-Alert.png" />
+                </td>
+            </tr>
+        </table>
+
+        <h2>Assets</h2>
+        <p>
+        There are some existing assets provided for this exercise in the <b>Part 04 Resources</b> folder. Specifically, there is a starter project you can use if you were unable to finish the prior exercise within the allotted time.</p>
+        <p>In addition, there are sample implementations to dial the phone for each of the platforms that you can use when you are implementing the logic.</p>
+        <ul class="indent-medium">
+            <li>PhoneDialer.iOS.cs</li>
+            <li>PhoneDialer.Android.cs</li>
+            <li>PhoneDialer.WinPhone.cs</li>
+        </ul>
+       
+        <h2>Exercise Challenge</h2>
+        <p>
+            Using the job aids to give you the information you need, try to add the device specific code. The specific steps you will need to do are:
+        </p>
+
+        <ol class="indent-medium">
+            <li>Add an event handler for the <strong>Call Button</strong> which will handle the call logic.</li>
+            <li>The handler should prompt the user whether to dial the given phone number - you can see an example of the alert being presented for each platform in the screen shots above. Use the built-in Xamarin.Forms <a href="./worksheet.html#display_alert"><code>Page.DisplayAlert</code> API</a>.
+            <li>Define a new interface called <code>IDialer</code> which will act as an abstraction for dialing the phone. It should provide a single method which takes a <code>string</code> and returns a <code>bool</code> success code.</li>
+            <li>Add code in your handler to use the <code>DependencyService</code> to locate an implementation of the dialer interface and use it to dial the phone if the user dismisses the alert and indicates they want to dial the phone.</li>
+            <li>You will need to provide a platform-specific implementation of the <code>IDialer</code> interface in each of the platform projects; an example implementation for each is provided in the <strong>Part 04 Resources</strong> assets folder included with this lab. You will need to add the appropriate registration code so the system can find the implementation using <code>DependencyService</code>.</li>
+            <li>Try working through each of the steps on your own, if you need some help, you can check the steps below.</li>
+        </ol>
+
+        <div class="hintblock">
+        <strong>Note:</strong> Xamarin.Forms has support for opening <code>Uri</code> strings such as <code>http:</code> and <code>tel:</code> with the <code>Device.OpenUri</code> method.  You could use that API here to dial the phone. For example:<br />
+<pre class="prettyprint indent-medium" style="background-color: white;">
+Device.OpenUri (new Uri("tel:" + translatedNumber)); 
+</pre>
+        However, it's not guaranteed that each platform would support the dialer in this fashion, and there is no way to tell if the call was successful, so using a platform-specific dependency is a better solution for this case.
+        </div>
+
+
+        <h1 id="steps">Steps</h1>
+        <h2>Prompt the User when the Call Button is pressed.</h2>
+        <p>
+        First, let's add some behavior to the CallButton. In this case, we will need to perform the following tasks:</p>
+        <ol class="indent-medium">
+            <li>Wire up an event handler to <code>Click</code> on the <code>Call Button</code> - just like we did earlier for the <strong>Translate Button</strong>.</li>
+            <li>Prompt the user using <a href="./worksheet.html#display_alert"><code>Page.DisplayAlert</code></a> to ask if they'd like to dial the number.</li>
+            <ul>
+                <li>This method is <code>Task</code>-based, so use <code>async</code> and <code>await</code> to work with it naturally.</li>
+                <li>It takes a title, message and the string for the <strong>accept</strong> and <code>cancel</code> buttons.</li>
+                <li>It returns a <code>bool</code> indicating whether the <strong>accept</strong> button was pressed to dismiss the dialog.</li>
+            </ul>
+            <li>Use the parameters:</li>
+            <ul>
+                <li>Title = &quot;Dial a Number&quot;</li>
+                <li>Message = &quot;Would you to call xxxx&quot;, using the translated number.</li>
+                <li>&quot;Yes&quot; and &quot;No&quot; for the buttons.</li>
+            </ul>
+            <div class="hintblock">
+            An alternative to using <code>Page.DisplayAlert</code> would be to abstract out your message, much like we will do with the dialer. However, in this instance the API does exactly what we want - presents an OK/Cancel choice and allows the user to select one, so we'll use it.
+            </div>
+            <li>Go ahead and run the application using the easiest platform for your configuration to test the code - it should display the alert and allow you to dismiss it with either a Yes or No response.</li>
+        </ol>
+        <p>
+        <a href="#" onclick="toggleCode(this,'callButtonLogic');return false;" class="uiitem">Show Code</a>
+        <div class="indent-large" id="callButtonLogic" style="display:none;">
+<pre class="prettyprint">
+    translateButton.Clicked += OnTranslate;
+    <span class="highlight">callButton.Clicked += OnCall;</span>
+
+    this.Content = panel;
+}
+
+<span class="highlight">
+async void OnCall(object sender, System.EventArgs e)
+{
+    if (await this.DisplayAlert(
+        "Dial a Number",
+        "Would you like to call " + translatedNumber + "?",
+        "Yes",
+        "No")) {
+            // TODO: dial the phone
+        }
+    }
+}
+</span>
+</pre>
+        </div>
+        </p>
+
+        <h2>Implement platform-specific logic to dial the phone</h2>
+        <p>Next, let's create the abstraction for dialing the phone and add it into each of our platform-specific projects.</p>
+        <ol class="indent-medium">
+            <li>Create an interface abstraction for dialing the phone - name it <code>IDialer</code>. It should have a single method called <code>Dial</code> that takes a <code>string</code> and returns a <code>bool</code>.</li>
+            <li>This interface should be placed in the shared project - then we will provide an implementation in each of the platform projects.</li>
+            <li>There are three pre-supplied implementations of the <code>IDialer</code> interface in the <strong>Part 04 Resources</strong> folder. Copy each one into the appropriate project. Make sure the implementation matches up with the interface.</li>
+            <li>In each implementation, add a <code>[Dependency]</code> assembly-level attribute to register the implementation. These can be placed into the same source file as the implementation of each dialer.</li>
+        </ol>
+
+        <p>
+        <a href="#" onclick="toggleCode(this,'phoneDialer');return false;" class="uiitem">Show Code</a>
+        <div class="indent-large" id="phoneDialer" style="display:none;">
+<pre class="prettyprint">
+// IDialer.cs
+public interface IDialer
+{
+    bool Dial(string number);
+}
+<hr />
+// PhoneDialer.cs (Android)
+// This code is contained in the PhoneDialer.Android.cs file in the assets folder.
+[assembly: Dependency(typeof(PhoneDialer))]
+public class PhoneDialer : IDialer
+{
+    public static Activity Activity { get; set; }
+
+    public bool Dial(string number)
+    {
+        if (Activity == null)
+            return false;
+
+        var intent = new Intent(Intent.ActionCall);
+        intent.SetData(Uri.Parse("tel:" + number));
+
+        if (IsIntentAvailable(Activity, intent)) {
+            Activity.StartActivity(intent);
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool IsIntentAvailable(Context context, Intent intent)
+    {
+        var packageManager = context.PackageManager;
+        
+        var list = packageManager.QueryIntentServices(intent, 0)
+            .Union(packageManager.QueryIntentActivities(intent, 0));
+        if (list.Any())
+            return true;
+        
+        TelephonyManager mgr = TelephonyManager.FromContext(context);
+        return mgr.PhoneType != PhoneType.None;
+    }
+}
+<hr />
+// PhoneDialer.cs (iOS)
+// This code is contained in the PhoneDialer.iOS.cs file in the assets folder.
+[assembly: Dependency(typeof(PhoneDialer))]
+public class PhoneDialer : IDialer
+{
+    public bool Dial(string number)
+    {
+        return UIApplication.SharedApplication.OpenUrl(
+            new NSUrl("tel:" + number));
+    }
+}
+<hr />
+// PhoneDialer.cs (Windows Phone)
+// This code is contained in the PhoneDialer.WinPhone.cs file in the assets folder.
+[assembly: Dependency(typeof(PhoneDialer))]
+public class PhoneDialer : IDialer
+{
+    public bool Dial(string number)
+    {
+        PhoneCallTask phoneCallTask = new PhoneCallTask 
+        { 
+            PhoneNumber = number, DisplayName = "Phoneword" 
+        };
+        
+        phoneCallTask.Show();
+        return true;
+    }
+}
+</span>
+</pre>
+        </div>
+        </p>
+
+        <h2>Dial the phone</h2>
+        <p>Finally, let's invoke our phone dialer logic from the <strong>Call Button</strong>.</p>
+        <ol class="indent-medium">
+            <li>If the user responds affirmatively, then lookup the phone dialer using the <a href="./worksheet#dependency_service"><code>DependencyService</code> API</a>.</li>
+            <li>Use the <code>IDialer</code> to dial the phone.</li>
+        </ol>
+        <p>
+        <a href="#" onclick="toggleCode(this,'dialPhone');return false;" class="uiitem">Show Code</a>
+        <div class="indent-large" id="dialPhone" style="display:none;">
+<pre class="prettyprint">
+async void OnCall(object sender, System.EventArgs e)
+{
+    if (await this.DisplayAlert(
+        "Dial a Number",
+        "Would you like to call " + translatedNumber + "?",
+        "Yes",
+        "No")) {
+<span class="highlight">
+        var dialer = DependencyService.Get&lt;IDialer&gt;();
+        if (dialer != null) {
+            dialer.Dial(translatedNumber);
+        }
+</span>
+    }
+
+}
+</span>
+</pre>
+        </div>
+        </p>
+
+        <h2>Test the Application</h2>
+        <ol>
+            <li>Run the application using the most convenient platform and go ahead and translate and then dial a number.</li>
+            <li>Most emulators and simulators will not property simulate the dialer - Windows Phone and the Android SDK emulator are an exception to this.</li>
+            <li>You might get an exception from a simulator or emulator when trying to dial the phone - it depends on your configuration. If this happens, just comment out the call to dial the phone, or wrap it in a <code>try / catch</code> statement. If you have a real device, try running the application there.
+            <li>If you have time try each of the platforms out and try stepping through the code to see it jump into the platform specific code.</li>
+        </ol>
+
+        <h1>Summary</h1>
+        <p>
+        You have seen how to abstract out platform features and make them accessible to the portable code that is shared across the platforms. You can use this approach for other areas not wrapped by Xamarin.Forms in order to create highly-sharable and testable code. You can even begin creating components with this approach to be shared across other projects or even with other developers.</p>
+
+        <div class="align-right">
+            <a href="../Start%20Here.html">Go Back</a>
+        </div>
+    </section>
+
+    <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xamarin.UITest</name>
+    </assembly>
+    <members>
+        <member name="T:Xamarin.UITest.Android.AndroidApp">
+            <summary>
+            Represents a running Android application.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.#ctor(Xamarin.UITest.Configuration.IAndroidAppConfiguration)">
+            <summary>
+            Main entry point for creating Android applications. Should not be called directly
+            but instead be invoked through the use of <see cref="T:Xamarin.UITest.ConfigureApp"/>.
+            </summary>
+            <param name="appConfiguration">The app configuration. Should be generated from <see cref="T:Xamarin.UITest.ConfigureApp"/>.</param>
+        </member>
+        <member name="T:Xamarin.UITest.ConfigureApp">
+            <summary>
+            Main entry point for <c>Xamarin.UITest</c>. This is a fluent API that allows you to 
+            configure your app for either Android or iOS and start it.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.ConfigureApp.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.ConfigureApp.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.ConfigureApp.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.ConfigureApp.iOS">
+            <summary>
+            Specifies that the app is an iOS app.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.ConfigureApp.Android">
+            <summary>
+            Specifies that the app is an Android app.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.iOS.iOSApp">
+            <summary>
+            Represents a running iOS application.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.#ctor(Xamarin.UITest.Configuration.IiOSAppConfiguration)">
+            <summary>
+            Main entry point for creating iOS applications. Should not be called directly
+            but instead be invoked through the use of <see cref="T:Xamarin.UITest.ConfigureApp"/>.
+            </summary>
+            <param name="appConfiguration">The app configuration. Should be generated from <see cref="T:Xamarin.UITest.ConfigureApp"/>.</param>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.iOSAppConfigurator">
+            <summary>
+            Represents the iOS specific part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.#ctor(Xamarin.UITest.Configuration.GenericAppConfigurator)">
+            <summary>
+            Part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.AppBundle(System.String[])">
+            <summary>
+            Configures the app bundle to use. Will force a run on simulator.
+            </summary>
+            <param name="paths">Path fragments to the directory containing the app bundle. 
+            Fragments will be combined with <see cref="M:System.IO.Path.Combine(System.String[])"/>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.AppBundleZip(System.String[])">
+            <summary>
+            Configures the zipped app bundle to use. Will force a run on simulator.
+            </summary>
+            <param name="paths">Path fragments to the directory containing the zipped app bundle. 
+            Fragments will be combined with <see cref="M:System.IO.Path.Combine(System.String[])"/>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.InstalledApp(System.String,System.String)">
+            <summary>
+            Configures the installed app to use. Will force a run on physical device. 
+            Ip address of the device should also be provided.
+            </summary>
+            <param name="deviceId">The device id found in iTunes.</param>
+            <param name="bundleId">The bundle id of the installed application.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp">
+            <summary>
+            Builds the configuration and launches the app on the selected device or simulator.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.iOS.iOSApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.ConnectToApp">
+            <summary>
+            Builds the configuration and connects to an already running app. 
+            Used for advanced scenarios. Regular users should use <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp"/>
+            instead.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.iOS.iOSApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.GetConfiguration(Xamarin.UITest.Configuration.StartAction)">
+            <summary>
+            Builds the iOS app configuration which can be used for input for <see cref="T:Xamarin.UITest.iOS.iOSApp"/>.
+            The <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.ConnectToApp"/> methods should be used instead unless
+            you have specific needs for the configuration.
+            </summary>
+            <param name="startAction">The start action for the configuration. See <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.ConnectToApp"/> methods.</param>
+            <returns>An <see cref="T:Xamarin.UITest.Configuration.IiOSAppConfiguration"/> which can used for input for <see cref="T:Xamarin.UITest.iOS.iOSApp"/>.</returns>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.AndroidAppConfigurator">
+            <summary>
+            Represents the Android specific part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.#ctor(Xamarin.UITest.Configuration.GenericAppConfigurator)">
+            <summary>
+            Part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.DeviceSerial(System.String)">
+            <summary>
+            Configures the adb serial  of the device. Generally best left unset unless you want to run a specific device.
+            </summary>
+            <param name="deviceSerial">The device serial from adb devices.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.KeyStore(System.String[])">
+            <summary>
+            Configures the key store that the provided apk file is signed with.
+            A key store is not required, but will ensure that the apk file is pristine
+            and unchanged. If a key store is not provided, UITest will generate a 
+            keystore and resign the apk.
+            </summary>
+            <param name="paths">Path fragments to the key store file. 
+            Fragments will be combined with <see cref="M:System.IO.Path.Combine(System.String[])"/>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ApkFile(System.String[])">
+            <summary>
+            Configures the apk file to use.
+            </summary>
+            <param name="paths">Path fragments to the apk file. 
+            Fragments will be combined with <see cref="M:System.IO.Path.Combine(System.String[])"/>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp">
+            <summary>
+            Builds the configuration and launches the app on the selected device.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.Android.AndroidApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ConnectToApp">
+            <summary>
+            Builds the configuration and connects to an already running app. 
+            Used for advanced scenarios. Regular users should use <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp"/>
+            instead.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.Android.AndroidApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.GetConfiguration(Xamarin.UITest.Configuration.StartAction)">
+            <summary>
+            Builds the Android app configuration which can be used for input for <see cref="T:Xamarin.UITest.Android.AndroidApp"/>.
+            The <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ConnectToApp"/> methods should be used instead unless
+            you have specific needs for the configuration.
+            </summary>
+            <param name="startAction">The start action for the configuration. See <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ConnectToApp"/> methods.</param>
+            <returns>An <see cref="T:Xamarin.UITest.Configuration.IAndroidAppConfiguration"/> which can used for input for <see cref="T:Xamarin.UITest.Android.AndroidApp"/>.</returns>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.GenericAppConfigurator">
+            <summary>
+            Represents the generic specific part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.GetConfiguration">
+            <summary>
+            Builds the generic app configuration which contains the shared configuration
+            across platforms.
+            The <see cref="P:Xamarin.UITest.Configuration.GenericAppConfigurator.Android"/> or <see cref="P:Xamarin.UITest.Configuration.GenericAppConfigurator.iOS"/> properties should be used
+            instead as part of the fluent API unless the configuration is needed.
+            </summary>
+            <returns>An <see cref="T:Xamarin.UITest.Configuration.IGenericAppConfiguration"/> to be consumed by the 
+            platform specific configurations.</returns>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.GenericAppConfigurator.iOS">
+            <summary>
+            Specifies that the app is an iOS app.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.GenericAppConfigurator.Android">
+            <summary>
+            Specifies that the app is an Android app.
+            </summary>
+        </member>
+    </members>
+</doc>

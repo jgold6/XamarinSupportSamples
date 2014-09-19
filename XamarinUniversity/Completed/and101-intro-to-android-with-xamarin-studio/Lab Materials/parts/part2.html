@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+	<title>Xamarin University</title>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+	<style>img { max-width:100%; }</style>
+	<script src="./res/js/script.js"></script>
+</head>
+
+<body>
+	<header>Introduction to Android with Xamarin Studio</header>
+
+	<section id="main">
+
+		<h1>Exercise 2: Use the Xamarin.Android Designer to add controls to a UI</h1>
+
+		<h2>Duration</h2>
+		<p>10 minutes</p>
+
+		<!-- - - - - - - - - Goals - - - - - - - - -->
+
+		<h2 id="goals">Lab goals</h2>
+		<p>
+			The primary goal of this lab is to create a new Android Application and design the user interface.
+			You will become familiar with the basics of the Android designer integrated into Xamarin Studio.
+		</p>
+		
+		<p>
+			The UI will display the text "Enter a Phoneword" as a prompt for the user. There will also be a
+			text-entry area, a "translate" button, and a "call" button. This part only creates the UI; subsequent
+			parts will add behavior. The finished user interface will look like this:
+		</p>
+		<img src="./res/images/Part2.Phoneword-Emulator.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+		<p>
+			The user interface will be a single layout with several child elements. The table below shows the
+			control types you will use and the properties you will need to set:
+		</p>
+		<table class="grid alternate-rows indent-large" width="80%">
+			<tr>
+				<th>Type</th>
+				<th>Property</th>
+				<th>Value</th>
+			</tr>
+			<tr>
+				<td>
+					<code>TextView</code>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<code>text</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>textSize</code>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td><code>Enter a Phoneword:</code></td>
+						</tr>
+						<tr>
+							<td><code>17sp</code></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>EditText</code>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<code>id</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>text</code>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td><code>@+id/PhoneNumberText</code></td>
+						</tr>
+						<tr>
+							<td><code>1-855-XAMARIN</code></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>Button</code>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<code>id</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>text</code>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td><code>@+id/TranslateButton</code></td>
+						</tr>
+						<tr>
+							<td><code>Translate</code></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>Button</code>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<code>id</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>text</code>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td><code>@+id/CallButton</code></td>
+						</tr>
+						<tr>
+							<td><code>Call</code></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<h2>Required assets</h2>
+		<p>
+			The provided <strong>Part 02 Resources</strong> folder contains a completed version of the lab in the
+			<strong>Part2.Completed</strong> folder if you would like to check your work.
+		</p>
+
+		<h2>Exercise challenge</h2>
+		<p>
+			Use the information in the <a href="./worksheet.html#part2">worksheet</a> to accomplish the <a href="#goals">goal outlined above</a>.
+			Alternatively, you can use the <a href="#steps">step-by-step instructions</a> provided below to work through the exercise.
+		</p>
+
+		<div class="hintblock">
+			<strong>Tip:</strong> If you are doing this exercise live in a session, make sure to make good use of the instructor,
+			they are online to answer any questions you have!
+		</div>
+
+		<h1 id="steps">Steps</h1>
+		<h2>Create the Phoneword project</h2>
+		<ol>
+			<li>Launch <strong>Xamarin Studio</strong>.</li>
+
+			<li>Click <strong>File &gt; New &gt; Solution...</strong> or click <strong>New Solution...</strong> from the Welcome Page.</li>
+
+			<li>Select <strong>C# &gt; Android</strong> in the tree on the left.</li>
+
+			<li>Select <strong>Android Application</strong> in the list of templates on the right as shown below:</li>
+			<img src="./res/images/XamarinStudio-NewProject.png" class="indent-none" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>Name the project and solution <em>Phoneword</em> and place it into an accessible location, for example your Documents folder.</li>
+			<img src="./res/images/XamarinStudio-SolutionName.png" class="indent-none" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>Click <strong>OK</strong> to create the project.</li>
+
+			<li>Build the application to make sure it compiles successfully.</li>
+		</ol>
+
+		<h2>Working with the Android Designer</h2>
+		<ol>
+			<li>Double-click on <strong>Resources\layout\Main.axml</strong> to open the Android Designer.</li>
+
+			<li>The Android Designer window will appear and display a single screen. The designer works much like other designers you may have used:
+			you can drag controls from the Toolbox into your layout and set properties using the Properties grid. The key areas of the Designer are
+			highlighted below.</li>
+			<img src="./res/images/XamarinStudio-Designer.png" class="indent-none" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+		</ol>
+
+		<h3>Here are a few notes about the designer</h3>
+		<ol class="indent-medium">
+			<li>
+				To add controls to the layout, identify the control in the toolbox and drag-and-drop it onto the design surface.
+			</li>
+
+			<li>
+				You can cancel a drag by pressing ESC while you are dragging an element.
+			</li>
+			
+			<li>
+				You can select a single element by clicking on it - this changes the property grid to display properties relevant to that selected item.
+			</li>
+			
+			<li>
+				There is a <strong>Document Outline</strong> window available (<strong>View &gt; Other Windows &gt; Document Outline</strong>)
+				which displays all of the elements for the screen in a tree structure - this is often easier to use for selection purposes.
+			</li>
+			
+			<li>
+				When an item is selected, there are two modes the designer can be in: drag/resize and margin/spacing. 
+				Single-click on the element to toggle between modes. The mode we want to work in for this session is always
+				Drag/Resize - this allows you to move and resize the element if needed. If you find yourself in
+				margin/spacing mode, just click on the element to switch back. You can easily distinguish between these
+				modes through the adornments drawn on top of the element:
+			</li>	
+			<img src="./res/images/Designer-DragVsMargin.png" class="indent-small" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+		</ol>
+
+		<h2>Create the Phoneword design</h2>
+
+		<p>
+			We will be creating the following design - you can compare the following image against your design at
+			any time to make sure you are on track.
+		</p>
+		<img src="./res/images/Part2.Phoneword-Emulator.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+		<ol>
+			<li>
+				The Android Application project template includes a button which you will not need. Delete the button from the UI by
+				either right-clicking on it and using the Delete option or selecting it and then pressing the delete key on your keyboard.
+			</li>
+
+			<li>
+				The template also includes some code-behind that you will not need. Open <strong>MainActivity.cs</strong>
+				and delete the following three lines:
+				
+<pre class="prettyprint">
+int count = 1;
+</pre>
+
+<pre class="prettyprint">
+Button button = FindViewById&lt;button&gt;(Resource.Id.MyButton);
+button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+</pre>
+	
+				Return to the UI Designer when you are done.
+			</li>
+
+			<li>
+				Locate the <strong>Text (Large)</strong> control in the <strong>Toolbox</strong> and drag one into the Designer layout area. 
+				This will add a <code>TextView</code> with a large font size to your layout.
+				The width will be set to <code>match_parent</code> which means the <code>TextView</code> will span the entire
+				width of the layout. The height will be <code>wrap_content</code> which will make it just tall enough to contain
+				the text content. Both of these default values are reasonable and you do not need to change them.
+			</li>
+
+			<li>
+				Double-click the <code>TextView</code> and change the text to &quot;<code>Enter a Phoneword:</code>&quot; it should look similar
+				to the following when complete:
+			</li>
+			<img src="./res/images/Designer-SelectedTextView.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			
+			<li>
+				With the <code>TextView</code> selected, switch to the <strong>Properties</strong> pad and select the <strong>Style</strong> tab.
+				Expand the <strong>Text Appearance</strong> section with the arrow button and change the <code>textSize</code>
+				to <code>17sp</code> (<strong>sp</strong> stands for <em>scale-independent pixel</em> which is the recommended unit
+				for text elements since it is scaled by the user's text size preference).
+			</li>
+			<img src="./res/images/XamarinStudio-PropertyGrid.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>
+				Locate the <strong>Plain Text</strong> control in the <strong>Toolbox</strong> and drag one into the Designer layout area
+				positioned below the existing <code>TextView</code>. This will add an <code>EditText</code> control to your layout.
+				The default values for the width and height are reasonable and you do not need to change them.
+			</li>
+
+			<li>
+				With the <code>EditText</code> selected, switch to the <strong>Properties</strong> grid and make the changes to the
+				<code>id</code> and <code>text</code> properties shown below, you can also refer to the property change list at the
+				start of this document.
+			</li>
+
+			<img src="./res/images/XamarinStudio-PropertyGrid-PhoneNumberText.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>
+				Locate the <code>Button</code> control in the <strong>Toolbox</strong> and drag one so it is positioned below the <code>EditText</code>.
+			</li>
+			<img src="./res/images/Designer-TranslateButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>
+				In the <strong>Property</strong> grid, make the following changes:
+			</li>
+			<img src="./res/images/XamarinStudio-PropertyGrid-TranslateButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>
+				Drag another <code>Button</code> from the <strong>Toolbox</strong> and position it below the <strong>Translate button</strong>.
+			</li>
+			<img src="./res/images/Designer-CallButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<div class="hintblock">
+				<strong>Note:</strong> another way to accomplish this is to use Copy (Ctrl+C) and Paste (Ctrl+V) to create a duplicate
+				of the Translate Button and then change the property values.
+			</div>
+
+			<li>
+				In the <strong>Property</strong> grid, make the following changes:
+			</li>
+			<img src="./res/images/XamarinStudio-PropertyGrid-CallButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>
+				<strong>File &gt; Save All</strong> to save the changes.
+			</li>
+		</ol>
+
+		<h2>Test the design in the emulator</h2>
+		<ol>
+			<li>
+				In Xamarin Studio, Use the Xamarin.Android toolbar to select an emulator.
+			</li>
+			<img src="./res/images/XamarinStudio-EmulatorSelection.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			<li>
+				Start debugging the application with the Play button.
+			</li>
+			<img src="./res/images/XamarinStudio-PlayButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			<li>
+				The Android Emulator you selected should show up after several seconds, and if everything has gone well your
+				app will display.  Verify that it looks correct based on the original design.
+			</li>
+			<img src="./res/images/Part2.Phoneword-Emulator.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+			<li>Press the Stop button in Xamarin Studio to halt the app.</li>
+			<img src="./res/images/XamarinStudio-StopButton.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+		</ol>
+
+		<h1>Summary</h1>
+		In this lab, we have built the user interface for our first real Android application with Xamarin Studio.
+		You have seen how the designer can be used to add new controls to a screen and edit their properties.
+		You have also seen how to launch the application in the Android emulator.
+		<br />
+		<br />
+		If you have extra time, try exploring some of the other controls in the Toolbox.
+
+		<div class="align-right">
+			<a href="../Start%20Here.html">Go Back</a>
+		</div>
+	</section>
+
+	<footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+
+<body>
+    <header>Introduction to Xamarin.Forms</header>
+
+    <section id="main">
+
+         <!-- Exercise 1 -->
+        <h1 id="part1">Exercise 1: Cross Platform UI Strategies</h1>
+
+        <h2>Knowledge Needed for the Exercise</h2>
+        <div class="wsitem">
+            <b>Sharing Code</b><br />
+            There are two primary ways of sharing code in Xamarin.Forms applications.<br />
+            Learn about <a href="http://developer.xamarin.com/guides/cross-platform/application_fundamentals/building_cross_platform_applications/sharing_code_options/">Sharing Code with Shared Projects and Portable Class Libraries</a>.
+        </div>
+
+        <h2>Exploring On Your Own</h2>
+        <div class="wslist">
+            <a href="http://developer.xamarin.com/guides/cross-platform/application_fundamentals/">Cross-Platform Application Fundamentals</a>
+        </div>
+
+        <!-- Exercise 2 -->
+        <h1 class="spacing-top" id="part2">Exercise 2: Creating our first Xamarin.Forms application</h1>
+
+        <h2>Exploring On Your Own</h2>
+        <div class="wslist">
+            <a href="http://developer.xamarin.com/guides/cross-platform/xamarin-forms/introduction-to-xamarin-forms/">An Introduction to Xamarin.Forms</a>
+            <a href="http://developer.xamarin.com/guides/cross-platform/xamarin-forms/introduction-to-xamarin-forms/Resources/XamarinForms_SampleCode.zip">Xamarin.Forms Sample Code</a>
+        </div>
+
+        <!-- Exercise 3 -->
+        <h1 class="spacing-top" id="part3">Exercise 3: Creating Xamarin.Forms Phoneword</h1>
+
+        <h2>Knowledge Needed for the Exercise</h2>
+        <div class="wsitem">
+            <b>Basic Controls</b><br />
+            Xamarin.Forms has all the basic controls you would expect, in this exercise you will need to work with several of them including:
+            <ul type="square">
+                <li><a href="http://api.xamarin.com/?link=T%3aXamarin.Forms.ContentPage">ContentPage class</a></li>
+                <li><a href="http://api.xamarin.com/?link=T%3aXamarin.Forms.StackLayout">StackLayout container</a></li>
+                <li><a href="http://api.xamarin.com/?link=T%3aXamarin.Forms.Label">Label class</a></li>
+                <li><a href="http://api.xamarin.com/?link=T%3aXamarin.Forms.Entry">Entry class</a></li>
+                <li><a href="http://api.xamarin.com/?link=T%3aXamarin.Forms.Button">Button class</a></li>
+            </ul>
+        </div>
+
+        <div class="wsitem">
+            <span id="DeviceOnPlatform"><b>Managing simple differences between platforms</b></span><br />
+            Often there are slight differences in the design from one platform to another - particularly with spacing or alignment. Xamarin.Forms offers an elegant abstraction that can provide for these differences in the form of the <code>Device.OnPlatform</code> methods. There are two forms:
+            <ul>
+                <li><code>Device.OnPlatform&lt;T&gt;</code> which provides for compile-time values that change based on the running platform.
+<pre class="prettyprint">
+// &lt;T&gt; specification can be inferred as well, but is shown here for clarity.
+double spacing = Device.OnPlatform&lt;double&gt;(
+          40,  // iOS
+          20,  // Android
+          20); // Windows Phone
+</pre>
+                </li>
+                <li><code>Device.OnPlatform(Action,...)</code> which allows for specific logic to be executed based on the running platform.
+<pre class="prettyprint">
+// Can invoke specific logic for each platform
+Device.OnPlatform(
+          iOS: () => { ... },
+          Android: () => { .... },
+          WinPhone: () => { ... });
+
+// Or tailor to a platform with defaults for all the others.
+Device.OnPlatform(
+          iOS: () => { ... },
+          Default: () => { .... });
+</pre>
+                </li>
+            </ul>
+        </div>
+
+        <h2>Exploring On Your Own</h2>
+        <div class="wslist">
+            <a href="http://developer.xamarin.com/guides/cross-platform/xamarin-forms/controls/">Xamarin.Forms Gallery</a>
+        </div>
+
+         <!-- Exercise 4 -->
+        <h1 class="spacing-top" id="part4">Exercise 4: Adding support for dialing the phone</h1>
+        <h2>Knowledge Needed for the Exercise</h2>
+        <div class="wsitem">
+            <b>Showing an Alert</b><br />
+            You can display an AlertView / MessageBox using the <a id="display_alert" href="http://api.xamarin.com/?link=M%3aXamarin.Forms.Page.DisplayAlert(System.String%2cSystem.String%2cSystem.String%2cSystem.String)">Page.DisplayAlert</a> method.
+        </div>
+
+        <div class="wsitem">
+            <b>Built-in Device Abstractions</b><br />
+            Xamarin.Forms exposes the underlying device through the <code>Device</code> class. It has several methods which support detecting the <em>idiom</em>, <em>platform</em>, invoking a timer, and switching to the UI thread.<br />
+            See a full list of the <a href="http://api.xamarin.com/?link=T%3aXamarin.Forms.Device%2fM">Device methods</a>.
+        </div>
+
+        <div class="wsitem">
+            <b>Locating Dependencies</b><br />
+            Xamarin.Forms includes a built-in dependency manager called <a id="dependency_service" href="http://api.xamarin.com/?link=T%3aXamarin.Forms.DependencyService"><code>DependencyService</code></a> which locates and then provides access to abstract dependencies provided by the platform specific projects.<br />
+            To expose a dependency to the system, you create an assembly-level <a href="http://api.xamarin.com/?link=T%3aXamarin.Forms.DependencyAttribute">DependencyAttribute</a> which identifies the concrete type.
+        </div>
+
+        <h2>Exploring On Your Own</h2>
+        <div class="wslist">
+            <a href="http://developer.xamarin.com/guides/cross-platform/xamarin-forms/dependency-service/">Accessing Native Features via the DependencyService</a>
+        </div>
+    </section>
+    <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

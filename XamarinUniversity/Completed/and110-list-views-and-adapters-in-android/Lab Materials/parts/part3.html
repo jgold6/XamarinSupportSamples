@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+	<title>Xamarin University</title>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+	<script src="./res/js/script.js"></script>
+</head>
+
+<body>
+	<header>ListViews and Adapters in Android</header>
+
+	<section id="main">
+
+		<h1>Exercise 3: Implement a custom adapter</h1>
+
+		<h2>Duration</h2>
+		<p>20 minutes</p>
+
+		<!-- - - - - - - - - Goals - - - - - - - - -->
+
+		<h2 id="goals">Lab goals</h2>
+		<p>
+			The primary goal of this lab is to code an adapter. You will see all the required steps,
+			from the core operation of creating and populating a row to the methods that <code>ListView</code>
+			needs to get information about your data collection.
+		</p>
+
+		<p>
+			Writing your own adapter will let you display each Xamarin University instructor in a custom row layout.
+			You will be able to show their photo, name, and specialty in individual views within the row.
+		</p>
+
+		<p>
+			To do this, you will use a custom layout file containing a <code>RelativeLayout</code>
+			with one <code>ImageView</code> and two <code>TextView</code>s.
+			You will write code to pull data out of your <code>Instructor</code> objects and load it into
+			the views in the row; for example, you will assign the instructor's name to the <code>Text</code>
+			property of one of the <code>TextView</code>s. The completed app is shown below.
+		</p>
+		<img src="./res/images/Part3.Completed.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+
+		<h2>Required assets</h2>
+		<p>
+			The provided <strong>Part 03 Resources</strong> folder contains resources that you will need in order to complete the lab:
+
+			<ul class="indent-medium">
+				<li>
+					<strong>InstructorRow.axml</strong> contains a layout with views to display instructor data in a row.
+				</li>
+
+				<li>
+					The <strong>images</strong> folder contains instructor photos.
+				</li>
+
+				<li>
+					The <strong>Part3.Start</strong> folder contains a starter solution you can use if you did not do the previous
+					exercise or if you would like to begin with a fresh project.
+				</li>
+
+				<li>
+					The <strong>Part3.Completed</strong> folder contains a completed version of the lab you can use to check your work.
+				</li>
+			</ul>
+
+		</p>
+
+		<p>
+			Please make sure you have this folder before you begin.
+		</p>
+
+		<h2>Exercise challenge</h2>
+		<p>
+			Use the information in the <a href="./worksheet.html#part3">worksheet</a> to accomplish the <a href="#goals">goals outlined above</a>.
+			Alternatively, you can use the <a href="#steps">step-by-step instructions</a> provided below to work through the exercise.
+		</p>
+
+		<div class="hintblock">
+			<strong>Tip:</strong> If you are doing this exercise live in a session, make sure to make good use of the instructor,
+			they are online to answer any questions you have!
+		</div>
+
+		<!-- - - - - - - - - Steps - - - - - - - - -->
+
+		<h1 id="steps">Steps</h1>
+
+		<p>
+			Below are the step-by-step instructions to implement the exercise.
+		</p>
+
+		<div class="hintblock">
+			<strong>Note:</strong> you can either continue your work from the prior exercise or use the provided starter solution.
+		</div>
+
+		<h2>Add the starter code</h2>
+		<ol>
+			<li>
+				Add the provided <strong>images</strong> folder to the <strong>Assets</strong> folder in your project.
+				Examine the folder contents and note that it contains a photo for each instructor.
+				Check the <strong>Properties</strong> of one of the image files and verify its <strong>Build action</strong>
+				is set to <strong>AndroidAsset</strong> - this should have happened automatically when you added the folder
+				but it is worth checking now to avoid problems later when you access the images from code.
+			</li>
+
+			<li>
+				Add the provided layout file <strong>InstructorRow.axml</strong> to the <strong>Resources/layout</strong>
+				folder of the project. Open the file in the source-code editor. Notice that it has views for three of the
+				instructor properties: photo, name, and specialty. The main job of an adapter is to instantiate
+				(i.e. <em>inflate</em>) this layout file, lookup each of the views, and populate them with data from an
+				instructor object.
+			</li>
+		</ol>
+
+		<h2>Implement a custom adapter</h2>
+		<p>
+			You will need to write a class that inherits from <code>BaseAdapter&lt;Instructor&gt;</code> and
+			overrides its four abstract methods (see the <a href="./worksheet.html#part3">worksheet</a> for
+			a description of these methods).
+		</p>
+
+		<ol>
+			<li>
+				Add a new class named <code>InstructorAdapter</code> to the project.
+			</li>
+
+			<li>
+				Set the base class of <code>InstructorAdapter</code> to <code>BaseAdapter&lt;Instructor&gt;</code>.
+			</li>
+
+			<li>
+				Your adapter will need a reference to the Activity that creates it (to get a <code>LayoutInflater</code>).
+				It will also need a reference to the collection of instructors. Add a constructor to your adapter class
+				that takes these two parameters. Store them in fields inside your adapter. This code is simple but tedious;
+				if you would like to, you can copy the code hidden behind the "Show Code" button below to save time.
+
+<p>
+<a href="#" onclick="toggleCode(this, 'adapterConstructor'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="adapterConstructor" style="display:none;">
+<pre class="prettyprint">
+Activity         context;
+List&lt;Instructor&gt; instructors;
+
+public InstructorAdapter(Activity context, List&lt;Instructor&gt; instructors)
+{
+  this.context     = context;
+  this.instructors = instructors;
+}
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				Override the indexer. It takes an integer position and returns the instructor at that position in the list.
+				The prototype is shown below.
+<pre class="prettyprint">
+public abstract T this[int position] { get; }
+</pre>
+			</li>
+
+			<li>
+				Override the <code>Count</code> property. It should return the number of instructors in the list.
+				The prototype is shown below.
+<pre class="prettyprint">
+public abstract int Count { get; }
+</pre>
+			</li>
+
+			<li>
+				Override the <code>GetItemId</code> method. Use the instructor's position in the list as its id
+				(this means you can just return the input argument as the result of this method).
+				The prototype is shown below.
+<pre class="prettyprint">
+public abstract long GetItemId(int position);
+</pre>
+			</li>
+
+			<li>
+				Override the <code>GetView</code> method. The prototype is shown below. 
+<pre class="prettyprint">
+public abstract View GetView(int position, View convertView, ViewGroup parent);
+</pre>
+
+				This step is fairly involved so the completed code is available using the "Show Code" button below.
+<p>
+<a href="#" onclick="toggleCode(this, 'getView'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="getView" style="display:none;">
+<pre class="prettyprint">
+public override View GetView(int position, View convertView, ViewGroup parent)
+{
+  var view = context.LayoutInflater.Inflate(Resource.Layout.InstructorRow, parent, false);
+
+  var photo     = view.FindViewById&lt;ImageView&gt;(Resource.Id.photoImageView);
+  var name      = view.FindViewById&lt;TextView&gt; (Resource.Id.nameTextView);
+  var specialty = view.FindViewById&lt;TextView&gt; (Resource.Id.specialtyTextView);
+
+  Stream   stream   = context.Assets.Open(instructors[position].ImageUrl);
+  Drawable drawable = Drawable.CreateFromStream(stream, null);
+  photo.SetImageDrawable(drawable);
+
+  name     .Text = instructors[position].Name;
+  specialty.Text = instructors[position].Specialty;
+
+  return view;
+}
+</pre>
+</div>
+</p>
+
+				Here are step-by-step instructions:
+				<ul>
+					<li>
+						Use the Activity's <code>LayoutInflator</code> to instantiate the <strong>InstructorRow.axml</strong> layout
+						(see the <a href="./worksheet.html#part3">worksheet</a> for	a description of layout inflation).
+					</li>
+
+					<li>
+						Use <code>FindViewById</code> on the layout you just inflated to get references to the three contained views
+						(the <code>ImageView</code> with id <code>photoImageView</code> and the two <code>TextView</code>s with ids
+						<code>nameTextView</code> and <code>specialtyTextView</code>).
+					</li>
+
+					<li>
+						Use the <code>position</code> parameter to locate the instructor object you need to display; you can simply
+						use <code>position</code> as an index into your list of instructors.
+					</li>
+
+					<li>
+						Create a <code>Drawable</code> from the instructor's image: first retrieve the URL
+						of the image file from the instructor object, then use the Asset and Drawable APIs (see the
+						<a href="./worksheet.html#part3">worksheet</a> for a description of how to create a Drawable from an Asset
+						or use the code below).
+						<p>
+<a href="#" onclick="toggleCode(this, 'drawableFromAsset'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="drawableFromAsset" style="display:none;">
+<pre class="prettyprint">
+Stream   stream   = context.Assets.Open(instructors[position].ImageUrl);
+Drawable drawable = Drawable.CreateFromStream(stream, null);
+</pre>
+</div>
+</p>
+					</li>
+
+					<li>
+						Use the <code>SetImageDrawable</code> method on the <code>ImageView</code> to load the instructor's
+						photo.
+					</li>
+
+					<li>
+						Assign the instructor's name to the <code>Text</code> property of the <code>nameTextView</code>.
+					</li>
+
+					<li>
+						Assign the instructor's specialty to the <code>Text</code> property of the <code>specialtyTextView</code>.
+					</li>
+
+					<li>
+						Return the inflated and populated view from the method.
+					</li>
+				</ul>
+
+			</li>
+		</ol>
+
+		<h2>Use a custom adapter</h2>
+
+		<p>
+			Now that you have coded a custom adapter, you need to instantiate one and give it to your <code>ListView</code>.
+		</p>
+
+		<ol>
+			<li>
+				Open <strong>MainActivity.cs</strong>.
+			</li>
+
+			<li>
+				Comment out or remove the line of code that created the <code>ArrayAdapter</code>.
+			</li>
+
+			<li>
+				Instantiate an <code>InstructorAdapter</code> and assign it to the <code>Adapter</code> property of the <code>ListView</code>.
+<p>
+<a href="#" onclick="toggleCode(this, 'useAdapter'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="useAdapter" style="display:none;">
+<pre class="prettyprint">
+instructorList.Adapter = new InstructorAdapter(this, InstructorData.Instructors);
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				Run the app to test your work. You should see each instructor displayed in a custom row with their photo, name, and specialty.
+			</li>
+		</ol>
+
+		<!-- - - - - - - - - Summary - - - - - - - - -->
+
+		<h1>Summary</h1>
+		In this lab, you created a custom adapter and used it with a <code>ListView</code>. This required more work than using the standard
+		<code>ArrayAdapter</code> but gave you complete control over the row layout.
+
+		<div class="align-right">
+			<a href="../Start%20Here.html">Go Back</a>
+		</div>
+	</section>
+
+	<footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

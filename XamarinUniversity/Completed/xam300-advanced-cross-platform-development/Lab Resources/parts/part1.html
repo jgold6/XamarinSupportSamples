@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Xamarin University</title>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+    <script src="./res/js/script.js"></script>
+</head>
+
+<body>
+   <header>Advanced Cross Platform Mobile Development</header>
+   <section id="main">
+
+   <h1>Exercise 1: Use the Factory Pattern to create a Dependency</h1>
+   <h2>Duration</h2>
+   <p>30 minutes</p>
+        
+   <h2>Goals</h2>
+   <p>
+   This exercise will take an existing iOS or Android project and pull out sharable code into a Portable Class Library, using the Factory pattern to isolate the platform-specific code to read and write the storage file.
+   </p>
+
+   <h2>Assets</h2>
+   <p>
+   This exercise includes a starter project in the <strong>Part 01 Resources</strong> folder. Make sure you have this folder before starting the exercise.
+   </p>
+
+   <h2>Challenge</h2>
+   <p>
+   There are two applications in the starting solution, one for iOS and one for Android. They display famous quotes and allow you to add, edit and delete quotes from a persisted XML file.</p>
+   <table>
+      <tr>
+         <td><img src="./res/images/greatQuotes-ios.png" /></td>
+         <td><img src="./res/images/greatQuotes-and.png"/></td>
+      </tr>
+   </table>
+   <p>
+   The Android and iOS projects are completely independent right now, however they have a few files and some connector code which could be shared with a little rework. Our challenge is to take these files and move them to a shared Portable Class Library, reworking the code so the unsharable code is supplied by the iOS and Android code using the factory pattern.
+   </p>
+   <p>
+   The sharable code is the model representing our quote and the data layer which loads and saves the quotes - these are contained in the <strong>Data</strong> folder in both projects. The loader code persists to and from a file which is placed in different locations depending on the platform, so we will need to abstract this location.</p>
+   <p>
+   We will have to perform several steps to accomplish our goals:
+   <ol class="indent-medium">
+      <li>Create a new Portable Class Library to hold our shared code.</li>
+      <li>Move the <code>GreatQuote</code> model into the PCL.</li>
+      <li>Create an abstraction to represent the <code>QuoteLoader</code> which will allow the platfom-specific code to provide an implementation that places the file in the proper location.</li>
+      <li>Supply the implementation through a factory property or method which creates the quote loader.</li>
+   </ol>
+   </p>
+   <p>
+   You can either come up with your own solution to the above steps, or follow along with the provided instructions below.
+   </p>
+
+   <h1>Steps</h1>
+
+   <p>
+   You can work with either the iOS or Android project initially, perform all the steps and get the project working, and then if you have time at the end, convert the other project to use your new abstractions and factory.
+   </p>
+
+   <h2>Create the Portable Class Library</h2>
+   <p>
+   Our first step is to create the library to hold our shared code - we will use a Portable Class Library (vs. a Shared Project) as it will force us to put more thought into how we architect our shared code and provide a distinct boundary between the projects.
+   </p>
+   <ol>
+      <li>Add a new Portable Class Library (or Portable Library in Xamarin Studio) project to the solution. Name it <strong>GreateQuotes.Data</strong>.
+      <li>Remove the blank source file added to the project by default.</li>
+      <li>Move the <code>GreatQuote</code> class from the <strong>Data</strong> folder in your platform project into the PCL.</li>
+      <li>Add a reference to the PCL to your platform project so it has access to the model data.</li>
+      <li>Build the solution and make sure it still works.</li>
+   </ol>
+
+   <h2>Create the abstraction for the Quote Loader</h2>
+   <p>Next, we will need to provide an abstraction for the Quote Loader code we are using. If you try to add it to the PCL directly, it will fail to compile because it has dependencies against file I/O which is not available in our current profile.</p>
+   <ol>
+      <li>Create a new interface to represent our <code>QuoteLoader</code>. We'll use an interface here, but you could also use a base class as well. The class should be placed into the Portable Class Library as it will be shared across all our projects.</li>
+      <li>Name it <code>IQuoteRepository</code> and include the <code>Load</code> and <code>Save</code> methods just as they are in the real class in your platform project.</li>
+      <p class="indent-none"><a href="#" onclick="toggleCode(this,'IQuoteRepository');return false;" class="uiitem">Show Code</a><div class="indent-large" id="IQuoteRepository" style="display:none;">
+<pre class="prettyprint">
+public interface IQuoteRepository
+{
+   IEnumerable&lt;GreatQuote&gt; Load();
+   void Save(IEnumerable&lt;GreatQuote&gt; quotes);
+}
+</pre>
+      </div></p>
+      <li>Have your platform-specific implementation of <code>QuoteLoader</code> implement this interface - you shouldn't need to make any code changes to it as the signatures should already be present in the existing class.</li>
+      <p class="indent-none"><a href="#" onclick="toggleCode(this,'impl_IQuoteLoader');return false;" class="uiitem">Show Code</a><div class="indent-large" id="impl_IQuoteLoader" style="display:none;">
+<pre class="prettyprint">
+namespace GreatQuotes
+{
+   public class QuoteLoader <span class="highlight">: IQuoteRepository</span>
+   {
+      const string FileName = &quot;quotes.xml&quot;;
+
+      public IEnumerable&lt;GreatQuote&gt; Load()
+      {
+         ...
+</pre>
+      </div></p>
+      <li>Build the application and make sure it still runs.</li>
+    </ol>
+
+    <h2>Create the Factory to create the IQuoteRepository</h2>
+    <p>Next, let's utilize the Factory pattern to create the implementation of the <code>IQuoteRepository</code> that we will use.</p>
+    <ol>
+      <li>Create a new class named <code>QuoteRepositoryFactory</code> in the Portable Class Library. This will represent the factory class we will use to create our platform-specific implementation of an <code>IQuoteRepository</code>.</li>
+      <li>Make the class <code>static</code>.</li>
+      <li>Add a single static <code>Func&lt;IQuoteRepository&gt;</code> property into the class named <code>Create</code>.</li>
+
+      <p class="indent-none"><a href="#" onclick="toggleCode(this,'QuoteLoaderFactory');return false;" class="uiitem">Show Code</a><div class="indent-large" id="QuoteLoaderFactory" style="display:none;">
+<pre class="prettyprint">
+public static class QuoteRepositoryFactory
+{
+  public static Func&lt;IQuoteRepository&gt; Create { get; set; }
+}
+</pre>
+      </div></p>
+    </ol>
+    
+    <h2>Share the Quote collection</h2>
+    <p>In both the Android and iOS projects, there is code to load and save the quotes. This currently utilizes the <code>QuoteLoader</code> directly, however we'd like to push this common code into our shared area (the PCL).</p>
+    <ol>
+      <li>Open the <strong>App.cs</strong> or <strong>AppDelegate.cs</strong> files in your platform project and identify the static <code>List&lt;GreateQuote&gt;</code> that is used to load and save quotes. This is the code we'd like to move, along with the method to save the quotes.</li>
+      <li>Create a new <code>QuoteManager</code> class in the PCL.</li>
+      <li>Use the singleton pattern to create a static <code>Instance</code> property to expose a single copy of the <code>QuoteManager</code>. You can use the convenient <code>Lazy&lt;T&gt;</code> to implement this pattern (shown in the code below), or use your own style, the point is to create a static property to get to a known instance of the object.</li>
+
+      <p class="indent-none"><a href="#" onclick="toggleCode(this,'singleton');return false;" class="uiitem">Show Code</a><div class="indent-large" id="singleton" style="display:none;">
+<pre class="prettyprint">
+public class QuoteManager
+{
+  static readonly Lazy&lt;QuoteManager&gt; instance = 
+         new Lazy&lt;QuoteManager&gt;(() => new QuoteManager());
+  public static QuoteManager Instance 
+  { 
+    get { return instance.Value; }
+  }
+
+  QuoteManager()
+  {
+  }
+}
+</pre>
+      </div></p>
+
+      <li>Add a public <code>List&lt;GreatQuote&gt;</code> property named <code>Quotes</code> to expose the loaded quotes.</li>
+      <li>In the constructor, obtain an <code>IQuoteRepository</code> using the factory and populate your list of quotes using the <code>Load</code> method.</li>
+      <li>Add a new public, instance method named <code>Save</code> which saves the list of quotes using the quote repository.</li>
+      <p class="indent-none"><a href="#" onclick="toggleCode(this,'quoteManager');return false;" class="uiitem">Show Code</a><div class="indent-large" id="quoteManager" style="display:none;">
+<pre class="prettyprint">
+public class QuoteManager
+{
+  static readonly Lazy&lt;QuoteManager&gt; instance = new Lazy&lt;QuoteManager&gt;();
+  public static QuoteManager Instance 
+  { 
+    get { return instance.Value; }
+  }
+
+  readonly IQuoteRepository repo;
+
+  public IList&lt;GreateQuote&gt; Quotes { get; private set; }
+
+  QuoteManager()
+  {
+    repo = QuoteRepositoryFactory.Create();
+    Quotes = repo.Load().ToList();
+  }
+
+  public void Save()
+  {
+    repo.Save(Quotes);
+  }
+}
+</pre>
+      </div></p>
+    </ol>
+
+    <h2>Use the Quote Manager and Assign the Factory</h2>
+    <p>The final step is to use the new shared <code>QuoteManager</code> class and assign the factory.</p>
+    <ol>
+      <li>Open the application level class which was loading the quotes - this is <code>AppDelegate</code> for iOS and <code>App</code> for Android.</li>
+      <li>In the initialization, set the <code>QuoteRepositoryFactory.Create</code> method to create a new platform-specific <code>QuoteLoader</code> class.</li>
+      <p class="indent-none"><a href="#" onclick="toggleCode(this,'setupRepo');return false;" class="uiitem">Show Code</a><div class="indent-large" id="setupRepo" style="display:none;">
+<pre class="prettyprint">
+// iOS - AppDelegate.cs
+public partial class AppDelegate : UIApplicationDelegate
+{
+  public override UIWindow Window { get; set; }
+
+  public override void FinishedLaunching(UIApplication application)
+  {
+    <span class="highlight">QuoteRepositoryFactory.Create = () => new QuoteLoader();</span>
+  }
+  ...
+
+// Android - App.cs
+public class App : Application
+{
+  public App(IntPtr h, JniHandleOwnership jho) : base(h, jho)
+  {
+  }
+
+  public override void OnCreate()
+  {
+    <span class="highlight">QuoteRepositoryFactory.Create = () => new QuoteLoader();</span>
+
+    base.OnCreate();
+  }
+  ...
+</pre>
+      </div></p>
+      <li>Next, remove the <code>Quotes</code> collection from the platform-specific code and the current <code>QuoteLoader</code> code. Compile and fix all the resulting errors to now use the <code>QuoteManager.Instance.Quotes</code> property and <code>QuoteManager.Instance.Save</code> method instead.</li>
+      <li>You can examine the completed projects if you need any help with this step.</li>
+    </ol>
+    
+    <h2>Update the other platform project</h2>
+    <p>If you have time, update the other platform-specific project to use your new Portable Class Library and <code>QuoteManager</code>.</p>
+
+
+    <h1>Summary</h1>
+    <p>
+    In this exercise, you have taken an existing iOS and/or Android project and moved the data management code into a Portable Class Library, utilizing the <strong>Factory Pattern</strong> to load and save the data to a file.
+    </p>
+    <p>
+    There is a completed version of the lab exercise in the resources folder.</p>
+
+    <div class="align-right">
+        <a href="../Start%20Here.html">Go Back</a>
+    </div>
+
+  </section>
+  <footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

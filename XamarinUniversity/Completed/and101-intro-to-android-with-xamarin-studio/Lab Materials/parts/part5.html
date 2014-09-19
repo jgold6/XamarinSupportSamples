@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+	<title>Xamarin University</title>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+	<script src="./res/js/script.js"></script>
+</head>
+
+<body>
+	<header>Introduction to Android with Xamarin Studio</header>
+
+	<section id="main">
+
+		<h1>Exercise 5: Use Resources to incorporate custom labels and icons</h1>
+
+		<h2>Duration</h2>
+		<p>10 minutes</p>
+
+		<!-- - - - - - - - - Goals - - - - - - - - -->
+
+		<h2 id="goals">Lab goals</h2>
+		<p>
+			The Phoneword application currently uses the default Android image for its icon and the Xamarin Studio project name as its label
+			which is not ideal from a user-information or branding perspective. The goal of this lab is to utilize custom icons and labels
+			for each of your activities and for the application as a whole.
+		</p>
+
+		<p>
+			The images below show the how the app's activities will look at the end of this exercise. Notice how each has a unique icon
+			and an appropriate text label at the top.
+		</p>
+		<table class="indent-none">
+			<tr>
+				<td><img src="./res/images/Part5a.Phoneword-Emulator.png" /></td>
+				<td><img src="./res/images/Part5b.Phoneword-Emulator.png" /></td>
+			</tr>
+		</table>
+
+		<p>
+			These last two images show how the app will look on the Android screens. On the left is the
+			<strong>Launcher</strong> screen and on the right is the <strong>Settings &gt; Apps</strong> screen.
+		</p>
+		<table class="indent-none">
+			<tr>
+				<td><img src="./res/images/Part5c.Phoneword-Emulator.png" /></td>
+				<td><img src="./res/images/Part5d.Phoneword-Emulator.png" /></td>
+			</tr>
+		</table>
+
+		<p>
+			Here is a high-level description of the required tasks for this lab:
+			<ol class="indent-medium">
+				<li>Remove the existing <strong>drawable</strong> folder and replace it with the supplied folders containing custom icons.</li>
+				<li>Set the application <strong>Label</strong> and <strong>Icon</strong>.</li>
+				<li>Set the <strong>Label</strong> and <strong>Icon</strong> for <strong>MainActivity</strong> and <strong>CallHistoryActivity</strong>.</li>
+			</ol>
+		</p>
+
+		<h2>Required assets</h2>
+		<p>
+			The provided <strong>Part 05 Resources</strong> folder contains resources that you will need in order to complete the lab:
+
+			<ul class="indent-medium">
+				<li>
+					A starter solution with the completed code from the previous part which you can use if you did not do the previous exercise
+					or if you would like to begin with a fresh project. The starter solution is in the <strong>Part5.Start</strong> folder.
+				</li>
+
+				<li>
+					Icons in multiple sizes, each in a folder that indicates its size: <strong>drawable-ldpi</strong>, <strong>drawable-hdpi</strong>, etc.
+				</li>
+
+				<li>
+					A completed version of the lab in the <strong>Part5.Completed</strong> folder if you would like to check your work.
+				</li>
+			</ul>
+		</p>
+		<p>
+			Please make sure you have this folder before you begin.
+		</p>
+
+		<h2>Exercise challenge</h2>
+		<p>
+			Use the information in the <a href="./worksheet.html#part5">worksheet</a> to accomplish the <a href="#goals">tasks outlined above</a>.
+			Alternatively, you can use the <a href="#steps">step-by-step instructions</a> provided below to work through the exercise.
+		</p>
+
+		<!-- - - - - - - - - Steps - - - - - - - - -->
+
+		<h1 id="steps">Steps</h1>
+
+		<p>
+			Below are the step-by-step instructions to incorporate custom icons and labels.
+		</p>
+
+		<div class="hintblock">
+			<strong>Note:</strong> you can either continue your work from the prior exercise or use the provided starter solution.
+		</div>
+
+		<h3>Verify the default icons and labels</h3>
+
+		<p>
+			Before you begin customizing the icons and labels, please take a moment to examine how the app looks in its current state.
+			Deploy the Phoneword app to the emulator or to your device. Look at how Phoneword is displayed on both the
+			<strong>Launcher</strong> screen and the <strong>Settings &gt; Apps</strong> screen. Run the application and note the icon
+			and label used on each of the two activities. Close the app when you are finished and return to Xamarin Studio.
+		</p>
+
+		<h3>Adding supplied icons</h3>
+
+		<p>
+			Here you will replace the default icons in your project with custom icons. The custom icons are supplied in several sizes
+			so there will be several folders to add to your project.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				In the <strong>Solution</strong> pad, right-click on the <strong>Resoures &gt; drawable</strong> folder
+				and choose <strong>Delete</strong>.
+			</li>
+
+			<li>
+				Use Windows <strong>File Explorer</strong> or Mac <strong>Finder</strong> to locate the six folders named <strong>drawable</strong> in the supplied
+				<strong>Part 05 Resources</strong> folder (one of the six is simply named <strong>drawable</strong> while the
+				other five have a suffix such as <strong>-mdpi</strong>). Drag all six folders from <strong>File Explorer</strong> or <strong>Finder</strong>
+				into Xamarin Studio and drop them on the <strong>Resources</strong> folder in your project. This will copy the
+				folders and their contents to your project folder and add them to your project. It also correctly sets
+				the <strong>Build Action</strong> on each file to <strong>Android Resource</strong>. Alternatively, you could
+				create the folders manually in Xamarin Studio and add the individual files; however, drag-and-drop is much
+				more convenient.
+			</li>
+
+			<li>
+				Take a moment to examine the contents of the six <strong>drawable</strong> folders in your project.
+				Notice that the same files appear in each folder, with the icons rendered at different resolutions.
+			</li>
+
+		</ol>
+
+		<h3>Setting the application Icon and Label</h3>
+
+		<p>
+			Here we will set the application-level <strong>Icon</strong> and <strong>Label</strong>.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Open <strong>Resources &gt; values &gt; Strings.xml</strong>.
+			</li>
+
+			<li>
+				It is typical to define the application name as a resource string; the project template already created a string
+				for this which we will modify. Change the <strong>app_name</strong> to <strong>ApplicationName</strong> and set the value
+				for the entry to "Phoneword Translator".
+<p>
+<a href="#" onclick="toggleCode(this, 'applicationNameResource'); return false;" class="uiitem">Show Code</a>
+<div class="indent-medium" id="applicationNameResource" style="display:none;">
+<pre class="prettyprint">
+&lt;string name="ApplicationName"&gt;<span class="highlight">Phoneword Translator</span>&lt;/string&gt;
+</pre>
+</div>
+</p>
+			</li>
+
+			<li>
+				Open the <strong>Project Properties</strong> and select the <strong>Android Manifest</strong> tab.
+			</li>
+
+			<li>
+				Set the <strong>Application name</strong> and <strong>Application Icon</strong> values as shown
+				below.
+				<img class="indent-none" src="./res/images/XamarinStudio-SetApplicationNameAndIcon.png" alt="- - - - - - - - - MISSING IMAGE - - - - - - - - - -" />
+			</li>
+
+			<li>
+				Deploy the application to the emulator or your device (you can also run the app if you would like to
+				but deployment is all that is needed for this part). Navigate to the <strong>Settings &gt; Apps</strong>
+				screen in Android. Verify the listing for Phoneword uses the application name and icon
+				you set in the previous step.
+
+				<div class="hintblock">
+					<strong>Note:</strong> these application-level settings are used as the defaults for your activities;
+					if you have any activities without these settings supplied, you will see these application-level values
+					used there during app execution.
+				</div>
+			</li>
+		</ol>
+
+		<h3>Setting the activity Icons and Labels</h3>
+
+		<p>
+			Here we will set individual <strong>Icon</strong> and <strong>Label</strong> values for the two activities.
+		</p>
+
+		<ol class="indent-medium">
+			<li>
+				Open <strong>MainActivity.cs</strong>.
+			</li>
+
+			<li>
+				Locate the <code>ActivityAttribute</code> applied to the <code>MainActivity</code> class.
+				Set the <code>Label</code> to "Translate" and the <code>Icon</code> to "@drawable/translate".
+				<div class="hintblock">
+					<strong>Note:</strong> The orignal values for the <strong>MainActivity</strong> <code>Icon</code>
+					and <code>Label</code> might be more appropriate than the values you just set. Once you have
+					finished the exercise and understand where these values are used, feel free to reset them to
+					"Phoneword" and "@drawable/icon" as before.
+				</div>
+			</li>
+
+			<li>
+				Open <strong>CallHistoryActivity.cs</strong>.
+			</li>
+
+			<li>
+				Locate the <code>ActivityAttribute</code> applied to the <code>CallHistoryActivity</code> class.
+				Set the <code>Icon</code> to "@drawable/history". The <code>Label</code> was set in a previous
+				exercise so there should be no need to modify it here.
+			</li>
+
+			<li>
+				Run the application and verify the <strong>Icon</strong> and <strong>Label</strong> are correct
+				for your two activities. Examine the launcher screen to verify the <strong>Icon</strong> and
+				<strong>Label</strong> for the <strong>MainActivity</strong> are used.
+			</li>
+		</ol>
+
+		<!-- - - - - - - - - Summary - - - - - - - - -->
+
+		<h1>Summary</h1>
+		<p>
+			This lab added custom labels and icons both at the activity and application level.
+			The application-level values represent the application as a whole and appear on the
+			Android <strong>Settings &gt; Apps</strong> screen. They also serve as fallback values for the
+			corresponding activity-level values. Keep in mind that for activities that act as
+			app entry points, the activity-level values will be used on the launcher screen and
+			not the application-level settings.
+		</p>
+
+		<!-- - - - - - - - - Footer - - - - - - - - -->
+
+		<div class="align-right">
+			<a href="../Start%20Here.html">Go Back</a>
+		</div>
+
+	</section>
+
+	<footer>Copyright (C) 2014 Xamarin</footer>
+
+</body>
+
+</html>

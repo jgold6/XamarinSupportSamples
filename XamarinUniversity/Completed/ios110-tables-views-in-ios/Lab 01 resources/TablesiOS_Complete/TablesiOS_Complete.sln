@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesiOS_demo1", "TablesiOS_demo1\TablesiOS_demo1.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD331}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesiOS_demo2", "TablesiOS_demo2\TablesiOS_demo2.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD332}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesiOS_demo3", "TablesiOS_demo3\TablesiOS_demo3.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesiOS_demo4", "TablesiOS_demo4\TablesiOS_demo4.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD334}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesiOS_demo5", "TablesiOS_demo5\TablesiOS_demo5.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesiOS_demo6", "TablesiOS_demo6\TablesiOS_demo6.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesiOS_demo7", "TablesiOS_demo7\TablesiOS_demo7.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD337}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Debug|iPhone.Build.0 = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Release|iPhone.ActiveCfg = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Release|iPhone.Build.0 = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD331}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Debug|iPhone.Build.0 = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Release|iPhone.ActiveCfg = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Release|iPhone.Build.0 = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD332}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.Build.0 = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.ActiveCfg = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.Build.0 = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Debug|iPhone.Build.0 = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Release|iPhone.ActiveCfg = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Release|iPhone.Build.0 = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD334}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Debug|iPhone.Build.0 = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Release|iPhone.ActiveCfg = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Release|iPhone.Build.0 = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD335}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Debug|iPhone.Build.0 = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Release|iPhone.ActiveCfg = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Release|iPhone.Build.0 = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD336}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Debug|iPhone.Build.0 = Debug|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Release|iPhone.ActiveCfg = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Release|iPhone.Build.0 = Release|iPhone
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{15D8E98D-D803-4CCC-906F-0960D31DD337}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = TablesiOS_demo1\TablesiOS_demo1.csproj
+	EndGlobalSection
+EndGlobal

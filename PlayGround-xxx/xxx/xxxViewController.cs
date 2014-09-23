@@ -34,7 +34,7 @@ namespace xxx
 {
 	public class ZoomingUIImageView : UIImageView
 	{
-		public UIImage Image {get; set;}
+		public override UIImage Image {get; set;}
 		public ZoomingUIImageView(UIImage image) : base(image)
 		{
 			this.Image = image;
@@ -439,6 +439,11 @@ namespace xxx
 //
 //				PresentViewController (auth.GetUI (), true, null);
 //			}
+		}
+
+		public override bool ShouldAutorotate()
+		{
+			return base.ShouldAutorotate();
 		}
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)

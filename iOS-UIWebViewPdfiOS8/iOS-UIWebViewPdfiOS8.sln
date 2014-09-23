@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOS-UIWebViewPdfiOS8", "iOS-UIWebViewPdfiOS8\iOS-UIWebViewPdfiOS8.csproj", "{082063C4-C485-4B05-9E85-344DB16EB41E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Release|iPhone.Build.0 = Release|iPhone
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{082063C4-C485-4B05-9E85-344DB16EB41E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = iOS-UIWebViewPdfiOS8\iOS-UIWebViewPdfiOS8.csproj
+	EndGlobalSection
+EndGlobal

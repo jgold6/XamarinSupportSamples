@@ -24,6 +24,7 @@ namespace FormsPlayground.Android
 
 			SetPage(App.GetMainPage());
 
+
 		}
 
 		public static string test()

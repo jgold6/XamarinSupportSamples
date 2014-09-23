@@ -37,7 +37,7 @@ namespace xxx
 		public override UIImage Image {get; set;}
 		public ZoomingUIImageView(UIImage image) : base(image)
 		{
-			this.Image = image;
+			Image = image;
 		}
 	}
 

@@ -11,7 +11,7 @@ namespace TestXAMLWebViewTabbed
     {
         public static Page GetMainPage()
         {
-            return new XAMLWebViewPage();
+			return new XAMLKeypadPage();
         }
     }
 }

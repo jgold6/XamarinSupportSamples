@@ -35,7 +35,8 @@ namespace ModalDialog
 				// Hide dialog
 				IsVisible = false,
 				BackgroundColor = Color.Silver,
-				Padding = new Thickness(40)
+				Padding = new Thickness(40),
+				Opacity = 0.0
 			};
 
 
@@ -73,17 +74,19 @@ namespace ModalDialog
 
 
 			// Handle button click to open dialog
-			btn.Clicked += (object sender, EventArgs e) => {
-				mainLayout.Opacity = 0.2;
+			btn.Clicked += async (object sender, EventArgs e) => {
+				await mainLayout.FadeTo(0.4, 150, Easing.Linear);
 				btn.IsEnabled = false;
 				dialog.IsVisible = true;
+				await dialog.FadeTo(1.0, 150, Easing.Linear);
 			};
 
 			// Handle Entry completed
-			dialogEntry.Completed += (object sender, EventArgs e) => {
+			dialogEntry.Completed += async (object sender, EventArgs e) => {
+				await mainLayout.FadeTo(1.0, 150, Easing.Linear);
 				lbl.Text = ((Entry)sender).Text;
-				mainLayout.Opacity = 1.0;
 				btn.IsEnabled = true;
+				await dialog.FadeTo(0.0, 150, Easing.Linear);
 				dialog.IsVisible = false;
 			};
 		}

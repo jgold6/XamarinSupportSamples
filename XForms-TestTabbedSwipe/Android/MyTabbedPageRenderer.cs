@@ -41,20 +41,20 @@ namespace TestTabbedSwipe.Android
 		{
 			base.OnElementChanged(e);
 
-			tabbedPage = e.NewElement.Parent as MyPage;
-
-			m_Listener = new ItronGestureListener(tabbedPage);
-			m_Detector = new GestureDetector(m_Listener);
-
+			if (e.OldElement == null) {
+				this.Touch -= HandleTouch;
+				this.Touch += HandleTouch;
+			}
 			if (e.NewElement == null) {
 				this.Touch -= HandleTouch;
 				this.Touch += HandleTouch;
 			}
 
-			if (e.OldElement == null) {
-				this.Touch += HandleTouch;
-			}
+			if (e.NewElement != null && e.NewElement.Parent != null)
+				tabbedPage = e.NewElement.Parent as MyPage;
 
+			m_Listener = new ItronGestureListener(tabbedPage);
+			m_Detector = new GestureDetector(m_Listener);
 		}
 
 		void HandleTouch (object sender, TouchEventArgs e)

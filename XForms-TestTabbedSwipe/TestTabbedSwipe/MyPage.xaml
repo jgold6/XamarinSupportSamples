@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:TestTabbedSwipe;assembly=TestTabbedSwipe" 
+            x:Class="TestTabbedSwipe.MyPage">
+   <TabbedPage.Children>
+        <local:Tab1 x:Name="tab1" />
+        <local:Tab2 x:Name="tab2" />
+        <local:Tab3 x:Name="tab3" />
+    </TabbedPage.Children> 
+</TabbedPage>

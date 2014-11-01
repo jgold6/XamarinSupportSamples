@@ -1,0 +1,28 @@
+"ios_setting_notifications_group" = "Notifikationer"; 
+
+"ios_setting_notification_active_title" = "Påslagna"; 
+
+"ios_setting_server_group_adress" = "Adress server:(ip)"; 
+
+"ios_setting_server_group_authcode" = "Autentiserings kod"; 
+
+"ios_setting_server_group_port" = "Port"; 
+
+"ios_setting_server_settings_group" = "Serverinställningar"; 
+
+"ios_setting_server_use_ssl" = "Använd SSL"; 
+
+"ios_setting_language_array" = "English"; 
+
+"ios_setting_language_array_0" = "Svenska"; 
+
+"ios_setting_language_array_1" = "Suomi"; 
+
+"ios_setting_language_group" = "Språk"; 
+
+"ios_setting_language_values_array" = "en"; 
+
+"ios_setting_language_values_array_0" = "sv"; 
+
+"ios_setting_language_values_array_1" = "fi"; 
+

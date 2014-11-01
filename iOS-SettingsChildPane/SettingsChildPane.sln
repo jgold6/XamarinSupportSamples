@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsChildPane", "SettingsChildPane\SettingsChildPane.csproj", "{7FA42B70-17FB-4CBA-9B5D-9703DB688DE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsLocalized", "SettingsLocalized\SettingsLocalized.csproj", "{70A873F6-14D3-438B-B7A7-95B4535EA674}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -13,6 +15,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Debug|iPhone.Build.0 = Debug|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Release|iPhone.ActiveCfg = Release|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Release|iPhone.Build.0 = Release|iPhone
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{70A873F6-14D3-438B-B7A7-95B4535EA674}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{7FA42B70-17FB-4CBA-9B5D-9703DB688DE6}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{7FA42B70-17FB-4CBA-9B5D-9703DB688DE6}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{7FA42B70-17FB-4CBA-9B5D-9703DB688DE6}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
@@ -27,6 +41,6 @@ Global
 		{7FA42B70-17FB-4CBA-9B5D-9703DB688DE6}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SettingsChildPane\SettingsChildPane.csproj
+		StartupItem = SettingsLocalized\SettingsLocalized.csproj
 	EndGlobalSection
 EndGlobal

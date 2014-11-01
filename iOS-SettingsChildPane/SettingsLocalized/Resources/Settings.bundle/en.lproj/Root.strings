@@ -1,0 +1,28 @@
+"ios_setting_notifications_group" = "Notifications"; 
+
+"ios_setting_notification_active_title" = "Active Title"; 
+
+"ios_setting_server_group_adress" = "Adress server:(ip)"; 
+
+"ios_setting_server_group_authcode" = "Auth Code";
+
+"ios_setting_server_group_port" = "Port"; 
+
+"ios_setting_server_settings_group" = "Settings"; 
+
+"ios_setting_server_use_ssl" = "Use SSL"; 
+
+"ios_setting_language_array" = "English"; 
+
+"ios_setting_language_array_0" = "Swedish"; 
+
+"ios_setting_language_array_1" = "Suomi"; 
+
+"ios_setting_language_group" = "Language"; 
+
+"ios_setting_language_values_array" = "en"; 
+
+"ios_setting_language_values_array_0" = "sv"; 
+
+"ios_setting_language_values_array_1" = "fi"; 
+

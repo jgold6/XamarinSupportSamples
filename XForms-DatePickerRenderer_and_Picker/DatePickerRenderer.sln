@@ -69,6 +69,6 @@ Global
 		{C0DAA8DA-E30E-4B7F-9855-2A627475E845}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\DatePickerRenderer.iOS.csproj
+		StartupItem = Android\DatePickerRenderer.Android.csproj
 	EndGlobalSection
 EndGlobal

@@ -16,7 +16,8 @@ namespace DatePickerRenderer.Android
 			base.OnElementChanged (e);
 			if (e.OldElement == null) {   // perform initial setup
 				// lets get a reference to the native control
-				var nativeEditText = (global::Android.Widget.TextView) Control;
+				var nativeEditText = Control;
+
 				// do whatever you want to the textField here!
 				nativeEditText.SetTextColor(global::Android.Graphics.Color.Red);
 			}

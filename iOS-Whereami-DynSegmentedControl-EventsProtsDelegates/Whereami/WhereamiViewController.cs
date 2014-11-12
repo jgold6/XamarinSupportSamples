@@ -115,9 +115,6 @@ namespace Whereami
 			};
 			segControl.SetTitleTextAttributes(textAttr, UIControlState.Normal);
 
-//			UIButton addSegBtn = new UIButton(new RectangleF(150, 400, 50, 50));
-//			addSegBtn.SetTitle("Add Segment", UIControlState.Normal);
-//			mapView.Add(addSegBtn); 
 			addSegBtn.TouchUpInside += (object sender, EventArgs e) => {
 				if (numOfSegs < 10) {
 					numOfSegs++;
@@ -125,9 +122,13 @@ namespace Whereami
 					textAttr.Font =  UIFont.FromName("ArialMT", 17-numOfSegs);
 					segControl.SetTitleTextAttributes(textAttr, UIControlState.Normal);
 				} 
+				int i = 0;
+				View.LayoutIfNeeded();
+				foreach (UIView segment in segControl.Subviews) {
+					Console.WriteLine("Seg {0} Width: {1}", i, segControl.Subviews[i++].Frame.Width);
+				}
+				Console.WriteLine("**************");
 			};
-
-
 
 			remSegBtn.IsAccessibilityElement = true;
 
@@ -138,6 +139,12 @@ namespace Whereami
 					textAttr.Font =  UIFont.FromName("ArialMT", 17-numOfSegs);
 					segControl.SetTitleTextAttributes(textAttr, UIControlState.Normal);
 				}
+				int i = 0;
+				View.LayoutIfNeeded();
+				foreach (UIView segment in segControl.Subviews) {
+					Console.WriteLine("Seg {0} Width: {1}", i, segControl.Subviews[i++].Frame.Width);
+				}
+				Console.WriteLine("**************");
 			};
 
 			segControl.BackgroundColor = UIColor.White;
@@ -180,6 +187,7 @@ namespace Whereami
 
 				}
 			};
+
 		}
 
 		// Weak delegates - can access class instance variables

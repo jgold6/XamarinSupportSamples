@@ -9,9 +9,9 @@ using Xamarin.Forms;
 using System;
 
 
-[assembly: ExportRenderer(typeof(ContentPage), typeof(TestTabbedSwipe.Android.MyTabbedPageRenderer))]
+[assembly: ExportRenderer(typeof(ContentPage), typeof(TestTabbedSwipe.Droid.MyTabbedPageRenderer))]
 
-namespace TestTabbedSwipe.Android
+namespace TestTabbedSwipe.Droid
 {
 	public class MyTabbedPageRenderer : PageRenderer
     {

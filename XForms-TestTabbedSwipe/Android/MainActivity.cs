@@ -11,7 +11,7 @@ using Android.OS;
 using Xamarin.Forms.Platform.Android;
 
 
-namespace TestTabbedSwipe.Android
+namespace TestTabbedSwipe.Droid
 {
     [Activity(Label = "TestTabbedSwipe.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : AndroidActivity

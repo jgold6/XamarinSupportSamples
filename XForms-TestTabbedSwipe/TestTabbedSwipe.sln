@@ -69,6 +69,6 @@ Global
 		{6ECCCC4D-BC2B-403E-AD13-34817FD1C579}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TestTabbedSwipe.iOS\TestTabbedSwipe.iOS.csproj
+		StartupItem = Android\TestTabbedSwipe.Droid.csproj
 	EndGlobalSection
 EndGlobal

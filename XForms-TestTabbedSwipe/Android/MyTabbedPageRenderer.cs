@@ -78,11 +78,11 @@ namespace TestTabbedSwipe.Droid
 			Console.WriteLine ("OnFling");
 			int currentPageIndex = tabbedPage.Children.IndexOf(tabbedPage.CurrentPage);
 			int numberOfPages = tabbedPage.Children.Count;
-			if (velocityX < 0) {
+			if (velocityX > 0) {
 				int newIndex = currentPageIndex > 0 ? currentPageIndex -1 : currentPageIndex;
 				tabbedPage.CurrentPage = tabbedPage.Children[newIndex];
 			}
-			else if (velocityX > 0) {
+			else if (velocityX < 0) {
 				int newIndex = currentPageIndex < numberOfPages-1 ? currentPageIndex +1 : currentPageIndex;
 				tabbedPage.CurrentPage = tabbedPage.Children[newIndex];
 			}

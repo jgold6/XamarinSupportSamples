@@ -45,10 +45,8 @@ namespace TestTabbedSwipe.iOS
 		{
 			int currentPageIndex = tabbedPage.Children.IndexOf(tabbedPage.CurrentPage);
 			int numberOfPages = tabbedPage.Children.Count;
-			int newIndex = currentPageIndex > 0 ? currentPageIndex -1 : currentPageIndex;
+			int newIndex = currentPageIndex < numberOfPages-1 ? currentPageIndex +1 : currentPageIndex;
 			tabbedPage.CurrentPage = tabbedPage.Children[newIndex];
-
-
 		}
 
 		[Export("swipeRight")]
@@ -56,7 +54,7 @@ namespace TestTabbedSwipe.iOS
 		{
 			int currentPageIndex = tabbedPage.Children.IndexOf(tabbedPage.CurrentPage);
 			int numberOfPages = tabbedPage.Children.Count;
-			int newIndex = currentPageIndex < numberOfPages-1 ? currentPageIndex +1 : currentPageIndex;
+			int newIndex = currentPageIndex > 0 ? currentPageIndex -1 : currentPageIndex;
 			tabbedPage.CurrentPage = tabbedPage.Children[newIndex];
 		}
     }

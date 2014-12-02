@@ -1,8 +1,8 @@
 ﻿using System;
-using MonoMac.AppKit;
-using MonoMac.Foundation;
+using AppKit;
+using Foundation;
 
-namespace TestDragAndDrop
+namespace XamMacTestProject
 {
 	[Register("MainView")]
 	public class MainView : NSView

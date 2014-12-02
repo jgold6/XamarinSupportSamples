@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="DragZone.cs" />
     <Compile Include="ImageDragZone.cs" />
+    <Compile Include="MainView.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

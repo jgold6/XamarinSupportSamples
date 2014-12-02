@@ -22,14 +22,24 @@ namespace TestDragAndDrop
 //		public override NSDragOperation DraggingEntered(NSDraggingInfo sender)
 //		{
 //			NSPasteboard draggingPasteBoard = sender.DraggingPasteboard;
-//			Console.WriteLine("Entered Sender: {0}", draggingPasteBoard.PasteboardItems[0].GetStringForType("public.file-url"));
+//			var draggedUrl = draggingPasteBoard.PasteboardItems[0].GetStringForType("public.file-url");
+//			if (draggedUrl != null) {
+//				NSUrl url = NSUrl.FromString(draggedUrl);
+//				string path = url.Path;
+//				Console.WriteLine("NSTextField DraggingEntered called: file path = {0}", path);
+//			}
 //			return NSDragOperation.Copy;
 //		}
 //
 //		public override bool PerformDragOperation(NSDraggingInfo sender)
 //		{
 //			NSPasteboard draggingPasteBoard = sender.DraggingPasteboard;
-//			Console.WriteLine("Perform Sender: {0}", draggingPasteBoard.PasteboardItems[0].GetStringForType("public.file-url"));
+//			var draggedUrl = draggingPasteBoard.PasteboardItems[0].GetStringForType("public.file-url");
+//			if (draggedUrl != null) {
+//				NSUrl url = NSUrl.FromString(draggedUrl);
+//				string path = url.Path;
+//				Console.WriteLine("NSTextField PerformDragOperation called: file path = {0}", path);
+//			}
 //			return true;
 //		}
 		#endregion

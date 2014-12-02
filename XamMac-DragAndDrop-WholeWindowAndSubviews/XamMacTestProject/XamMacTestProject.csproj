@@ -3,12 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{42C0BBD9-55CE-4FC1-8D90-A7348ABAFB23};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{E66EA7FD-45B9-45A9-86D3-A2DE0B09D5A4}</ProjectGuid>
+    <ProjectGuid>{9EE2209C-042C-4C07-833B-23F19E90B068}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TestDragAndDrop</RootNamespace>
+    <RootNamespace>XamMacTestProject</RootNamespace>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
-    <AssemblyName>TestDragAndDrop</AssemblyName>
+    <AssemblyName>XamMacTestProject</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,7 +26,9 @@
     <EnablePackageSigning>false</EnablePackageSigning>
     <CodeSigningKey>Mac Developer</CodeSigningKey>
     <EnableCodeSigning>false</EnableCodeSigning>
-    <CreatePackage>false</CreatePackage>
+    <CreatePackage>true</CreatePackage>
+    <PackageSigningKey>Developer ID Installer</PackageSigningKey>
+    <XamMacArch>x86_64</XamMacArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -36,10 +40,13 @@
     <LinkMode>SdkOnly</LinkMode>
     <UseSGen>false</UseSGen>
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
-    <EnablePackageSigning>false</EnablePackageSigning>
-    <CodeSigningKey>Developer ID Application</CodeSigningKey>
+    <EnablePackageSigning>true</EnablePackageSigning>
+    <CodeSigningKey>Mac Developer: Jon Goldberger (W7L4NT7KNB)</CodeSigningKey>
     <EnableCodeSigning>true</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
+    <PackageSigningKey>Developer ID Installer: Jonathan Goldberger (4FBCAEUDP6)</PackageSigningKey>
+    <I18n>
+    </I18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -56,14 +63,16 @@
     <CodeSigningKey>3rd Party Mac Developer Application</CodeSigningKey>
     <EnableCodeSigning>true</EnableCodeSigning>
     <EnablePackageSigning>true</EnablePackageSigning>
+    <I18n>
+    </I18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="XamMac" />
+    <Reference Include="System.Data" />
+    <Reference Include="Xamarin.Mac" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -80,7 +89,6 @@
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
     <Compile Include="MainView.cs" />
-    <Compile Include="DragZone.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
@@ -89,5 +97,8 @@
   <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\testpic.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

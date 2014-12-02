@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="dropZone" destination="qdB-XS-7ZJ" id="EXy-SP-yad"/>
                 <outlet property="imageDropZone" destination="n40-kg-b2T" id="kMG-N6-7z1"/>
-                <outlet property="mainView" destination="3" id="tqz-ml-ZVw"/>
                 <outlet property="window" destination="2" id="6"/>
             </connections>
         </customObject>
@@ -24,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="1080" height="720"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qdB-XS-7ZJ" customClass="DragZone">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qdB-XS-7ZJ">
                         <rect key="frame" x="457" y="658" width="167" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Drag and Drop zone" id="uE1-Um-S3A">
@@ -33,7 +32,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="n40-kg-b2T" customClass="ImageDragZone">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="n40-kg-b2T">
                         <rect key="frame" x="459" y="519" width="163" height="140"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="testpic" id="Pda-R8-X8V"/>

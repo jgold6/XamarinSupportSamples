@@ -25,7 +25,6 @@ namespace XamMacTestProject
 		// Shared initialization code
 		void Initialize()
 		{
-			RegisterForDraggedTypes(new string[]{"NSFilenamesPboardType"});
 		}
 
 		#endregion

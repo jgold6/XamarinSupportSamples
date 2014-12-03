@@ -27,7 +27,7 @@ namespace XamMacTestProject
 			if (draggedUrl != null) {
 				NSUrl url = NSUrl.FromString(draggedUrl);
 				string path = url.Path;
-				Console.WriteLine("NSTextField DraggingEntered called: file path = {0}", path);
+				Console.WriteLine("MainView DraggingEntered called: file path = {0}", path);
 			}
 			return NSDragOperation.Copy;
 		}
@@ -39,7 +39,7 @@ namespace XamMacTestProject
 			if (draggedUrl != null) {
 				NSUrl url = NSUrl.FromString(draggedUrl);
 				string path = url.Path;
-				Console.WriteLine("NSTextField PerformDragOperation called: file path = {0}", path);
+				Console.WriteLine("MainView PerformDragOperation called: file path = {0}", path);
 			}
 			return true;
 		}

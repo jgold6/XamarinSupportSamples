@@ -8,9 +8,42 @@ namespace XamMacTestProject
 	[Register("DottedBox")]
     public class DottedBox : NSBox
     {
+		NSColor mBorderColor;
+
+		public NSColor DottedBorderColor {
+			get{
+				return mBorderColor;
+			}
+			set{
+				mBorderColor = value;
+				SetNeedsDisplayInRect(this.Bounds);
+			}
+		}
+
 		public DottedBox(IntPtr handle):base(handle)
 		{
+			mBorderColor = NSColor.Black;
+			RegisterForDraggedTypes(new string[]{"NSFilenamesPboardType"});
+		}
 
+		public override NSDragOperation DraggingEntered(NSDraggingInfo sender)
+		{
+			this.DottedBorderColor = NSColor.Red;
+			return NSDragOperation.Copy;
+		}
+
+		public override void DraggingExited(NSDraggingInfo sender)
+		{
+			this.DottedBorderColor = NSColor.Black;
+			base.DraggingExited(sender);
+		}
+
+		public override bool PerformDragOperation(NSDraggingInfo sender)
+		{
+			var mainView = this.Superview as MainView;
+			this.DottedBorderColor = NSColor.Black;
+			mainView.PerformDragOperation(sender);
+			return true;
 		}
 
 		public override void DrawRect(CGRect dirtyRect)
@@ -18,9 +51,9 @@ namespace XamMacTestProject
 			base.DrawRect(dirtyRect);
 
 			const int dashLength = 5;
-			NSColor lineColor = NSColor.Black;
-			lineColor.Set();
+			mBorderColor.Set();
 			NSBezierPath path = new NSBezierPath();
+			path.LineWidth = 5.0f;
 			for (int w = 0; w < dirtyRect.Width; w += dashLength*2) {
 				// Line along bottom
 				path.MoveTo(new CGPoint(w, 0));

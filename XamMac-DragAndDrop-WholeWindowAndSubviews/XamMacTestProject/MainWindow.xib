@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
+                <outlet property="dottedBox" destination="St5-vX-Vb4" id="Ux1-vE-mPA"/>
                 <outlet property="dropZone" destination="qdB-XS-7ZJ" id="EXy-SP-yad"/>
                 <outlet property="imageDropZone" destination="n40-kg-b2T" id="kMG-N6-7z1"/>
                 <outlet property="window" destination="2" id="6"/>

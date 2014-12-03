@@ -13,11 +13,14 @@ namespace XamMacTestProject
 	partial class MainWindowController
 	{
 		[Outlet]
+		XamMacTestProject.DottedBox dottedBox { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField dropZone { get; set; }
 
 		[Outlet]
 		AppKit.NSImageView imageDropZone { get; set; }
-
+		
 		void ReleaseDesignerOutlets ()
 		{
 			if (dropZone != null) {
@@ -28,6 +31,11 @@ namespace XamMacTestProject
 			if (imageDropZone != null) {
 				imageDropZone.Dispose ();
 				imageDropZone = null;
+			}
+
+			if (dottedBox != null) {
+				dottedBox.Dispose ();
+				dottedBox = null;
 			}
 		}
 	}

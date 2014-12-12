@@ -12,6 +12,7 @@ namespace Homepwner
 		RectangleF viewRect;
 		RectangleF keyTextFieldRect;
 		RectangleF altKeyTextFieldRect;
+		RectangleF textViewRect;
 		float keyboardHeight;
 		bool shouldSlideViewUp = false;
 
@@ -41,11 +42,15 @@ namespace Homepwner
 				shouldSlideViewUp = true;
 			};
 
+			textView.Started += (object sender, EventArgs e) => {
+				shouldSlideViewUp = true;
+			};
+
 			nameField.ShouldReturn += textFieldReturnHandler;
 			serialNumberField.ShouldReturn += textFieldReturnHandler;
 			valueField.ShouldReturn += textFieldReturnHandler;
 			altKeyTextField.ShouldReturn += textFieldReturnHandler;
-			keyTextField.ShouldReturn += textFieldReturnHandler; 
+			keyTextField.ShouldReturn += textFieldReturnHandler;
 		}
 
 		bool textFieldReturnHandler (UITextField textField)
@@ -75,6 +80,7 @@ namespace Homepwner
 			viewRect = View.Frame;
 			keyTextFieldRect = keyTextField.Frame;
 			altKeyTextFieldRect = altKeyTextField.Frame;
+			textViewRect = textView.Frame;
 		}
 
 		partial void backgroundTapped (MonoTouch.Foundation.NSObject sender)
@@ -115,6 +121,7 @@ namespace Homepwner
 			viewRect = this.View.Frame;
 			keyTextFieldRect = keyTextField.Frame;
 			altKeyTextFieldRect = altKeyTextField.Frame;
+			textViewRect = textView.Frame;
 		}
 
 		// Use for moving individual text fields
@@ -178,18 +185,21 @@ namespace Homepwner
 		{
 			double speed = movedUp ? 0.0 : 0.28;
 			UIView.Animate(speed, 0.0, UIViewAnimationOptions.CurveEaseOut, new NSAction ( delegate() {
-				RectangleF rect;
-				RectangleF rect2;
+				RectangleF rect, rect2, rect3;
+
 				if (movedUp) {
-					rect = new RectangleF(keyTextFieldRect.Location.X, keyTextFieldRect.Location.Y  - keyboardHgt + 44.0f, keyTextFieldRect.Size.Width, keyTextFieldRect.Size.Height);
-					rect2 = new RectangleF(altKeyTextFieldRect.Location.X, altKeyTextFieldRect.Location.Y  - keyboardHgt + 44.0f, altKeyTextFieldRect.Size.Width, altKeyTextFieldRect.Size.Height);
+					rect = new RectangleF(keyTextFieldRect.Location.X, keyTextFieldRect.Location.Y  - keyboardHgt, keyTextFieldRect.Size.Width, keyTextFieldRect.Size.Height);
+					rect2 = new RectangleF(altKeyTextFieldRect.Location.X, altKeyTextFieldRect.Location.Y  - keyboardHgt, altKeyTextFieldRect.Size.Width, altKeyTextFieldRect.Size.Height);
+					rect3 = new RectangleF(textViewRect.Location.X, textViewRect.Location.Y  - keyboardHgt, textViewRect.Size.Width, textViewRect.Size.Height);
 				}
 				else {
 					rect = keyTextFieldRect;
 					rect2 = altKeyTextFieldRect;
+					rect3 = textViewRect;
 				}
 				keyTextField.Frame = rect;
 				altKeyTextField.Frame = rect2;
+				textView.Frame = rect3;
 
 			}), null);
 			UIView.CommitAnimations();

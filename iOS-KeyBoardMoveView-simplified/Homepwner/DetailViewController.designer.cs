@@ -40,6 +40,9 @@ namespace Homepwner
 		MonoTouch.UIKit.UIBarButtonItem takePicture { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UITextView textView { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UITextField valueField { get; set; }
 
 		[Action ("assetTypeTapped:")]
@@ -53,6 +56,11 @@ namespace Homepwner
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (altKeyTextField != null) {
+				altKeyTextField.Dispose ();
+				altKeyTextField = null;
+			}
+
 			if (assetTypeBtn != null) {
 				assetTypeBtn.Dispose ();
 				assetTypeBtn = null;
@@ -73,11 +81,6 @@ namespace Homepwner
 				imageView = null;
 			}
 
-			if (altKeyTextField != null) {
-				altKeyTextField.Dispose ();
-				altKeyTextField = null;
-			}
-
 			if (keyTextField != null) {
 				keyTextField.Dispose ();
 				keyTextField = null;
@@ -96,6 +99,11 @@ namespace Homepwner
 			if (takePicture != null) {
 				takePicture.Dispose ();
 				takePicture = null;
+			}
+
+			if (textView != null) {
+				textView.Dispose ();
+				textView = null;
 			}
 
 			if (valueField != null) {

@@ -14,6 +14,7 @@
                 <outlet property="keyTextField" destination="wQL-IV-vBG" id="XMU-sJ-YcG"/>
                 <outlet property="nameField" destination="Z7F-BW-M1a" id="ha7-LG-K4e"/>
                 <outlet property="serialNumberField" destination="NwC-G8-Y8U" id="qg3-LZ-8F6"/>
+                <outlet property="textView" destination="T2t-t3-yZG" id="8iM-C3-Qwa"/>
                 <outlet property="valueField" destination="nky-Ji-RCK" id="VbN-0G-pQ2"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -142,6 +143,13 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T2t-t3-yZG">
+                    <rect key="frame" x="40" y="419" width="240" height="47"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -155,10 +163,12 @@
                 <constraint firstAttribute="trailing" secondItem="CTs-m4-gu9" secondAttribute="trailing" constant="20" id="9as-ht-HQt"/>
                 <constraint firstItem="Kg4-pi-A8j" firstAttribute="leading" secondItem="APU-d5-3qm" secondAttribute="trailing" constant="10" id="ADs-zW-xY7"/>
                 <constraint firstAttribute="trailing" secondItem="wQL-IV-vBG" secondAttribute="trailing" constant="20" id="C5q-Yc-0zc"/>
+                <constraint firstAttribute="bottom" secondItem="T2t-t3-yZG" secondAttribute="bottom" constant="14" id="DiL-71-bKp"/>
                 <constraint firstItem="QvI-w8-Pby" firstAttribute="leading" secondItem="Kg4-pi-A8j" secondAttribute="trailing" constant="10" id="IfX-Bv-9Bq"/>
                 <constraint firstAttribute="trailing" secondItem="nky-Ji-RCK" secondAttribute="trailing" constant="20" id="JZk-io-vis"/>
                 <constraint firstItem="f5n-3b-hFM" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="L80-Cc-SA8"/>
                 <constraint firstItem="ZoB-zB-R55" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="MIq-Ah-2F9"/>
+                <constraint firstItem="T2t-t3-yZG" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="40" id="N1g-u7-6a3"/>
                 <constraint firstItem="wQL-IV-vBG" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="NaL-5O-oPE"/>
                 <constraint firstAttribute="bottom" secondItem="CTs-m4-gu9" secondAttribute="bottom" constant="101" id="Nrv-38-DO9"/>
                 <constraint firstAttribute="trailing" secondItem="QvI-w8-Pby" secondAttribute="trailing" constant="20" id="Nyk-M6-C42"/>
@@ -174,6 +184,7 @@
                 <constraint firstItem="nky-Ji-RCK" firstAttribute="top" secondItem="NwC-G8-Y8U" secondAttribute="bottom" constant="10" id="jKL-A6-DgD"/>
                 <constraint firstItem="APU-d5-3qm" firstAttribute="top" secondItem="f5n-3b-hFM" secondAttribute="bottom" constant="10" id="jit-Rb-Hzd"/>
                 <constraint firstItem="5tO-AN-orm" firstAttribute="top" secondItem="mTn-bM-SH5" secondAttribute="bottom" constant="10" id="jyE-Sw-SZC"/>
+                <constraint firstAttribute="trailing" secondItem="T2t-t3-yZG" secondAttribute="trailing" constant="40" id="kwl-Lm-Rjw"/>
                 <constraint firstItem="NwC-G8-Y8U" firstAttribute="top" secondItem="Z7F-BW-M1a" secondAttribute="bottom" constant="10" id="ln1-JJ-f2y"/>
                 <constraint firstItem="Uwg-zl-cnl" firstAttribute="top" secondItem="1" secondAttribute="top" constant="24" id="oDo-7M-8K2"/>
                 <constraint firstItem="nky-Ji-RCK" firstAttribute="leading" secondItem="5tO-AN-orm" secondAttribute="trailing" constant="10" id="oL9-5s-v8T"/>

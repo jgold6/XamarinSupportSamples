@@ -4,17 +4,17 @@ using Xamarin.Forms.Maps;
 
 namespace XFormsMapViewiOSPermission
 {
-    public class App
+	public class App : Application
     {
-        public static Page GetMainPage()
-        {    
-			return new MapPage();
-        }
+		public App()
+		{
+			MainPage = new MapPage();
+		}
     }
 
 	public class MapPage : ContentPage {
 		public MapPage() {
-			var map = new Map(
+			var map = new MyMap(
 				MapSpan.FromCenterAndRadius(
 					new Position(37,-122), Distance.FromMiles(0.3))) {
 				IsShowingUser = true, // iOS asks for permission if this is set to true, but not if not set or set to false.
@@ -25,6 +25,13 @@ namespace XFormsMapViewiOSPermission
 			var stack = new StackLayout { Spacing = 0 };
 			stack.Children.Add(map);
 			Content = stack;
+		}
+	}
+
+	public class MyMap : Map {
+
+		public MyMap(MapSpan region) : base(region)
+		{
 		}
 	}
 }

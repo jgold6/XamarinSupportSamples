@@ -68,7 +68,4 @@ Global
 		{CA476477-E385-42BF-92EF-27F86C91899E}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{CA476477-E385-42BF-92EF-27F86C91899E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\XForms-MapViewiOSPermission.iOS.csproj
-	EndGlobalSection
 EndGlobal

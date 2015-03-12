@@ -68,7 +68,4 @@ Global
 		{B9E6A574-6F22-4916-940B-87E086BEAA69}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{B9E6A574-6F22-4916-940B-87E086BEAA69}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\ModalDialog.iOS.csproj
-	EndGlobalSection
 EndGlobal

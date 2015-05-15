@@ -4,9 +4,9 @@
              xmlns:local="clr-namespace:TestXAMLWebViewTabbed;assembly=TestXAMLWebViewTabbed"
              x:Class="TestXAMLWebViewTabbed.XAMLHslPage"
              Title="HSL Color Scroll Page">
-  <ContentPage.BindingContext>
-    <local:HslViewModel Color="Red" />
-  </ContentPage.BindingContext>
+<!--  <ContentPage.BindingContext>
+    <local:HslViewModel Color="Blue" />
+  </ContentPage.BindingContext>-->
 
   <StackLayout Padding="10, 0">
     <BoxView Color="{Binding Color}"

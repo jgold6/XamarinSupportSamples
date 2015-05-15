@@ -15,7 +15,7 @@ namespace TestXAMLWebViewTabbed
         public double Hue
         {
             set
-            {
+			{
                 if (hue != value)
                 {
                     hue = value;

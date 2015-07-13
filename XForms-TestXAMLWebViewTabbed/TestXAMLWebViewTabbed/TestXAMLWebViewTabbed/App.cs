@@ -7,11 +7,11 @@ using Xamarin.Forms;
 
 namespace TestXAMLWebViewTabbed
 {
-    public class App
+    public class App : Application
     {
-        public static Page GetMainPage()
-        {
-			return new XAMLHslPage();
-        }
+		public App()
+		{
+			MainPage = new XAMLScaleAndRotation();
+		}
     }
 }

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TestXAMLWebViewTabbed;assembly=TestXAMLWebViewTabbed"
              x:Class="TestXAMLWebViewTabbed.XAMLScaleAndRotation"
              Title="Slider Transforms Page">
   <Grid>
@@ -20,7 +21,7 @@
     <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
 
       <!-- Scaled and rotated Label -->
-      <Label x:Name="label"
+      <local:MyLabel x:Name="label"
              Text="TEXT"
              HorizontalOptions="Center"
              VerticalOptions="CenterAndExpand" />
@@ -37,7 +38,8 @@
     <Label BindingContext="{x:Reference scaleSlider}"
            Text="{Binding Value, StringFormat='Scale = {0:F1}'}"
            Grid.Row="1" Grid.Column="0"
-           YAlign="Center" />
+           YAlign="Center" 
+           />
 
     <!-- Slider and identifying Label for Rotation -->
     <Slider x:Name="rotationSlider"

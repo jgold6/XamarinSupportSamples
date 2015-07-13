@@ -12,7 +12,7 @@ using Xamarin.Forms.Platform.Android;
 namespace TestXAMLWebViewTabbed.Droid
 {
     [Activity(Label = "TestXAMLWebViewTabbed", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : AndroidActivity
+	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -20,7 +20,7 @@ namespace TestXAMLWebViewTabbed.Droid
 
             Xamarin.Forms.Forms.Init(this, bundle);
 
-            SetPage(App.GetMainPage());
+			LoadApplication(new App());
         }
     }
 }

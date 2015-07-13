@@ -19,6 +19,7 @@
     </Grid.ColumnDefinitions>
 
     <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+      <Image Source="Einstein.png" />
 
       <!-- Scaled and rotated Label -->
       <local:MyLabel x:Name="label"

@@ -13,11 +13,11 @@ namespace Homepwner
 	partial class HomepwnerItemCell
 	{
 		[Outlet]
-		public MonoTouch.UIKit.UIButton dateButton { get; set; }
+		public MonoTouch.UIKit.UITextField dateField { get; private set; }
 
 		[Outlet]
 		public MonoTouch.UIKit.UITextField nametextField { get; private set; }
-
+		
 		void ReleaseDesignerOutlets ()
 		{
 			if (nametextField != null) {
@@ -25,9 +25,9 @@ namespace Homepwner
 				nametextField = null;
 			}
 
-			if (dateButton != null) {
-				dateButton.Dispose ();
-				dateButton = null;
+			if (dateField != null) {
+				dateField.Dispose ();
+				dateField = null;
 			}
 		}
 	}

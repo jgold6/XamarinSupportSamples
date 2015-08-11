@@ -8,24 +8,13 @@ namespace Homepwner
 {
 	public partial class ItemsViewController : UITableViewController, IUITableViewDataSource, IUITableViewDelegate, IUITextFieldDelegate
 	{
-		UIView dpSuperView;
-		UIDatePicker dp;
-		UIViewController dpvc;
 
 
 		public ItemsViewController() : base(UITableViewStyle.Plain)
 		{
-			UINavigationItem n = this.NavigationItem;
-			n.Title = NSBundle.MainBundle.LocalizedString("Homepwner", "Application Name");
-
-			// Create a new bar button item that will send
-			// addNewItem to ItemsViewController
-			UIBarButtonItem bbi = new UIBarButtonItem(UIBarButtonSystemItem.Add, addNewItem);
-
-			// Set this bar button item as the right item in the navigationItem
-			n.RightBarButtonItem = bbi;
-			n.LeftBarButtonItem = this.EditButtonItem;
+			
 		}
+			
 
 		public override void DidReceiveMemoryWarning()
 		{
@@ -38,8 +27,20 @@ namespace Homepwner
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-			
+
 			// Perform any additional setup after loading the view, typically from a nib.
+
+			UINavigationItem n = this.NavigationItem;
+			n.Title = NSBundle.MainBundle.LocalizedString("Homepwner", "Application Name");
+
+			// Create a new bar button item that will send
+			// addNewItem to ItemsViewController
+			UIBarButtonItem bbi = new UIBarButtonItem(UIBarButtonSystemItem.Add, addNewItem);
+
+			// Set this bar button item as the right item in the navigationItem
+			n.RightBarButtonItem = bbi;
+			n.LeftBarButtonItem = this.EditButtonItem;
+
 			BNRItemStore.loadItemsFromDatabase();
 			// HomepwnerItemCell
 			UINib nib = UINib.FromName("HomepwnerItemCell", null);
@@ -53,9 +54,15 @@ namespace Homepwner
 			this.TableView.ReloadData();
 		}
 
+
 		public override int RowsInSection(UITableView tableView, int section)
 		{
 			return BNRItemStore.allItems.Count;
+		}
+
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			return 63;
 		}
 
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -76,44 +83,50 @@ namespace Homepwner
 				return true;
 			});
 
-			cell.dateButton.SetTitle(item.dateCreated.ToShortDateString(), UIControlState.Normal);
+			cell.dateField.Text = item.dateCreated.ToShortDateString();
 			// Store the index to this item in the button so we can get it in the handler
-			cell.dateButton.Tag = indexPath.Row;
-			cell.dateButton.TouchUpInside -= HandleTouchUpInside;
-			cell.dateButton.TouchUpInside += HandleTouchUpInside;
+			cell.dateField.Tag = indexPath.Row;
+			if (cell.dateField.InputView == null) {
+				cell.dateField.InputView = GetDatePickerView (cell.dateField);
+			}
 
 			return cell;
 		}
 
 		// Set up and display the date picker and handle when done picking date
-		void HandleTouchUpInside (object sender, EventArgs e)
+		UIView GetDatePickerView (UITextField dateField)
 		{
-			UIButton btn = (UIButton)sender;
-			dpSuperView = new UIView(new RectangleF(0, this.View.Frame.Height - 200, this.View.Frame.Width, 200));
+
+			var dpSuperView = new UIView(new RectangleF(0, 0, this.View.Frame.Width, 240));
 			dpSuperView.BackgroundColor = UIColor.White;
-			dp = new UIDatePicker();
+
+
+			var dp = new UIDatePicker(new RectangleF(0,40,0,0));
 			dp.Mode = UIDatePickerMode.Date;
-			dpSuperView.Add(dp);
-			dpvc = new UIViewController();
-			dpvc.View = dpSuperView;
-			dpvc.EdgesForExtendedLayout = UIRectEdge.None;
-			BNRItem item = BNRItemStore.allItems[btn.Tag];
+			dpSuperView.AddSubview(dp);
+
+			var doneButton = new UIButton(new RectangleF ((this.View.Frame.Size.Width/2) - 50, 0, 100, 50));
+			doneButton.SetTitle("Done", UIControlState.Normal);
+			doneButton.SetTitleColor (this.View.TintColor, UIControlState.Normal);
+			dpSuperView.AddSubview(doneButton);
+
+			BNRItem item = BNRItemStore.allItems[dateField.Tag];
 			dp.Date = item.dateCreated;
 
-			dpvc.EdgesForExtendedLayout = UIRectEdge.None;
-
-			UINavigationController navController = new UINavigationController(dpvc);
-			UIBarButtonItem doneItem = new UIBarButtonItem(UIBarButtonSystemItem.Done);
-			dpvc.NavigationItem.SetRightBarButtonItem(doneItem, true);
-			doneItem.Clicked += (sender2, e2) => {
-				this.NavigationController.DismissViewController(true, null);
+			dp.ValueChanged += (sender2, e2) => {
 				DateTime newDate = dp.Date;
-				btn.SetTitle(newDate.ToLocalTime().ToShortDateString(), UIControlState.Normal);
+				dateField.Text = newDate.ToLocalTime().ToShortDateString();
 				item.dateCreated = newDate.ToLocalTime();
 				BNRItemStore.updateDBItem(item);
 			};
-			this.PresentViewController(navController, true, null);
+
+			doneButton.TouchUpInside += (object sender, EventArgs e) => {
+				dateField.EndEditing(true);
+			};
+
+			return dpSuperView;
 		}
+
 
 		// Handles dragging row to new location
 		public override void MoveRow(UITableView tableView, NSIndexPath fromIndexPath, NSIndexPath toIndexPath)

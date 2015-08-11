@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<linker>
-    <assembly fullname="System.Core">
-        <type fullname="System.Linq.Expressions.Expression`1">
-        </type>
-    </assembly>
-</linker>
-

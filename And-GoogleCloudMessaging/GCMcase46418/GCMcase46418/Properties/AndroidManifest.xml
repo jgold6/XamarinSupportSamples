@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="gcmcase46418.gcmcase46418">
-	<uses-sdk />
-	<application android:label="GCMcase46418">
-	</application>
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-</manifest>

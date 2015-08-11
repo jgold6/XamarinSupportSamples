@@ -39,7 +39,10 @@ namespace TestPCConnection
 
 		public static bool isConnected(Context context) {
 			var intent = context.RegisterReceiver(null, new IntentFilter("android.hardware.usb.action.USB_STATE"));
-			return intent.Extras.GetBoolean("connected");
+			if (intent != null)
+				return intent.Extras.GetBoolean ("connected");
+			else
+				return false;
 		}
 	}
 }

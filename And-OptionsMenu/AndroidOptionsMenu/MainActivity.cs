@@ -55,14 +55,14 @@ namespace AndroidOptionsMenu
 					}
 				case Resource.Id.call2:
 					{
-						Console.WriteLine("Call1 Pressed");
+						Console.WriteLine("Call2 Pressed");
 						Intent intent = new Intent (Intent.ActionDial);
 						StartActivity (intent);
 						break;
 					}
 				case Resource.Id.call3:
 					{
-						Console.WriteLine("Call2 Pressed");
+						Console.WriteLine("Call3 Pressed");
 						Intent intent = new Intent (Intent.ActionDial);
 						StartActivity (intent);
 						break;

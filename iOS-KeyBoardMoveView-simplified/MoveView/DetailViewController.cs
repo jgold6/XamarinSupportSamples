@@ -4,10 +4,14 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.ObjCRuntime;
 
-namespace Homepwner
+namespace MoveView
 {
 	public partial class DetailViewController : UIViewController, IUITextFieldDelegate
 	{
+		// Set to true to move the entire view up when the keyboard appears
+		// and you have selected a text field that would be covered by the keyboard
+		// set to false to just slide teh text fields up as necessary when the keyboard shows. 
+		bool moveWholeView = false;
 
 		RectangleF viewRect;
 		RectangleF keyTextFieldRect;
@@ -64,10 +68,10 @@ namespace Homepwner
 		{
 			base.ViewWillAppear(animated);
 
-			// Use for moving entire view
-//			NSNotificationCenter.DefaultCenter.AddObserver(this, new Selector("keyboardWillChangeFrameNotification:"), UIKeyboard.WillChangeFrameNotification, null);
-			// Use for moving individual text fields
-			NSNotificationCenter.DefaultCenter.AddObserver(this, new Selector("keyboardDidChangeFrameNotification:"), UIKeyboard.DidChangeFrameNotification, null);
+			if (moveWholeView)
+				NSNotificationCenter.DefaultCenter.AddObserver(this, new Selector("keyboardWillChangeFrameNotification:"), UIKeyboard.WillChangeFrameNotification, null);
+			else
+				NSNotificationCenter.DefaultCenter.AddObserver(this, new Selector("keyboardDidChangeFrameNotification:"), UIKeyboard.DidChangeFrameNotification, null);
 
 			NSNotificationCenter.DefaultCenter.AddObserver(this, new Selector("keyboardWillHide:"), UIKeyboard.WillHideNotification, null);
 
@@ -93,10 +97,10 @@ namespace Homepwner
 		{
 			base.ViewWillDisappear(animated);
 
-			// Use for moving entire view
-//			NSNotificationCenter.DefaultCenter.RemoveObserver(this, UIKeyboard.WillChangeFrameNotification, null);
-			// Use for moving individual text fields
-			NSNotificationCenter.DefaultCenter.RemoveObserver(this, UIKeyboard.DidChangeFrameNotification, null);
+			if (moveWholeView)
+				NSNotificationCenter.DefaultCenter.RemoveObserver(this, UIKeyboard.WillChangeFrameNotification, null);
+			else
+				NSNotificationCenter.DefaultCenter.RemoveObserver(this, UIKeyboard.DidChangeFrameNotification, null);
 
 			NSNotificationCenter.DefaultCenter.RemoveObserver(this, UIKeyboard.WillHideNotification, null);
 
@@ -128,27 +132,27 @@ namespace Homepwner
 		public override void ViewDidLayoutSubviews()
 		{
 			base.ViewDidLayoutSubviews();
-			if (shouldSlideViewUp)
+			if (shouldSlideViewUp && !moveWholeView)
 				this.MoveViewUp(true, keyboardHeight);
 		}
 
 		// Use for moving entire view
-//		[Export("keyboardWillChangeFrameNotification:")]
-//		public void WillChangeFrameNotification(NSNotification notification)
-//		{
-//			if (shouldSlideViewUp) {
-//				var keyRect = UIKeyboard.FrameEndFromNotification(notification);
-//
-//				keyboardHeight = keyRect.Height < keyRect.Width ? keyRect.Height : keyRect.Width; // Depending on orientation, height may be given as width, so look for the smaller of the two.
-//				this.MoveViewUp(true, keyboardHeight);
-//			}
-//		}
+		[Export("keyboardWillChangeFrameNotification:")]
+		public void WillChangeFrameNotification(NSNotification notification)
+		{
+			if (shouldSlideViewUp && moveWholeView) {
+				var keyRect = UIKeyboard.FrameEndFromNotification(notification);
+
+				keyboardHeight = keyRect.Height < keyRect.Width ? keyRect.Height : keyRect.Width; // Depending on orientation, height may be given as width, so look for the smaller of the two.
+				this.MoveViewUp(true, keyboardHeight);
+			}
+		}
 
 		// Use for moving individual text fields
 		[Export("keyboardDidChangeFrameNotification:")]
 		public void DidChangeFrameNotification(NSNotification notification)
 		{
-			if (shouldSlideViewUp) {
+			if (shouldSlideViewUp && !moveWholeView) {
 				var keyRect = UIKeyboard.FrameEndFromNotification(notification);
 
 				keyboardHeight = keyRect.Height < keyRect.Width ? keyRect.Height : keyRect.Width; // Depending on orientation, height may be given as width, so look for the smaller of the two.
@@ -162,47 +166,46 @@ namespace Homepwner
 			shouldSlideViewUp = false;
 		}
 
-		// To move the entire view when the keyboard appears
-//		public void MoveViewUp(bool movedUp, float keyboardHgt) 
-//		{
-//			UIView.Animate(0.28, 0.0, UIViewAnimationOptions.CurveEaseOut, new NSAction ( delegate() {
-//				RectangleF rect;
-//				RectangleF rect2;
-//				if (movedUp) {
-//					rect = new RectangleF(viewRect.Location.X, viewRect.Location.Y - keyboardHgt, viewRect.Size.Width, viewRect.Size.Height);
-//				}
-//				else {
-//					rect = viewRect;
-//				}
-//				View.Frame = rect;
-//
-//			}), null);
-//			UIView.CommitAnimations();
-//		}
-
-		// To move the individual text fields when the keyboard appears
 		public void MoveViewUp(bool movedUp, float keyboardHgt) 
 		{
-			double speed = movedUp ? 0.0 : 0.28;
-			UIView.Animate(speed, 0.0, UIViewAnimationOptions.CurveEaseOut, new NSAction ( delegate() {
-				RectangleF rect, rect2, rect3;
+			// To move the entire view when the keyboard appears
+			if (moveWholeView) {
+				UIView.Animate (0.28, 0.0, UIViewAnimationOptions.CurveEaseOut, new NSAction (delegate() {
+					RectangleF rect;
+					RectangleF rect2;
+					if (movedUp) {
+						rect = new RectangleF (viewRect.Location.X, viewRect.Location.Y - keyboardHgt, viewRect.Size.Width, viewRect.Size.Height);
+					} else {
+						rect = viewRect;
+					}
+					View.Frame = rect;
+				
+				}), null);
+				UIView.CommitAnimations ();
+			}
+			// To move the individual text fields when the keyboard appears
+			else {
+				double speed = movedUp ? 0.0 : 0.28;
+				UIView.Animate(speed, 0.0, UIViewAnimationOptions.CurveEaseOut, new NSAction ( delegate() {
+					RectangleF rect, rect2, rect3;
 
-				if (movedUp) {
-					rect = new RectangleF(keyTextFieldRect.Location.X, keyTextFieldRect.Location.Y  - keyboardHgt, keyTextFieldRect.Size.Width, keyTextFieldRect.Size.Height);
-					rect2 = new RectangleF(altKeyTextFieldRect.Location.X, altKeyTextFieldRect.Location.Y  - keyboardHgt, altKeyTextFieldRect.Size.Width, altKeyTextFieldRect.Size.Height);
-					rect3 = new RectangleF(textViewRect.Location.X, textViewRect.Location.Y  - keyboardHgt, textViewRect.Size.Width, textViewRect.Size.Height);
-				}
-				else {
-					rect = keyTextFieldRect;
-					rect2 = altKeyTextFieldRect;
-					rect3 = textViewRect;
-				}
-				keyTextField.Frame = rect;
-				altKeyTextField.Frame = rect2;
-				textView.Frame = rect3;
+					if (movedUp) {
+						rect = new RectangleF(keyTextFieldRect.Location.X, keyTextFieldRect.Location.Y  - keyboardHgt, keyTextFieldRect.Size.Width, keyTextFieldRect.Size.Height);
+						rect2 = new RectangleF(altKeyTextFieldRect.Location.X, altKeyTextFieldRect.Location.Y  - keyboardHgt, altKeyTextFieldRect.Size.Width, altKeyTextFieldRect.Size.Height);
+						rect3 = new RectangleF(textViewRect.Location.X, textViewRect.Location.Y  - keyboardHgt, textViewRect.Size.Width, textViewRect.Size.Height);
+					}
+					else {
+						rect = keyTextFieldRect;
+						rect2 = altKeyTextFieldRect;
+						rect3 = textViewRect;
+					}
+					keyTextField.Frame = rect;
+					altKeyTextField.Frame = rect2;
+					textView.Frame = rect3;
 
-			}), null);
-			UIView.CommitAnimations();
+				}), null);
+				UIView.CommitAnimations();
+			}
 		}
 	}
 }

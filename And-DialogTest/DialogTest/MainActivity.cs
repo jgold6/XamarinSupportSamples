@@ -6,9 +6,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace DialogTest
+namespace TransparentDialog
 {
-	[Activity (Label = "DialogTest", MainLauncher = true)]
+	[Activity (Label = "TransparentDialog", MainLauncher = true)]
 	public class MainActivity : Activity
 	{
 		int count = 1;
@@ -41,6 +41,12 @@ namespace DialogTest
 	{
 		public TransparentDialog(Context context) : base(context, Resource.Style.THENameHere)
 		{
+			
+		}
+
+		protected override void OnCreate (Bundle savedInstanceState)
+		{
+			base.OnCreate (savedInstanceState);
 			this.SetContentView(Resource.Layout.DialogLayout);
 		}
 	}

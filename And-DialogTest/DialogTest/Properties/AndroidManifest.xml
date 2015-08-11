@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="DialogTest.DialogTest">
-	<uses-sdk />
-	<application android:label="DialogTest"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="TransparentDialog.TransparentDialog">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21" />
+	<application android:label="TransparentDialog" android:icon="@drawable/icon">
+	</application>
 </manifest>

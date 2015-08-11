@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransparentDialog", "Dialog
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1572C229-907C-4F34-B495-98D68264A0F1}"
 	ProjectSection(SolutionItems) = preProject
-		READ_ME.md = READ_ME.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

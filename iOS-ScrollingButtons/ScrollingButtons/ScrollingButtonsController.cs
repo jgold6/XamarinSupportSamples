@@ -49,7 +49,6 @@ namespace ScrollingButtons
 					_scrollView.ContentSize = new SizeF(_scrollView.ContentSize.Width + w, h);
 					_buttons.Add (button);
 				}
-				System.Console.WriteLine("Scrolled: sender: {0}, e: {1}", sender, e.ToString());
 
 			};
 		}

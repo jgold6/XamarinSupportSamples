@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 using System.Reflection;
 using MonoTouch.ObjCRuntime;
 
-namespace Homepwner
+namespace CellDatePickerAndTextField
 {
 	public partial class HomepwnerItemCell : UITableViewCell
 	{

@@ -4,7 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.ObjCRuntime;
 
-namespace Homepwner
+namespace CellDatePickerAndTextField
 {
 	public partial class ItemsViewController : UITableViewController, IUITableViewDataSource, IUITableViewDelegate, IUITextFieldDelegate
 	{

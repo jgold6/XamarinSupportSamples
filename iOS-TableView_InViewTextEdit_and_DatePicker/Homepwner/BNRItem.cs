@@ -6,7 +6,7 @@ using MonoTouch.CoreGraphics;
 using System.Drawing;
 using SQLite;
 
-namespace Homepwner
+namespace CellDatePickerAndTextField
 {
 	[Table("BNRItems")]
 	public class BNRItem

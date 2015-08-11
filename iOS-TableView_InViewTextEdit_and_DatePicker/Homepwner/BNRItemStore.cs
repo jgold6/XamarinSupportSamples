@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using SQLite;
 
-namespace Homepwner
+namespace CellDatePickerAndTextField
 {
 	public static class BNRItemStore : object
 	{

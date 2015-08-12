@@ -2,14 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoMac.Foundation;
-using MonoMac.AppKit;
-using MonoMac.ObjCRuntime;
+using Foundation;
+using AppKit;
+using ObjCRuntime;
 using System.Threading.Tasks;
 
 namespace DistNoteTest
 {
-    public partial class MainWindowController : MonoMac.AppKit.NSWindowController
+    public partial class MainWindowController : AppKit.NSWindowController
     {
 		public static string notificationName = "sweetspot.fetch.event";
 		private static NSString NSNotificationName = new NSString(notificationName);
@@ -117,7 +117,7 @@ namespace DistNoteTest
 		{
 			var center = getLocalNotificationCenter ();
 			var subscriber = new Subscriber ();
-			center.AddObserver(subscriber, handleNotificationSelector, notificationName, null);
+			center.AddObserver(subscriber, handleNotificationSelector, new NSString(notificationName), null);
 		}
 
 		public static void SendDistributedNotification(string payload)

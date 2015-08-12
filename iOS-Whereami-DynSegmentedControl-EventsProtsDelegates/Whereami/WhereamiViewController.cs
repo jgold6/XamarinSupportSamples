@@ -74,13 +74,13 @@ namespace Whereami
 
 			};
 
-			// Strong Delegate method. Create delegate class as nested class of ViewCOntroller
-			// Override need methods in that nested delegate class
+			// Strong Delegate method. Create delegate class as nested class of ViewController
+			// Override needed methods in that nested delegate class
 //			mapDelegate = new WhereAmIMapDelegate();
 //			mapView.Delegate = mapDelegate;
 
-			// Weak delegate method. use Export attribute with selector to override then implement method.
-			// Whichever is assigned last wins and kills the other. 
+			// Weak delegate method. use Export attribute with selector to override then implement delegate methods.
+			// Whichever is assigned last wins and kills the others. 
 //			mapView.WeakDelegate =  this;
 
 //			textField.Delegate = new TextFieldDelegate();
@@ -162,25 +162,13 @@ namespace Whereami
 						mapView.MapType = MKMapType.Hybrid;
 						break;
 					case 3:
-						Console.WriteLine("SegmentedControl item 4 selected");
-						break;
 					case 4:
-						Console.WriteLine("SegmentedControl item 5 selected");
-						break;
 					case 5:
-						Console.WriteLine("SegmentedControl item 6 selected");
-						break;
 					case 6:
-						Console.WriteLine("SegmentedControl item 7 selected");
-						break;
 					case 7:
-						Console.WriteLine("SegmentedControl item 8 selected");
-						break;
 					case 8:
-						Console.WriteLine("SegmentedControl item 9 selected");
-						break;
 					case 9:
-						Console.WriteLine("SegmentedControl item 10 selected");
+					Console.WriteLine("SegmentedControl item " + (segControl.SelectedSegment + 1) +  " selected");
 						break;
 					default:
 						break;

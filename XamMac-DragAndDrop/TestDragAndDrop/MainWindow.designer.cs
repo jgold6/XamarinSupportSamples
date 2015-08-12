@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoMac.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace TestDragAndDrop
@@ -13,7 +13,7 @@ namespace TestDragAndDrop
 	partial class MainWindowController
 	{
 		[Outlet]
-		MonoMac.AppKit.NSTextField lblDropZone { get; set; }
+		AppKit.NSTextField lblDropZone { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

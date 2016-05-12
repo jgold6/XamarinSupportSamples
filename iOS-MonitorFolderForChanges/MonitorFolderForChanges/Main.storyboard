@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="34" width="46" height="30"/>
+                                <state key="normal" title="Add File">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <rect key="frame" x="20" y="34" width="78" height="30"/>
+                                    <mask key="constraints">
+                                        <include reference="31"/>
+                                    </mask>
+                                </variation>
+                                <constraints>
+                                    <constraint id="31" firstAttribute="width" constant="78"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="31"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="BtnAddFile_TouchUpInside:" destination="BYZ-38-t0r" id="51" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="96" width="46" height="30"/>
+                                <state key="normal" title="Delete File">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <rect key="frame" x="20" y="96" width="94" height="30"/>
+                                    <mask key="constraints">
+                                        <include reference="34"/>
+                                    </mask>
+                                </variation>
+                                <constraints>
+                                    <constraint id="34" firstAttribute="width" constant="94"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="34"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="BtnDeleteFile_TouchUpInside:" destination="BYZ-38-t0r" id="52" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Files in Folder" lineBreakMode="tailTruncation" minimumFontSize="10" id="9" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="144" width="42" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <rect key="frame" x="20" y="144" width="335" height="21"/>
+                                    <mask key="constraints">
+                                        <include reference="23"/>
+                                        <include reference="24"/>
+                                    </mask>
+                                </variation>
+                                <constraints>
+                                    <constraint id="23" firstAttribute="width" constant="335"/>
+                                    <constraint id="24" firstAttribute="height" constant="21"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="23"/>
+                                        <exclude reference="24"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" id="10" translatesAutoresizingMaskIntoConstraints="NO" editable="NO" selectable="NO" userInteractionEnabled="NO">
+                                <rect key="frame" x="20" y="179" width="160" height="240"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <rect key="frame" x="20" y="179" width="335" height="468"/>
+                                    <mask key="constraints">
+                                        <include reference="27"/>
+                                        <include reference="28"/>
+                                    </mask>
+                                </variation>
+                                <constraints>
+                                    <constraint id="27" firstAttribute="width" constant="335"/>
+                                    <constraint id="28" firstAttribute="height" constant="468"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="27"/>
+                                        <exclude reference="28"/>
+                                    </mask>
+                                </variation>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="43" translatesAutoresizingMaskIntoConstraints="NO" placeholder="File name">
+                                <rect key="frame" x="258" y="34" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <rect key="frame" x="122" y="34" width="233" height="30"/>
+                                    <mask key="constraints">
+                                        <include reference="46"/>
+                                    </mask>
+                                </variation>
+                                <constraints>
+                                    <constraint id="46" firstAttribute="width" constant="233"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="46"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="47" translatesAutoresizingMaskIntoConstraints="NO" placeholder="File name">
+                                <rect key="frame" x="258" y="96" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <rect key="frame" x="122" y="96" width="233" height="30"/>
+                                    <mask key="constraints">
+                                        <include reference="50"/>
+                                    </mask>
+                                </variation>
+                                <constraints>
+                                    <constraint id="50" firstAttribute="width" constant="233"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="50"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                        </subviews>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="3"/>
+                                <exclude reference="6"/>
+                                <exclude reference="9"/>
+                                <exclude reference="10"/>
+                                <exclude reference="43"/>
+                                <exclude reference="47"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="21"/>
+                                <exclude reference="22"/>
+                                <exclude reference="25"/>
+                                <exclude reference="26"/>
+                                <exclude reference="32"/>
+                                <exclude reference="33"/>
+                                <exclude reference="41"/>
+                                <exclude reference="42"/>
+                                <exclude reference="44"/>
+                                <exclude reference="45"/>
+                                <exclude reference="48"/>
+                                <exclude reference="49"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="3"/>
+                                <include reference="6"/>
+                                <include reference="9"/>
+                                <include reference="10"/>
+                                <include reference="43"/>
+                                <include reference="47"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="21"/>
+                                <include reference="22"/>
+                                <include reference="25"/>
+                                <include reference="26"/>
+                                <include reference="32"/>
+                                <include reference="33"/>
+                                <include reference="41"/>
+                                <include reference="42"/>
+                                <include reference="44"/>
+                                <include reference="45"/>
+                                <include reference="48"/>
+                                <include reference="49"/>
+                            </mask>
+                        </variation>
+                        <constraints>
+                            <constraint id="21" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="20"/>
+                            <constraint id="22" firstItem="9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="144"/>
+                            <constraint id="25" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="20"/>
+                            <constraint id="26" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="20"/>
+                            <constraint id="32" firstItem="6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20"/>
+                            <constraint id="33" firstItem="6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="96"/>
+                            <constraint id="41" firstItem="3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20"/>
+                            <constraint id="42" firstItem="3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="34"/>
+                            <constraint id="44" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="43" secondAttribute="trailing" constant="20"/>
+                            <constraint id="45" firstItem="43" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="34"/>
+                            <constraint id="48" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="47" secondAttribute="trailing" constant="20"/>
+                            <constraint id="49" firstItem="47" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="96"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnAddFile" destination="3" id="name-outlet-3"/>
+                        <outlet property="btnDeleteFile" destination="6" id="name-outlet-6"/>
+                        <outlet property="txtFieldAddFile" destination="43" id="name-outlet-43"/>
+                        <outlet property="txtFieldDeleteFile" destination="47" id="name-outlet-47"/>
+                        <outlet property="textViewFiles" destination="10" id="name-outlet-10"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina47"/>
+    </simulatedMetricsContainer>
+</document>

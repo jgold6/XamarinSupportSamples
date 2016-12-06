@@ -17,9 +17,9 @@ namespace TestBackButton.Droid
 	{
 		private Support.Toolbar toolbar;
 
-		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+		protected override void OnLayout(bool changed, int l, int t, int r, int b)
 		{
-			base.OnElementPropertyChanged(sender, e);
+			base.OnLayout(changed, l, t, r, b);
 			for (int i = 0; i < toolbar.ChildCount; i++)
 			{
 				var item = toolbar.GetChildAt(i);
@@ -32,6 +32,7 @@ namespace TestBackButton.Droid
 
 			}
 		}
+		
 		public override void OnViewAdded(Android.Views.View child)
 		{
 			base.OnViewAdded(child);

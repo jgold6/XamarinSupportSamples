@@ -13,7 +13,7 @@ namespace doneButton.iPhone
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-                        Console.WriteLine("ViewDidLoad Called");
+
 			View.BackgroundColor = UIColor.White;
 
 			Title = "Done Button Example";

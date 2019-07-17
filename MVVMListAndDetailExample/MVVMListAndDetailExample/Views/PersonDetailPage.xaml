@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   x:Class="MVVMListAndDetailExample.Views.PersonDetailPage"
+   Title="Person Detail Page"
+   Padding="0,50,0,0">
+   <ContentPage.Content>
+      <StackLayout>
+         <Entry Text="{Binding FirstName, Mode=TwoWay}" />
+         <Entry Text="{Binding LastName, Mode=TwoWay}" />
+         <Entry Text="{Binding Age, Mode=TwoWay}" />
+         <Entry Text="{Binding City, Mode=TwoWay}" />
+         <Entry Text="{Binding State, Mode=TwoWay}" />
+         <Button Text="Save" Clicked="Handle_Clicked" />
+      </StackLayout>
+      
+   </ContentPage.Content>
+</ContentPage>

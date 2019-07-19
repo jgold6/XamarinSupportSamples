@@ -5,9 +5,9 @@
    xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
    mc:Ignorable="d" 
-   x:Class="MVVMListAndDetailExample.MainPage"
+   x:Class="MVVMListAndDetailExample.Views.MainPage"
    Padding="0,50,0,0">
-   <ListView ItemsSource="{Binding PeopleList}" HasUnevenRows="true">
+   <ListView ItemsSource="{Binding PeopleList}" HasUnevenRows="true" ItemTapped="Handle_ItemTapped">
       <ListView.ItemTemplate>
          <DataTemplate>
             <ViewCell>

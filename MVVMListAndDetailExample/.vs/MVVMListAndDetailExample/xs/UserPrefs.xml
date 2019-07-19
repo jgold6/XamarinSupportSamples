@@ -1,13 +1,18 @@
-﻿<Properties StartupConfiguration="{6D7CAFF0-0F50-4DD6-B6BF-1A2E05BB41A1}|Default">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{6D7CAFF0-0F50-4DD6-B6BF-1A2E05BB41A1}|Default">
   <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="MVVMListAndDetailExample/Views/MainPage.xaml" Line="16" Column="54" />
+      <File FileName="MVVMListAndDetailExample/Views/MainPage.xaml.cs" Line="25" Column="10" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="MVVMListAndDetailExample" expanded="True">
             <Node name="MVVMListAndDetailExample" expanded="True">
-              <Node name="App.xaml" expanded="True">
-                <Node name="App.xaml.cs" selected="True" />
+              <Node name="Views" expanded="True">
+                <Node name="MainPage.xaml" expanded="True" selected="True" />
               </Node>
+              <Node name="App.xaml" expanded="True" />
             </Node>
           </Node>
         </State>

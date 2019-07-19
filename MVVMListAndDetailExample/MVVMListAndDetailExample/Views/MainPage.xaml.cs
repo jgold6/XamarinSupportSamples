@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVVMListAndDetailExample.ViewModels;
 using Xamarin.Forms;
 
 namespace MVVMListAndDetailExample.Views
@@ -13,10 +14,11 @@ namespace MVVMListAndDetailExample.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        public static PersonViewModel ListItemBindingContextDummy { get; set; } = null;
+
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.MainPageViewModel();
         }
 
         async void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)

@@ -3,14 +3,21 @@
    xmlns="http://xamarin.com/schemas/2014/forms" 
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
    xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
-   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:views="clr-namespace:MVVMListAndDetailExample.Views"
+   xmlns:viewmodels="clr-namespace:MVVMListAndDetailExample.ViewModels"
    mc:Ignorable="d" 
    x:Class="MVVMListAndDetailExample.Views.MainPage"
    Padding="0,50,0,0">
-   <ListView ItemsSource="{Binding PeopleList}" HasUnevenRows="true" ItemTapped="Handle_ItemTapped">
+   <ContentPage.BindingContext>
+       <viewmodels:MainPageViewModel />
+   </ContentPage.BindingContext>
+   <ListView ItemsSource="{Binding PeopleList}" 
+             HasUnevenRows="true" 
+             ItemTapped="Handle_ItemTapped">
       <ListView.ItemTemplate>
          <DataTemplate>
-            <ViewCell>
+            <ViewCell BindingContext="{x:Static views:MainPage.ListItemBindingContextDummy}">
                <StackLayout Padding="10,10,10,10">
                   <Label Text="{Binding FirstName}" />
                   <Label Text="{Binding LastName}" />

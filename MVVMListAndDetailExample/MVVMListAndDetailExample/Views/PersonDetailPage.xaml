@@ -6,7 +6,7 @@
    x:Class="MVVMListAndDetailExample.Views.PersonDetailPage"
    Title="Person Detail Page"
    Padding="0,50,0,0"
-   BindingContext="{x:Static views:PersonDetailPage.BindingContextDummyInstance}">
+   BindingContext="{x:Static views:PersonDetailPage.BindingContextInstance}">
    <ContentPage.Content>
       <StackLayout>
          <Entry Text="{Binding FirstName, Mode=TwoWay}" />

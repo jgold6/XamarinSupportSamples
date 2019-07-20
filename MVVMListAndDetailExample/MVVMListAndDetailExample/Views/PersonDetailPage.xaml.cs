@@ -7,12 +7,12 @@ namespace MVVMListAndDetailExample.Views
 {
     public partial class PersonDetailPage : ContentPage
     {
-        public static PersonViewModel BindingContextDummyInstance { get; set; } = null;
+        public static PersonViewModel BindingContextInstance { get; set; } = null;
 
         public PersonDetailPage(ViewModels.PersonViewModel personViewModel)
         {
-            InitializeComponent();
-            BindingContext = personViewModel;
+            BindingContextInstance = personViewModel;
+            InitializeComponent();            
         }
 
         async void Handle_Clicked(object sender, System.EventArgs e)
